@@ -1,0 +1,143 @@
+# Materiais e Métodos
+
+Os materias e scripts estão disponíveis em [Andryas/CE095](https://github.com/Andryas/ce095)
+
+## Materiais
+
+O conjunto de dados é um produto dos esforços da turma de Teorias de
+Avaliação, 1º semestre de 2018, com uma pequena contribuição da turma passada.
+A forma de coleta se deu atráves de um formulario online que ficou disponivel
+na plataforma do [Google](https://www.google.com/forms/about/) por 21 dias.
+
+O desenvolvimento do questinário foi feito em 5 etapas.
+
+1. Elaboração dos itens
+2. Validação dos itens
+3. Seleção dos itens
+4. Elaboração de Fatores Associados
+5. Disponibilização do formulário
+
+Para a execução da 1ª e 2ª etapa utilizou-se como embasamento o
+[guia de elaboração de revisão de itens da INEP - 2012](www.ufpr.br/~aanjos/CE095/guia_elaboracao_revisao_itens_2012_INEP.pdf).
+Cada aluno desenvolveu 3 questões que foram depois distribuidas de forma
+aleatoria para um dos colegas avaliar se o item estava de acordo ou não.
+A ideia básica para a criação e validação dos itens era possuir
+**TEXTO-BASE**, **ENUNCIADO**, **ALTERNATIVAS** e **GABARITO**.
+Dos itens que passaram dessas 2 primeiras etapas, 20 foram selecionados
+e foram complementados com mais 6 itens de um instrumento de medida anterior
+ao nosso que apresentaram boa calibração. Ao todo tivemos 26 itens no nosso
+intrusmento de medida.
+
+Após isso foi elaborado candidatos a fatores associados dos quais foi
+escolhido três e então o questionario foi disponibilizado no dia 10 de Maio
+de 2018.
+
+O conjunto de dados teve ao todo `r nrow(resp)` respondentes. Para
+informações sobre o questionário, perguntas e alternativas, consulte o
+[Anexo](#Anexo)
+
+## Métodos {#metodos}
+
+
+**Teoria Clássica dos Testes**
+
+Dificuldade
+
+$$D_i = \frac{C_i}{N_i}$$
+
+sendo que:
+
+C_i: número de indivíduos que responderam corretamente o item
+
+N_i: número de indivíduos submetidos ao item
+
+
+**Coeficiente de Alpha de Cronbach**\
+
+
+Para avaliar a consistência do questionário utilizou-se o Coeficiente de
+Alpha que é expresso da seguinte maneira:
+
+$$\alpha = \frac{n}{n-1}(1 - \frac{\sum_i^nS_i^2}{S_T^2})$$
+
+onde:
+
+n: número de itens
+
+$\sum_i^n S_i^2$: Soma da variância dos n itens
+
+$S_T$: variância global do teste
+
+**Coeficiente de correlação ponto-bisserial**
+
+É a correlação de Pearson entre uma variável dicotômica e o escore do teste,
+é definido por:
+
+$$\rho_{pb} = \frac{\bar{X}_A - \bar{X}_T}{S_T}\sqrt{\frac{p}{1-p}}$$
+
+
+sendo que:
+
+$\bar{X}_A$: é a média dos escores dos respondentes que acertaram o item
+
+$\bar{X}_T$: é a média global dos escores do teste
+
+$S_T$: é o desvio padrão dos escores obtidos pelos respondentes no teste
+
+p: é a proporção de respondentes que acertaram o item
+
+
+\
+**Modelo de 3 Parâmetros**\
+
+
+Para o ajuste do modelo foi considerado o modelo logístico de três parâmetros
+@tri. Assim, a probabilidade de um avaliado j, com proeficiência
+$\theta_j$, acertar o item i é dada por:
+
+$$p_{ij} = c_i + (1 - c_i) \frac{1}{1 + e^{-a_j(\theta_j - b_j)}}$$
+
+sendo que os parâmetros a, b e c referem-se ao item e o parâmetro $\theta$ ao
+avaliado.
+
+$a_i$: discriminação do item i
+
+$b_i$: dificuldade do item i
+
+$c_i$: probabilidade de acerto casual do item i
+
+$\theta_j$: traço latente do avaliado j
+
+
+**Traço Latente**
+
+Para determinar se um item é âncora a seguinte definição foi usada:
+
+> Sejam dois itens âncora consecutivos Y e Z com Y < Z. Diz que um item é
+âncora para o nível Z se e somente se as 3 condições abaixo forem satisfeitas
+simultaneamente:
+
+* P(U = i | $\theta$ = Z) $\geq$ 0.65
+* P(U = i | $\theta$ = Y) < 0.5
+* P(U = i | $\theta$ = Z) - P(U = i | $\theta$ = Y) $\geq$ 0.3
+
+
+
+**Regressão Linear Múltipla**\
+
+
+E por último, para verificar os efeitos dos traços latentes estimados fez-se
+uso do modelode regressão linear múltipla para a análise dos fatores
+associados, que é expresso da seguinte maneira:
+
+$$\theta_{i} = \beta_0 + \beta_{f1}x_{i1} + \beta_{f2}x_{i2} + \beta_{f3}
+x_{i3}$$
+
+sendo que f1, f2 e f3 representam um dos fatores associados medidos.
+
+
+
+## Recursos Computacionais
+
+Para as análises o software utilizado foi @software-r e os pacotes utilizados
+foram: `knitr`, `kableExtra`, `dplyr`, `ggplot2`, `ltm` e `irtoys`.

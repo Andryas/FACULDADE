@@ -1,0 +1,173 @@
+# Resultados
+
+Os gráficos dos métodos que serão apresentados já estão calculados pelo
+critério estabelecido (VaR).
+
+$$VaR_t = volatilidade_t * qnorm(0.95)$$
+
+onde qnorm retorna o valor de uma distribuição N(0,1) no quantil 0.95.
+
+```{r processamento-conjunto-dados}
+bra$rc <- rc(bra$close)
+bra$tempo <- lubridate::year(bra$date)
+vs <- aggregate(rc ~ tempo, data = bra, FUN = sd)
+colnames(vs) <- c("tempo","vs")
+
+bra <- merge(x = bra, y = vs, by = "tempo")
+
+# Para Limite Inferior
+bra$vs <- bra$vs * -1
+
+# mve <- svsample(bra$rc,
+#                 priormu = c(0, 1),
+#                 designmatrix = "ar1")
+#
+# summary(mve, showlatent = FALSE)
+# saveRDS(mve,"mve.RData")
+
+mve <- readRDS("mve.RData")
+x <- latent(mve)
+x <- apply(x, 2, mean)
+bra$ve <- c(0,exp(x/2)) * -1
+```
+
+## Análise Descritiva
+
+Para dar inicio aos resultados é usual explorar algumas medidas
+descritivas. Em se tratando de bolsa de valores, normalmente é feito um
+gráfico de candles para análise.
+
+```{r candles}
+# Acrescentar legenda
+ggplot(bra, aes(x = date)) +
+    geom_candlestick(aes(open = open, high = high,
+                         low = low, close = close)) +
+    labs(x = paste0(format(min(bra$date),  "%d/%m/%Y"), " até ",
+                    format(max(bra$date), "%d/%m/%Y")),
+         y =  "Preço",
+         title =  "BBDC4.SA") +
+    theme_tq()
+```
+
+Pelo gráfico acima observa-se uma valorização da empresa no período
+selecionado, mas que recentemente teve uma queda brusca.
+
+## Retorno Contínuo
+
+Para a aplicação de modelos de volatilidade para o cálculo do valor de risco
+(VaR) é usual o uso do retorno contínuo descrito na seção de métodos. Abaixo
+temos o gráfico dos log-retornos.
+
+
+```{r log-retorno}
+ggplot(bra, aes(x = date, y = rc)) + geom_line() +
+    labs(x = paste0(format(min(bra$date),  "%d/%m/%Y"), " até ",
+                    format(max(bra$date), "%d/%m/%Y")),
+         y = "log-retorno",
+         title = "BBDC4.SA")
+```
+
+## Volatilidade Histórica
+
+
+Abaixo tem-se o gráfico da volatilidade histórica. Cada "escada" é a estimativa
+do desvio-padrão para o respectivo ano. Logo, é possível observar que entre
+os períodos que vão de 2014 à final de 2016, a volatilidade aumentou. Ou seja,
+o risco para esse período é maior em relação aos demais.
+
+```{r volatildiade-est-simples}
+ggplot(bra, aes(x = date)) +
+    geom_line(aes(y = rc)) +
+    geom_line(aes(y = vs * qnorm(0.95)), colour = "blue") +
+    labs(x = paste0(format(min(bra$date),  "%d/%m/%Y"), " até ",
+                    format(max(bra$date), "%d/%m/%Y")),
+         y = "log-retorno",
+         title = "BBDC4.SA")
+# sum(bra$rc > bra$vs * qnorm(0.05)) / nrow(bra)
+```
+
+
+## Modelo de Volatilidade Estocástica
+
+É possível constatar que o comportamento dos resultados do MVE diferem da
+volatilidade histórica pelo fato que para cada instante t tem-se uma estimativa.
+
+```{r}
+ggplot(bra, aes(x = date)) +
+    geom_line(aes(y = rc)) +
+    geom_line(aes(y = ve * qnorm(0.95)), colour = "blue") +
+    labs(x = paste0(format(min(bra$date),  "%d/%m/%Y"), " até ",
+                    format(max(bra$date), "%d/%m/%Y")),
+         y = "log-retorno",
+         title = "BBDC4.SA")
+
+```
+
+### Estimativas do Modelo
+
+
+<!-- \begin{center} -->
+
+```{r, comment=NA}
+summary(mve, showlatent =  FALSE)
+```
+
+<!-- \end{center} -->
+
+Notar que, como apresentado na seção métodos, o coeficiente $\phi$ se aproxima
+de 1, e isto indica que o MVE é muito parecido com o modelo GARCH(1,1).
+
+
+## Volatilidade Histórica vs Modelo de Volatilidade Estocástica
+
+Pelo gráfico abaixo, observa-se que o MVE é muito mais flexivel do que o VH.
+Isto é decorrente pelas especificações de cada um, sendo que o VH é o caso
+mais simples possível.
+
+```{r}
+forthisgraph <- reshape2::melt(data = bra[, c("close", "date",
+                                              "vs", "ve", 'rc')],
+                               id = c("date", "close", 'rc'))
+
+forthisgraph$close <- forthisgraph$close * qnorm(0.95)
+# str(forthisgraph)
+ggplot(forthisgraph, aes(x = date, y = rc)) +
+    geom_line() +
+    geom_line(aes(y = value, colour = variable)) +
+    labs(x = paste0(format(min(forthisgraph$date),  "%d/%m/%Y"), " até ",
+                    format(max(forthisgraph$date), "%d/%m/%Y")),
+         y = "log-retorno",
+         title = "BBDC4.SA") +
+    scale_color_hue(name  ="Método",
+                           breaks=c("ve", "vs"),
+                    labels=c("Volatilidade Estocástica",
+                             "Volatilidade Histórica"))
+```
+
+# valor em Risco (VaR)
+
+Pela tabela abaixo tem-se os resultados dos testes de violação para cada
+método. Nota-se que o MVE teve um desempenho um pouco melhor, porém não
+significativo. Isso pode ser consequência de varios fatores, por exemplo,
+a empresa análisada, em questão, não apresenta uma volatilidade alta, sendo
+assim a VH tem um desempenho superestimado.
+
+Entretando a volatilidade histórica é pouca realista, pois ela não traz
+informações confiaveis na hora de negociar ativos.
+
+```{r}
+resultados <- data.frame(
+    Método = c("Volatilidade Histórico",
+               "Modelo de Volatilidade Estocástica"),
+    VaR = c(
+        paste0(round(100*(sum(bra$rc < bra$vs * qnorm(0.95),
+                              na.rm = TRUE) / nrow(bra)),2),"%"),
+        paste0(round(100*(sum(bra$rc < (bra$ve * qnorm(0.95)),
+                              na.rm = TRUE) / nrow(bra)),2),"%")
+    )
+)
+
+kable(resultados,format = "latex",
+      booktabs = TRUE,align = "c") %>%
+    kable_styling()
+```

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Teoria do Risco</title>
+  <meta name="description" content="Teoria do Risco">
+  <meta name="generator" content="bookdown 0.4.1 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Teoria do Risco" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Teoria do Risco" />
+  
+  
+  
+
+<meta name="author" content="Andryas Waurzenczak">
+
+
+<meta name="date" content="2017-06-29">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="exercicio-1.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://andryas.github.io/"><center><i class="fa fa-arrow-left" aria-hidden="true"></i></center></\a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="1" data-path="conteudo.html"><a href="conteudo.html"><i class="fa fa-check"></i><b>1</b> Conteúdo</a><ul>
+<li class="chapter" data-level="1.1" data-path="conteudo.html"><a href="conteudo.html#teorema-da-ruina-do-jogador"><i class="fa fa-check"></i><b>1.1</b> Teorema da ruína do jogador</a></li>
+<li class="chapter" data-level="1.2" data-path="conteudo.html"><a href="conteudo.html#equacao-fundamental-da-teoria-do-risco"><i class="fa fa-check"></i><b>1.2</b> Equação fundamental da teoria do risco</a></li>
+<li class="chapter" data-level="1.3" data-path="conteudo.html"><a href="conteudo.html#convolucao"><i class="fa fa-check"></i><b>1.3</b> Convolução</a></li>
+<li class="chapter" data-level="1.4" data-path="conteudo.html"><a href="conteudo.html#preco-comercial"><i class="fa fa-check"></i><b>1.4</b> Preço Comercial</a></li>
+<li class="chapter" data-level="1.5" data-path="conteudo.html"><a href="conteudo.html#preco-comercial-individual"><i class="fa fa-check"></i><b>1.5</b> Preço Comercial Individual</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="exercicio-1.html"><a href="exercicio-1.html"><i class="fa fa-check"></i><b>2</b> Exercício 1</a><ul>
+<li class="chapter" data-level="2.1" data-path="exercicio-1.html"><a href="exercicio-1.html#section"><i class="fa fa-check"></i><b>2.1</b> </a></li>
+<li class="chapter" data-level="2.2" data-path="exercicio-1.html"><a href="exercicio-1.html#section-1"><i class="fa fa-check"></i><b>2.2</b> </a></li>
+<li class="chapter" data-level="2.3" data-path="exercicio-1.html"><a href="exercicio-1.html#section-2"><i class="fa fa-check"></i><b>2.3</b> </a></li>
+<li class="chapter" data-level="2.4" data-path="exercicio-1.html"><a href="exercicio-1.html#section-3"><i class="fa fa-check"></i><b>2.4</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exercicio-2.html"><a href="exercicio-2.html"><i class="fa fa-check"></i><b>3</b> Exercício 2</a></li>
+<li class="chapter" data-level="4" data-path="exercicio-3.html"><a href="exercicio-3.html"><i class="fa fa-check"></i><b>4</b> Exercício 3</a></li>
+<li class="chapter" data-level="5" data-path="exercicio-4.html"><a href="exercicio-4.html"><i class="fa fa-check"></i><b>5</b> Exercício 4</a></li>
+<li class="chapter" data-level="6" data-path="exercicio-5.html"><a href="exercicio-5.html"><i class="fa fa-check"></i><b>6</b> Exercicío 5</a></li>
+<li class="chapter" data-level="7" data-path="trabalho-1.html"><a href="trabalho-1.html"><i class="fa fa-check"></i><b>7</b> Trabalho 1</a><ul>
+<li class="chapter" data-level="7.1" data-path="trabalho-1.html"><a href="trabalho-1.html#a"><i class="fa fa-check"></i><b>7.1</b> a</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="trabalho-1.html"><a href="trabalho-1.html#section-4"><i class="fa fa-check"></i><b>7.1.1</b> </a></li>
+<li class="chapter" data-level="7.1.2" data-path="trabalho-1.html"><a href="trabalho-1.html#section-5"><i class="fa fa-check"></i><b>7.1.2</b> </a></li>
+<li class="chapter" data-level="7.1.3" data-path="trabalho-1.html"><a href="trabalho-1.html#section-6"><i class="fa fa-check"></i><b>7.1.3</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="trabalho-1.html"><a href="trabalho-1.html#b"><i class="fa fa-check"></i><b>7.2</b> b</a></li>
+<li class="chapter" data-level="7.3" data-path="trabalho-1.html"><a href="trabalho-1.html#c"><i class="fa fa-check"></i><b>7.3</b> c</a></li>
+<li class="chapter" data-level="7.4" data-path="trabalho-1.html"><a href="trabalho-1.html#d"><i class="fa fa-check"></i><b>7.4</b> d</a></li>
+<li class="chapter" data-level="7.5" data-path="trabalho-1.html"><a href="trabalho-1.html#e"><i class="fa fa-check"></i><b>7.5</b> e</a></li>
+<li class="chapter" data-level="7.6" data-path="trabalho-1.html"><a href="trabalho-1.html#f"><i class="fa fa-check"></i><b>7.6</b> f</a></li>
+<li class="chapter" data-level="7.7" data-path="trabalho-1.html"><a href="trabalho-1.html#g"><i class="fa fa-check"></i><b>7.7</b> g</a></li>
+<li class="chapter" data-level="7.8" data-path="trabalho-1.html"><a href="trabalho-1.html#h"><i class="fa fa-check"></i><b>7.8</b> h</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="trabalho-2.html"><a href="trabalho-2.html"><i class="fa fa-check"></i><b>8</b> Trabalho 2</a><ul>
+<li class="chapter" data-level="8.1" data-path="trabalho-2.html"><a href="trabalho-2.html#a-1"><i class="fa fa-check"></i><b>8.1</b> a</a></li>
+<li class="chapter" data-level="8.2" data-path="trabalho-2.html"><a href="trabalho-2.html#b-1"><i class="fa fa-check"></i><b>8.2</b> b</a></li>
+<li class="chapter" data-level="8.3" data-path="trabalho-2.html"><a href="trabalho-2.html#c-1"><i class="fa fa-check"></i><b>8.3</b> c</a></li>
+<li class="chapter" data-level="8.4" data-path="trabalho-2.html"><a href="trabalho-2.html#d-1"><i class="fa fa-check"></i><b>8.4</b> d</a></li>
+<li class="chapter" data-level="8.5" data-path="trabalho-2.html"><a href="trabalho-2.html#e-1"><i class="fa fa-check"></i><b>8.5</b> e</a></li>
+<li class="chapter" data-level="8.6" data-path="trabalho-2.html"><a href="trabalho-2.html#f-1"><i class="fa fa-check"></i><b>8.6</b> f</a></li>
+<li class="chapter" data-level="8.7" data-path="trabalho-2.html"><a href="trabalho-2.html#g-1"><i class="fa fa-check"></i><b>8.7</b> g</a></li>
+<li class="chapter" data-level="8.8" data-path="trabalho-2.html"><a href="trabalho-2.html#h-1"><i class="fa fa-check"></i><b>8.8</b> h</a></li>
+<li class="chapter" data-level="8.9" data-path="trabalho-2.html"><a href="trabalho-2.html#i"><i class="fa fa-check"></i><b>8.9</b> i</a></li>
+<li class="chapter" data-level="8.10" data-path="trabalho-2.html"><a href="trabalho-2.html#j"><i class="fa fa-check"></i><b>8.10</b> j</a></li>
+<li class="chapter" data-level="8.11" data-path="trabalho-2.html"><a href="trabalho-2.html#k"><i class="fa fa-check"></i><b>8.11</b> k</a></li>
+<li class="chapter" data-level="8.12" data-path="trabalho-2.html"><a href="trabalho-2.html#l"><i class="fa fa-check"></i><b>8.12</b> l</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="prova-1.html"><a href="prova-1.html"><i class="fa fa-check"></i><b>9</b> Prova 1</a><ul>
+<li class="chapter" data-level="9.1" data-path="prova-1.html"><a href="prova-1.html#a-2"><i class="fa fa-check"></i><b>9.1</b> a</a></li>
+<li class="chapter" data-level="9.2" data-path="prova-1.html"><a href="prova-1.html#b-2"><i class="fa fa-check"></i><b>9.2</b> b</a></li>
+<li class="chapter" data-level="9.3" data-path="prova-1.html"><a href="prova-1.html#c-2"><i class="fa fa-check"></i><b>9.3</b> c</a></li>
+<li class="chapter" data-level="9.4" data-path="prova-1.html"><a href="prova-1.html#d-2"><i class="fa fa-check"></i><b>9.4</b> d</a></li>
+<li class="chapter" data-level="9.5" data-path="prova-1.html"><a href="prova-1.html#e-2"><i class="fa fa-check"></i><b>9.5</b> e</a></li>
+<li class="chapter" data-level="9.6" data-path="prova-1.html"><a href="prova-1.html#f-2"><i class="fa fa-check"></i><b>9.6</b> f</a></li>
+<li class="chapter" data-level="9.7" data-path="prova-1.html"><a href="prova-1.html#g-2"><i class="fa fa-check"></i><b>9.7</b> g</a></li>
+<li class="chapter" data-level="9.8" data-path="prova-1.html"><a href="prova-1.html#h-2"><i class="fa fa-check"></i><b>9.8</b> h</a></li>
+<li class="chapter" data-level="9.9" data-path="prova-1.html"><a href="prova-1.html#i-1"><i class="fa fa-check"></i><b>9.9</b> i</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Teoria do Risco</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conteudo" class="section level1">
+<h1><span class="header-section-number">1</span> Conteúdo</h1>
+<div id="teorema-da-ruina-do-jogador" class="section level2">
+<h2><span class="header-section-number">1.1</span> Teorema da ruína do jogador</h2>
+<p>Notação</p>
+<p><span class="math display">\[\begin{array}{cc}
+\xi             &amp; \text{montante agregado de indenizacao}        \\ \hline
+E(\xi)          &amp; \text{valor esperado do total de indenizacoes} \\ \hline
+U_0           &amp; \text{capital de garantia}                     \\ \hline
+P             &amp; \text{premio de risco}                         \\ \hline
+PP            &amp; \text{premio puro}                             \\ \hline
+\lambda &amp; \text{carregamento de seguranca}               \\ \hline
+\end{array}\]</span></p>
+<p>Ruína acontecerá quando:<br />
+<span class="math display">\[ \xi \ \ \geq U_0 \ \  + \ \ PP\]</span> Sendo que:<br />
+<span class="math display">\[ PP \ \ = \ \ P(1 + \lambda)\]</span> Então temos que: <span class="math display">\[ \xi \ \ \geq U_0 + P(1 + \lambda) \]</span></p>
+<p>Seja <span class="math inline">\(\epsilon\)</span> a probabilidade de ruína aceitável</p>
+<p><span class="math display">\[\begin{array}{r}
+P[\xi \geq U_0 + P(1 + \lambda)] = \epsilon \\
+P[\xi \geq \xi_\epsilon] = \epsilon \\
+U_0 + P(1 + \lambda) = \xi_{\epsilon}
+\end{array}\]</span></p>
+<p><span class="math inline">\(\xi\)</span> = <span class="math inline">\(x_1\)</span> + <span class="math inline">\(x_2\)</span> + <span class="math inline">\(x_3\)</span> + … + <span class="math inline">\(x_k\)</span><br />
+<span class="math inline">\(x_i\)</span> = valor pago na i-ésima indenização<br />
+k = número de sinistros</p>
+<p><span class="math inline">\(\xi\)</span>(t) = processo estócastico composto<br />
+Por que as parcelas das somas são variáveis aleátorias e o número de parcelas (k) é uma variável aleátoria.</p>
+</div>
+<div id="equacao-fundamental-da-teoria-do-risco" class="section level2">
+<h2><span class="header-section-number">1.2</span> Equação fundamental da teoria do risco</h2>
+<span class="math display" id="eq:tftr">\[\begin{equation}
+U_t = U_0 + (1 + \lambda)P - \xi_t
+\tag{1.1}
+\end{equation}\]</span>
+<p>Em um momento <em>t</em> o capital vai ser igual a <strong>capital de garantia</strong> mais o <strong>prêmio puro</strong> menos <strong>número de sinistros</strong>.</p>
+</div>
+<div id="convolucao" class="section level2">
+<h2><span class="header-section-number">1.3</span> Convolução</h2>
+<p>Seja <span class="math inline">\(X_1\)</span> uma variável aleátoria com função de densidade de probabilidade f.d.p <span class="math inline">\(f_{X_1}\)</span>(<span class="math inline">\(X_1\)</span>) e seja <span class="math inline">\(X_2\)</span> uma variável aleátoria (va) com f.d.p <span class="math inline">\(f_{X_2}\)</span> (<span class="math inline">\(X_2\)</span>). Seja <span class="math inline">\(f_{X_1 X_2}\)</span>(<span class="math inline">\(x_1 x_2\)</span>) = f.d.p conjunta de <span class="math inline">\(X_1\)</span> e <span class="math inline">\(X_2\)</span>. Qual a f.d.p de <span class="math inline">\(Y\)</span> = <span class="math inline">\(X_1\)</span> + <span class="math inline">\(X_2\)</span>?</p>
+<p><img src="fig/fig1.png" style="display: block; margin: auto;" /></p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+\mathrm{F_{Y_{2}}}(y) &amp; = \iint_{(X_{1} X_{2}) \in \mathbb{R}}^{} f_{X_{1}X_{2}}(x_{1} x_{2}) dx_{1}dx_{2}\\
+\\
+&amp; =  \int_{-\infty}^{\infty} \int_{- \infty}^{y-x_{2}} f_{X_{1}X_{2}}(x_{1}x_{2}) dx_{1}dx_{2}\\
+\\
+&amp; \overset{ind}{=} \int_{-\infty}^{\infty} \int_{- \infty}^{y -x_{2}} f_{X_{1}}(x_{1})f_{X_{2}}(x_{2}) dx_{1}dx_{2} \ \ (1)\\
+\\
+f_{Y_{2}}(y) &amp; = \frac{\partial F_{Y_{2}}(y)}{\partial y} \ \ (2)
+\\
+&amp; = \frac{\partial \int_{-\infty}^{\infty} \int_{- \infty}^{y-x_{2}} f_{X_{1}}(x_{1})f_{X_{2}}(x_{2}) dx_{1}dx_{2} }{\partial y} \ \ (1) \ \ em \ \ (2)
+\\
+\end{split}
+\end{equation}\]</span>
+<span class="math display">\[\begin{equation}
+\int_{- \infty}^{\infty} \frac{\partial \int_{- \infty}^{y - x_{2}} f_{X_{1}}(x_{1})f_{X_{2}}(x_{2})dx_{1}dx_{2}}{\partial y}\\
+\\
+\end{equation}\]</span>
+<span class="math display">\[\begin{equation}
+\begin{split}
+\mathrm{F_{X_{1}}}(y - x_{2}) &amp; = \int_{-\infty}^{y-x_{2}} f_{X_{1}}(x_{1})dx_{1} \ \ (3)\\
+\\
+&amp; Substituindo \ \ (3) \ \ em \ \ (2)\\
+f_{Y_{2}}(y) &amp; = \int_{-\infty}^{\infty} f_{X_{1}}(y-x_{2}) f_{X_{2}}(x_{2})dx_{2}
+\\
+\cdots f_{Y_{3}}(y) &amp; = \int_{-\infty}^{\infty}f_{Y_{2}}(y-x_{3}) f_{X_{3}}(x_{3})dx_{3}
+\end{split}
+\end{equation}\]</span>
+<p>A extensão para a soma de duas variáveis aleatórias discreta é direta. Bastando a substituição da f.d.p pela função de probabilidade. (Integrais por somatórios)</p>
+<p>Caso contínuo:</p>
+<span class="math display" id="eq:continuo">\[\begin{equation}
+f_{Y_{N}}(y) = \int_{-\infty}^{\infty}f_{Y_{N-1}}(y-x_{N})f_{X_{N}}(x_{N})dx_{N}
+\tag{1.2}
+\end{equation}\]</span>
+<p>Caso discreto:</p>
+<span class="math display" id="eq:discreto">\[\begin{equation}
+P[Y_{N} = y] = \sum_{Y_{N}}P[Y_{N-1} = Y - X_{N}]P[X_{N}=X_{N}]
+\tag{1.3}
+\end{equation}\]</span>
+<p>Esperança:<br />
+<span class="math display">\[E[Y_{k}] = f_{k}(y) = \sum_{}f_{y,k}(y,k)=\frac{\sum_{k=0}^{\infty}f_{y|k}(y|k)P[Y=y]}{f_{y|k}(y)}\]</span></p>
+<p>Algumas considerações sobre sinistro e custo.<br />
+Se o custo do sinistro é constante, então teremos que o montante agregado de indenizações será dado por:</p>
+<p>Montante agregado de <span class="math inline">\(\xi\)</span></p>
+<p><span class="math inline">\(x_i\)</span> = <span class="math inline">\(x_1\)</span> + <span class="math inline">\(x_2\)</span> + … + <span class="math inline">\(x_n\)</span><br />
+c = valor do sinistro<br />
+N = número de segurados</p>
+<p><span class="math inline">\(\xi\)</span> = c<span class="math inline">\(x_1\)</span> + c<span class="math inline">\(x_2\)</span> + … + c<span class="math inline">\(x_N\)</span><br />
+<span class="math inline">\(\xi\)</span> = c(<span class="math inline">\(x_1\)</span> + <span class="math inline">\(x_2\)</span> + … + <span class="math inline">\(x_N\)</span>)<br />
+<span class="math inline">\(\xi\)</span> = c<span class="math inline">\(Y_N\)</span> sendo que <span class="math inline">\(Y_N\)</span> = <span class="math inline">\(\sum_{i=1}^N x_i\)</span></p>
+<p>Temos então que o prêmio de risco será igual à:</p>
+<span class="math display" id="eq:premiorisco">\[\begin{equation}
+E(\xi) = E(cY_N) = cE(Y_N)
+\tag{1.4}
+\end{equation}\]</span>
+<p>lembrando que é válido somente se o montante a ser pago para cada sinistro for constante.</p>
+</div>
+<div id="preco-comercial" class="section level2">
+<h2><span class="header-section-number">1.4</span> Preço Comercial</h2>
+<p>DA = Despesa Administrativa</p>
+<p>CC = Comissão de Corretagem</p>
+<p>L = Lucro</p>
+<p><span class="math display">\[PC = \frac{PP}{(1 - [DA + CC + L])}\]</span></p>
+</div>
+<div id="preco-comercial-individual" class="section level2">
+<h2><span class="header-section-number">1.5</span> Preço Comercial Individual</h2>
+<p>m = Número de meses</p>
+<p>N = Número de segurados</p>
+<p><span class="math display">\[PC_{i,m} = \frac{PC}{m \ast N}\]</span></p>
+
+</div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//andryas.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the
+<a href="https://disqus.com/?ref_noscript">
+comments powered by Disqus.</a></noscript>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercicio-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["CE072.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

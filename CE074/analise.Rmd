@@ -1,0 +1,285 @@
+---
+lang: "pt-br"
+header-includes:
+  - \usepackage[table,xcdraw]{xcolor}
+output: 
+  bookdown::pdf_document2:
+    toc: yes
+    includes:
+      before_body: before_body.tex
+tables: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r,echo = FALSE,message=FALSE,include=FALSE}
+library(knitr)
+library(xtable)
+# library(lattice)
+# library(latticeExtra)
+
+library(dae)
+library(ggplot2)
+library(grid)
+library(gridExtra)
+
+opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  cache = TRUE
+)
+options(xtable.comment = FALSE)
+```
+
+**Delineamento do experimento**
+
+Abaixo temos três tabelas referentes ao delineamento do experimento.
+As combinações dos fatores (tratamentos) foram concatenados e randomizados 
+em cada uma das repetições. Pode-se repetir esse processo utilizando o 
+arquivo delineamento.R. 
+
+
+```{r, results='asis'}
+ql <- read.csv("ql.csv")
+ql$trat <- as.character(ql$trat)
+
+rep1 <- matrix(ql[ql$rep == "rep1",]$trat,ncol = 4,nrow = 4,
+               dimnames = list(c("I","II",'III',"IV"),
+                               c("Texto 1","Texto 2","Texto 3","Texto 4")))
+rep2 <- matrix(ql[ql$rep == "rep2",]$trat,ncol = 4,nrow = 4,
+               dimnames = list(c("I","II",'III',"IV"),
+                               c("Texto 1","Texto 2","Texto 3","Texto 4")))
+rep3 <- matrix(ql[ql$rep == "rep3",]$trat,ncol = 4,nrow = 4,
+               dimnames = list(c("I","II",'III',"IV"),
+                               c("Texto 1","Texto 2","Texto 3","Texto 4")))
+print.xtable(xtable(rep1, caption = "Repetição 1"))
+print.xtable(xtable(rep2, caption = "Repetição 2"))
+print.xtable(xtable(rep3, caption = "Repetição 3"))
+```
+
+
+# Análise Exploratória
+
+Os dados dispostos na Tabela \@ref(resumo) são o resumo do experimento fatorial $2^4$.
+
+```{r resumo,results='asis'}
+# Corrigi o tempo pois no server do shiny esqueceu-se de atribuir na 
+# função diff as units.
+ql$tempo <- sapply(ql$tempo, function(x){
+  if(x < 2) {x * 60} else{x}
+})
+
+columns <- strsplit(ql$trat,split = ";")
+
+ql$font <- sapply(columns, "[",1)
+ql$size <- sapply(columns,'[',2)
+ql$line <- sapply(columns,'[',3)
+ql$nchar <- sapply(columns,"[",4)
+
+ql <- transform(ql,
+                font = as.factor(font),
+                size = as.factor(size),
+                line = as.factor(line),
+                nchar = as.factor(nchar))
+print.xtable(xtable(summary(ql), caption = "Resumo dos dados", label = "resumo"),
+             type = "latex",size = "\\fontsize{8pt}{10pt}\\selectfont",
+             include.rownames = FALSE)
+```
+
+
+\begin{table}[h]
+\centering
+\label{my-label}
+\begin{tabular}{l
+>{\columncolor[HTML]{000000}}l ll}
+Blocos &  & \multicolumn{2}{l}{Fatores}                     \\
+pessoa &  & font:  & tipo de fonte                          \\
+texto  &  & size:  & tamanho da fonte                       \\
+       &  & line:  & tamanho do espaçamento entre as linhas \\
+       &  & nchar: & número de caracteres por linha        
+\end{tabular}
+\end{table}
+
+No gráfico abaixo temos quatro boxplots. 
+
+
+```{r,fig.height=10,fig.width=12}
+
+p1 <- qplot(x = ql$rep, y = ql$tempo, geom = "boxplot", xlab = "Repetição", 
+      ylab = "Tempo")
+p2 <- qplot(x = ql$trat, y = ql$tempo, geom = "boxplot", 
+            xlab = "Tratamento", ylab = "Tempo") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        text = element_text(size = 15))
+p3 <- qplot(x = ql$pessoa, y = ql$tempo, geom = "boxplot", xlab = "Pessoa",
+            ylab = "Tempo")
+p4 <- qplot(x = ql$texto, y = ql$tempo, geom = "boxplot", xlab = "Texto",
+            ylab = "Tempo")
+
+grid.arrange(p1,p2,p3,p4,ncol = 2)
+```
+
+1º Referente a repetição, pode-se observar que existe uma diferença, 
+visualmente, significativa de uma repetição para outra.
+
+2º Referente ao tratamento, pode-se observar uma grande variabilidade
+entre eles.
+
+3º Referente a pessoa, observa-se uma grande variabilidade, a qual deve-se 
+ao fato que para o bloco I, três pessoas diferentes contribuiram para a 
+variável resposta tempo. Além disso, também, existe a interferencia do 
+bloco texto.
+
+4º Referente ao texto, existe uma menor heterocedasticidade nos dados, que
+pode significar a efetividade da blocagem (texto) no experimento.
+
+Abaixo tem-se 4 boxplots referente ao efeito de cada fator no experimento.
+
+```{r, fig.height=10,fig.width=12}
+p1 <- qplot(x = ql$font, y = ql$tempo, geom = "boxplot", xlab = "Repetição", 
+      ylab = "Tipo da fonte") + theme(text = element_text(size = 15))
+p2 <- qplot(x = ql$size, y = ql$tempo, geom = "boxplot", xlab = "Repetição", 
+      ylab = "Tamanho da fonte") + theme(text = element_text(size = 15))
+p3 <- qplot(x = ql$line, y = ql$tempo, geom = "boxplot", xlab = "Repetição", 
+      ylab = "Espaçamentro entre as linhas") + 
+  theme(text = element_text(size = 15))
+p4 <- qplot(x = ql$nchar, y = ql$tempo, geom = "boxplot", xlab = "Repetição", 
+      ylab = "Número de caracteres")+ theme(text = element_text(size = 15))
+grid.arrange(p1,p2,p3,p4,ncol = 2)
+```
+
+Pelos quatro boxplots acima observa-se, visualmente, que não parece haver
+efeito algum de nenhum dos fatores na variável resposta.
+
+
+# Modelo
+
+Ajuste do modelo
+
+```m0 <- aov(tempo ~  (font*size*line*nchar) + Error((rep/pessoa)*texto), data = ql)```
+
+Na Tabela \@ref(m0) observa-se duas interações triplas significativas ao 
+nível de 5% e uma interação dupla ao nível de 10% de significância. Pelo
+principio da marginalidade, deixa-se as de maior ordem. 
+
+```{r,results='asis'}
+ql$font <- ifelse(ql$font == "arial", 1, -1)
+ql$size <- ifelse(ql$size == "18px", 1, -1)
+ql$line <- ifelse(ql$line == "180%", 1, -1)
+ql$nchar <- ifelse(ql$nchar == "75", 1, -1)
+
+m0 <- aov(tempo ~  (font*size*line*nchar) + Error((rep/pessoa)*texto), 
+          data = ql)
+resumo <- summary(m0)
+print.xtable(xtable(resumo$`Error: rep:pessoa:texto`,
+                    caption = "Resumo do modelo",label = "m0"))
+```
+
+\newpage 
+
+Sendo assim o ajuste do novo modelo fica da seguinte forma:
+
+```m1 <- aov(tempo ~  (font+size+line+nchar)^3 + Error((rep/pessoa)*texto), data = ql)```
+
+```{r,results='asis'}
+m1 <- aov(tempo ~  (font+size+line+nchar)^3 + Error((rep/pessoa)*texto),
+          data = ql)
+resumo <- summary(m1)
+print.xtable(xtable(resumo$`Error: rep:pessoa:texto`,
+                    caption = "Resumo do novo modelo ajustado",
+                    label = "m1"))
+```
+
+# Análise de resíduos
+
+Verificação dos pressupostos.
+
+## Normalidade
+
+Pelo gráfico abaixo pode-se observar que os resíduos parecem adequarse a distribuição normal. Em seguida aplica-se o teste de shapiro para confirmar os resultados observados.
+
+```{r}
+# Extrai resíduos
+res <- resid.errors(m1)
+fit <- fitted.errors(m1)
+# Gráfico de quantis normais
+qqnorm(res,main = "Gráfico de quantis normais", xlab = "Quantis teóricos",
+       ylab = "Quantis observados"); qqline(res)
+```
+
+Nota-se que a amplitude dos resíduos observados varia de -5 à 5. Também que existe uma leve fuga nas caudas. 
+
+Utilizando o teste do shapiro para avaliar normalidade.
+
+$$H_0: \text{Apresenta normalidade}$$
+
+$$H_1: \text{Não apresenta normalidade}$$
+
+```{r}
+shapiro.test(res)
+```
+
+Pelo teste do shapiro wilk temos evidencias a favor de $H_0$
+
+## Homocedasticidade
+
+Resíduos versus cada interação do modelo final.
+
+```{r,fig.height=8,fig.width=12}
+p1 <- qplot(x = interaction(font,line), y = res,data = ql, geom = "boxplot",
+            xlab = "font e line", ylab = "Resíduo") + 
+  geom_hline(yintercept = 0,col = "red") + 
+  theme(text = element_text(size = 18),axis.text.x = element_text(angle = 20,
+                                                                  hjust = 1))
+p2 <- qplot(x = interaction(size,line), y = res,data = ql, geom = "boxplot",
+            xlab = "size e line", ylab = "Resíduo") + 
+  geom_hline(yintercept = 0,col = "red")+ 
+  theme(text = element_text(size = 18),axis.text.x = element_text(angle = 20,
+                                                                  hjust = 1))
+p3 <- qplot(x = interaction(font,size,line), y = res,data = ql, geom = "boxplot",
+            xlab = "font, size e line", ylab = "Resíduo") + 
+  geom_hline(yintercept = 0,col = "red")+ 
+  theme(text = element_text(size = 18),axis.text.x = element_text(angle = 45,
+                                                                  hjust = 1))
+p4 <- qplot(x = interaction(size,line,nchar), y = res,data = ql, geom = "boxplot",
+            xlab = "size, line e nchar", ylab = "Resíduo") + 
+  geom_hline(yintercept = 0,col = "red")+ 
+  theme(text = element_text(size = 18),axis.text.x = element_text(angle = 45,
+                                                                  hjust = 1))
+
+grid.arrange(p1,p2,p3,p4,ncol = 2)
+```
+
+Pelo gráfico não encontramos nenhum indicativo contrário a homocedasticidade. 
+Ou seja, pode se dizer que a variabilidade entre a interação dos tratamentos 
+é semelhante entre eles.
+
+
+## Indepêndencia
+
+```{r, fig.height=5,fig.width=7}
+df <- data.frame(fit = fit, res = res)
+qplot(x = fit, y = res,data = df,geom = "point",
+      xlab = "Predito",ylab = "Resíduo") + 
+  geom_hline(yintercept = 0, col = "red")
+```
+Pelo gráfico acima não nota-se nenhum padrão aparente, sendo assim tem-se 
+evidências a favor do pressuposto de indepêndencia.
+
+
+# Efeitos
+
+```{r}
+c('(Intercept)' = mean(ql$tempo),coef(m1$`rep:pessoa:texto`) * 2)
+```
+
+
+Atráves dos efeitos acima pode-se retirar algumas interpretações. Por exemplo o efeito de `font`, isoladamente, nesse experimento não apresenta grande relevancia pois quando se passa da fonte **arial** para a fonte **serif** aumenta 0.16 segundos no tempo de leitura. Já o espaçamento entre as linhas parece contribuir para diminuir a velocidade de leitura quando passa de 120% para 180%. 
+
+Nota-se que os efeitos de size e line contribuem negativamente para a variável resposta quando se passa do nivel baixo para o nivel alto e nchar contribui positivamente. Mas a interação tripla entre eles contribui positivamente, mesmo que os efeitos principais size e line sejam maiores que o efeito de nchar. 
+
+
+# Conclusão
+
+Pode-se concluir que os fatores envolvidos no experimento isoladamente não produzem efeito na leitura, o que não era esperado no inicio do experimento. Somente a interação tripla entre alguns fatores produzem resultados significativos, interessante, mas complicado para a interpretação. Alguns problemas quanto ao delineamento do experimento ocorreram devido a mudança dos blocos entre uma repetição e outra, o que dificultou um pouco a análise devido a forma de se análisar estar fora do escopo da disciplina. Para estudos futuros sugere-se utilizar os blocos textos como mudança entre uma repetição e outra, ou seja fixar os blocos pessoas como sendo as mesmas para as repetições, pois controlar os textos é mais fácil do que a subjetividade das pessoas.

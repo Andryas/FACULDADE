@@ -1,0 +1,303 @@
+# Extensões da Cadeia de Markov
+
+## Construção do Modelo
+
+Ideia geral de como começar o processo de modelagem dos dados.
+
+Primeiro defina as hipóteses do processo, suposições para faciliar o
+tratamento matemático.
+
+Segundo, defina quem é o $X_n$ se perguntando "O que estou tentando
+modelar?".
+
+Terceiro, defina o S e T, o espaço de estados e espaço de parâmetros.
+
+## Passeio aleátorio
+
+Sejam $\zeta_1, \zeta_2, ...$ VA independentes, de valor inteiro com
+função de probabilidade f. Seja $X_n$ a variável aleátoria definida por:
+
+$$X_n = X_0 + \zeta_1 + \zeta_2 + ... + \zeta_n$$
+
+sendo $X_0$ o valor inicial.
+
+A sequência {$X_n$, n $\geq$ 0} é chamado de passeio aleátorio.
+Pode ser provado que é uma CM com espaço de estados inteiro e função de
+transição dada por :
+
+$$P(X,Y) = f(y-x)$$
+
+```{example}
+
+Suponha que uma particula se movimenta de acordo com essa
+cadeia. Consideremos o caso especial f(1) = p e f(-1) = q e f(0) = r,
+com p + q + r = 1.
+
+A função de transição será:
+
+\begin{equation}
+P(x,y) = \left\{\begin{matrix}
+p & y = x + 1 \\
+q & y = x - 1\\
+r & y = x
+\end{matrix}\right.
+
+\end{equation}
+
+Essa cadeia particular é chamada de passeio aleátorio simples, ou
+passeio do bêbado.
+```
+
+```{r, out.width = "100%", out.height = "250x", echo = FALSE}
+knitr::include_graphics("./figuras/pe2.pdf", auto_pdf = FALSE)
+```
+
+
+Por exemplo se S = {0,1,2,...}
+
+```{r, out.width = "100%", out.height = "250px", echo = FALSE}
+knitr::include_graphics("./figuras/pe3.pdf", auto_pdf = TRUE)
+```
+
+A matriz de transição fica como segue-se:
+
+```{r, echo = FALSE}
+
+m <- data.frame(a = c("r0", "q", 0, 0, ""),
+                b = c("p", "r", "q", 0, ""),
+                c = c(0, 'p', 'r', 'q', ""),
+                d = c(0, 0, 'p', 'r', ""),
+                e = c("", "", "", "", "$\\ddots$"))
+
+colnames(m) <- c(0:3, "...")
+rownames(m) <- c(0:3, "...")
+
+knitr::kable(m, escape = FALSE, align = 'c')
+```
+
+## Cadeia de Ehrenfest
+
+Paul Ehrenfest nasceu em 18/01/1880 e morreu no dia 25/07/1993. Ele foi
+um físico teórico alemão que teve suas maiores contribuições feitas no
+campo da estatística mecânica, mecânica quântica , incluindo o a teoria
+de fase de transição, e o teorema de
+Ehrenfest. [Referência](https://en.wikipedia.org/wiki/Paul_Ehrenfest)
+
+O seguinte modelo pode ser utilizado para intercambio de moleculas de um
+gás entre corpos isolados.
+
+Suponha que temos duas caixas numeradas I e II e **d** bolas, também
+numeradas de 1 a **b**. Inicialmente algumas bolas são colocadas na
+caixa I e as restantes na caixa II. Um inteiro é selecionado
+aleatoriamente do conjunto {1,2,...,d} e a bola correspondente a esse
+número é trocada de caixa. Repete-se esse processo indefinidamente. Com
+seleções independentes entre os ensaios. Seja $X_n$: número de bolas na
+caixa I após a n-esimo ensaio.
+
+<!-- Colocar caixas -->
+
+Pode ser provado que {$X_n$, n $\geq$ 0} é uma cadeia de markov sobre S
+= {0,1,2,3,...,d} (T={0,1,2,3,...)
+
+Precisamos encontrar a função de transição P(x,y) $\forall$ (x,y)
+$\epsilon$ S, para tal vamos supor que em determinado instante temos x
+bolas na caixa I. Vemos então que as únicas transições possíveis são:
+
+\begin{equation}
+x \rightarrow x-1 \\
+x \rightarrow x + 1
+\end{equation}
+
+\begin{equation}
+P(x,x-1) = \frac{x}{d}\\
+P(x,x+1) = \frac{d-x}{d} = 1 - \frac{x}{d}
+\end{equation}
+
+Logo a função de transição é:
+
+\begin{equation}
+P(x,y)\left\{\begin{matrix}
+\frac{x}{d} &; y = x - 1 \\
+\frac{d-x}{d} &; y = x+1\\
+0 &; cc
+\end{matrix}\right.
+\end{equation}
+
+Matriz de transição.
+
+```{r, echo = FALSE}
+cematrix <- data.frame(c0 = c(0, "$\\frac{1}{d}$", "0", 0, "...", "0"),
+                       c1 = c(1, 0, "$\\frac{2}{d}$",0, "...", 0),
+                       c2 = c(0,"$1 - \\frac{1}{d}$", 0, 0, "...", 0),
+                       c3 = c(0, 0, "$1 - \\frac{2}{d}$", 0, "...", 0),
+                       c4 = c(rep("...", 5), "1"),
+                       c5 = c(rep(0, 6)))
+
+rownames(cematrix) <- c(0, 1, 2, 3, "...", "d")
+colnames(cematrix) <- c(0, 1, 2, 3, "...", "d")
+
+
+
+knitr::kable(cematrix, escape = FALSE, align = "c")
+```
+
+
+## Ruína do jogador
+
+Suponha que um jogador faz apostas de um dolar por vez, sendo que sua
+probabilidade de ganhar é `p`. Seja $X_0$ o capital inicial do
+jogador. Suponha ainda que não existe "emprestimo" da banca, ou seja, o
+jogador deixa de jogar se o seu capital atingir 0, nessa caso diremos
+que o jogador está arruinado.
+
+Seja $X_n$ : capital do jogador no instante n:
+
+$${X_n, n \geq 0} \text{uma CM. sobre {0, 1, 2, ...}}$$
+
+\begin{equation}
+P(x,y )\left\{\begin{matrix}
+ 1-p &, y = x -1\\
+p  &, y = x + 1\\
+0 &,  cc
+\end{matrix}\right.
+\end{equation}
+
+```{definition}
+Um estado a $\epsilon$ S de uma cadeia de Markov será chamado de
+absorvente se P(a,a) = 1. (ou equivalentemente, P(a,x)=0, $\forall x
+\neq a$)
+
+Vamos supor que o jogo seja definido se o ganho do jogador atingir `d`
+dolares ele deve abandonar o jogo. Nesse caso, S = { 0,1,2,...,d}
+
+Essa cadeia é chamada "com barreiras absorventes"
+```
+
+## Cadeia de Nascimento e Morte **(C N-M)**
+
+Considere uma CM sobre S = {0,1,2,...} ou sobre S = {0,1,2,...d} e
+suponha a seguinte função de transição.
+
+\begin{equation}
+P(x,y)\left\{\begin{matrix}
+q_x &, y = x -1\\
+r_x &, y = x \\
+p_x &, y = x + 1 \\
+0 & cc
+\end{matrix}\right.
+\end{equation}
+
+Sendo $p_x, q_x, r_x$ inteiros não negativos tal que $p_x + q_x + r_x =
+1$
+
+A matriz de transição fica:
+
+```{r, echo = FALSE}
+mt <- data.frame(c0 = c("$r_0$", "$q_1$", 0, "...", 0),
+                 c1 = c("$p_0$", "$r_1$", "$q_2$", "...", 0),
+                 c2 = c(0, "$p_1$", "$r_2$", "...", 0),
+                 c3 = c(0, 0, "$p_2$", "...", 0),
+                 c4 = c(rep("...", 4), "$q_d$"),
+                 c5 = c(0, 0, 0, 0, "$r_d$"))
+rownames(mt) <- c(0, 1, 2, "...", "d")
+colnames(mt) <- c(0, 1, 2, 3, "...", "d")
+
+knitr::kable(mt, escape = FALSE)
+```
+
+NOTAR: que o passeio aleátorio, a cadeia de Ehrenfest e a ruína do
+jogador são casos particulares de C N-M.
+
+## Cadeia de Fila
+
+Considere um sistema de serviço em que os clientes chegam e devem
+esperar por atendimento formando uma fila.
+
+Suponha que se há clientes esperando serviço no inicio de qualquer
+período de tempo, exatamente um cliente será atendido nesse período (não
+existe atendimentos simultaneos). E que se não há clientes esperando
+então ninguém será atendido nesse período.
+
+Seja $\zeta_n$ o número de novos clientes que chegam durante o período
+(n-esimo).
+
+Vamos supor que as variáveis aleátorias $\zeta_1, \zeta_2,... \zeta_n$
+são independentes e identicamente distribuidas segundo uma função de
+probabilidade f.
+
+Seja $X_0$ o número inicial de clientes e $X_n$ o número de clientes no
+sistema até o final do n-esimo período.
+
+Se $X_n$ = 0, então $X_n + 1 = \zeta_{n + 1}$
+
+Se $X_n \geq 1$, então $X_n + 1 = X_n + \zeta{n+1} - 1$
+
+Então {$X_n, n \geq$} é uma CM sobre {0,1,2,...} com função de transição
+
+P(x,y) = f(y-x+1)  $x \geq 1$
+
+P(0,y) = f(y)
+
+## Cadeia de ramificação
+
+Considere objetos tais como particulas de algum tipo ou bacterias que
+podem gerar novos elementos do mesmo tipo.
+
+O conjunto inicial de objetos será chamado "geração zero". Os elementos
+gerados durante o n-esimo tempo serão dito pertencer a (n+1)-esima
+geração.
+
+Seja $X_n$ o nº de objetos no n-esima geração, então temos, por exemplo
+a seguinte situação.
+
+
+```{r,echo = FALSE,fig.align = 'center', fig.width = 10,fig.height= 8}
+knitr::include_graphics("./figuras/pe4.pdf")
+```
+
+
+Para modelar essa situação como uma CM vamos supor que cada particula
+gera $\zeta$ novas particulas na próxima geração, sendo $\zeta$ uma VA
+de valor inteiro não negativo, tendo a função de probabilidade f. Sob
+essa hipótese {$X_n$, n $\geq$ 0} será uma CM cujo o espaço de estados é
+S = {0,1,2,3,...}.
+
+Notar que 0 é um estado absorvente.
+
+Se a cadeia atingir o estado 0, diremos que ela foi extinta, e um
+problema muito interessante é determinar a probabilidade de extinção da
+cadeia.
+
+Para  x $\geq$ 1 a função de transição será:
+
+P(x,y) = P($\zeta_1 + \zeta_2 + ... + \zeta_x = y)$
+
+com os $\zeta_i$'s sendo iid com f.d.p e
+
+P(1,y) = f(y), $y \geq 0$
+
+```{definition}
+Seja A um subconjunto de S. Define-se o tempo de chegada (hitting
+time) em A como:
+
+$T_A = min\{n \geq 0: X_n \epsilon A\}$, se
+$X_n \epsilon A$, para algum n $\geq$ 0.
+```
+\
+```{definition}
+$T_A$ = $\infty$ se $X_n$ $\not{\epsilon}$ A, $\forall$ n > 0.
+```
+\
+
+Ou seja, $T_A$ é o primeiro indice de $X_n$ em que a cadeia entra no
+conjunto A pela primeira vez.
+
+NOTAÇÃO
+: Quando A = {y}, em lugar de escrever $T_{{y}}$ vamos apenas
+escrever $T_y$.
+
+NOTAÇÃO
+: Denotaremos por $P_x$(A) a probabilidade de A ocorrer quando a
+CM começou no estado x. Por exemplo, $P_x$($X_5 = 2$) ou $P_0(T_y=3)$
+"A probabilidade,saindo de zero a cadeia, atingir o estado y, pelo menos
+uma vez."

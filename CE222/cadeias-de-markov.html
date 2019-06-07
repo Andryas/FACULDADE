@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="classificacao-de-processos.html">
+<link rel="next" href="extensoes-da-cadeia-de-markov.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://andryas.github.io/"><center><i class="fa fa-arrow-left" aria-hidden="true"></i></center></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introdução</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#processos-estocasticos-aplicados"><i class="fa fa-check"></i>Processos Estocásticos Aplicados</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ementa"><i class="fa fa-check"></i>EMENTA</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-i---teorica"><i class="fa fa-check"></i>Parte I - Teórica</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-ii---pratica"><i class="fa fa-check"></i>Parte II - Prática</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="revisao.html"><a href="revisao.html"><i class="fa fa-check"></i><b>1</b> Revisão</a><ul>
+<li class="chapter" data-level="1.1" data-path="revisao.html"><a href="revisao.html#fenomenos"><i class="fa fa-check"></i><b>1.1</b> Fenômenos</a></li>
+<li class="chapter" data-level="1.2" data-path="revisao.html"><a href="revisao.html#definicoes-de-probabilidade"><i class="fa fa-check"></i><b>1.2</b> Definições de Probabilidade</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="processo-estocastico.html"><a href="processo-estocastico.html"><i class="fa fa-check"></i><b>2</b> Processo Estocástico</a><ul>
+<li class="chapter" data-level="2.1" data-path="processo-estocastico.html"><a href="processo-estocastico.html#o-que-e-um-processo"><i class="fa fa-check"></i><b>2.1</b> O que é um Processo?</a></li>
+<li class="chapter" data-level="2.2" data-path="processo-estocastico.html"><a href="processo-estocastico.html#processos-estocasticos"><i class="fa fa-check"></i><b>2.2</b> Processos Estocásticos</a></li>
+<li class="chapter" data-level="2.3" data-path="processo-estocastico.html"><a href="processo-estocastico.html#espacos-t-e-s"><i class="fa fa-check"></i><b>2.3</b> Espaços T e S</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-discreto-e-s-discreto"><i class="fa fa-check"></i><b>2.3.1</b> T discreto e S discreto</a></li>
+<li class="chapter" data-level="2.3.2" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-e-continuo-e-s-discreto"><i class="fa fa-check"></i><b>2.3.2</b> T é contínuo e S discreto</a></li>
+<li class="chapter" data-level="2.3.3" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-discreto-e-s-continuo"><i class="fa fa-check"></i><b>2.3.3</b> T discreto e S contínuo</a></li>
+<li class="chapter" data-level="2.3.4" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-continuo-e-s-continuo"><i class="fa fa-check"></i><b>2.3.4</b> T contínuo e S contínuo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="processo-estocastico.html"><a href="processo-estocastico.html#descricao-probabilistica"><i class="fa fa-check"></i><b>2.4</b> Descrição probabilística</a></li>
+<li class="chapter" data-level="2.5" data-path="processo-estocastico.html"><a href="processo-estocastico.html#media-variancia-e-covariancia"><i class="fa fa-check"></i><b>2.5</b> Média, variância e covariância</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html"><i class="fa fa-check"></i><b>3</b> Classificação de Processos</a><ul>
+<li class="chapter" data-level="3.1" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-estacionarios"><i class="fa fa-check"></i><b>3.1</b> Processos estacionários</a></li>
+<li class="chapter" data-level="3.2" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-fracamente-estacinario"><i class="fa fa-check"></i><b>3.2</b> Processos fracamente estacinário</a></li>
+<li class="chapter" data-level="3.3" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-independentes"><i class="fa fa-check"></i><b>3.3</b> Processos independentes</a></li>
+<li class="chapter" data-level="3.4" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-com-incrementos-independentes-e-estacionarios"><i class="fa fa-check"></i><b>3.4</b> Processos, com incrementos independentes e estacionários</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html"><i class="fa fa-check"></i><b>4</b> Cadeias de Markov</a><ul>
+<li class="chapter" data-level="4.1" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#caso-particular"><i class="fa fa-check"></i><b>4.1</b> Caso particular</a></li>
+<li class="chapter" data-level="4.2" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#distribuicao-do-processo"><i class="fa fa-check"></i><b>4.2</b> Distribuição do Processo</a></li>
+<li class="chapter" data-level="4.3" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#forma-matricial"><i class="fa fa-check"></i><b>4.3</b> Forma matricial</a></li>
+<li class="chapter" data-level="4.4" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#espacos-de-estados"><i class="fa fa-check"></i><b>4.4</b> Espaços de estados</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html"><i class="fa fa-check"></i><b>5</b> Extensões da Cadeia de Markov</a><ul>
+<li class="chapter" data-level="5.1" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#construcao-do-modelo"><i class="fa fa-check"></i><b>5.1</b> Construção do Modelo</a></li>
+<li class="chapter" data-level="5.2" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#passeio-aleatorio"><i class="fa fa-check"></i><b>5.2</b> Passeio aleátorio</a></li>
+<li class="chapter" data-level="5.3" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-ehrenfest"><i class="fa fa-check"></i><b>5.3</b> Cadeia de Ehrenfest</a></li>
+<li class="chapter" data-level="5.4" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#ruina-do-jogador"><i class="fa fa-check"></i><b>5.4</b> Ruína do jogador</a></li>
+<li class="chapter" data-level="5.5" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-nascimento-e-morte-c-n-m"><i class="fa fa-check"></i><b>5.5</b> Cadeia de Nascimento e Morte <strong>(C N-M)</strong></a></li>
+<li class="chapter" data-level="5.6" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-fila"><i class="fa fa-check"></i><b>5.6</b> Cadeia de Fila</a></li>
+<li class="chapter" data-level="5.7" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-ramificacao"><i class="fa fa-check"></i><b>5.7</b> Cadeia de ramificação</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estados-transientes-e-recorrentes.html"><a href="estados-transientes-e-recorrentes.html"><i class="fa fa-check"></i><b>6</b> Estados Transientes e Recorrentes</a><ul>
+<li class="chapter" data-level="6.1" data-path="estados-transientes-e-recorrentes.html"><a href="estados-transientes-e-recorrentes.html#martingales"><i class="fa fa-check"></i><b>6.1</b> Martingales</a></li>
+<li class="chapter" data-level="6.2" data-path="estados-transientes-e-recorrentes.html"><a href="estados-transientes-e-recorrentes.html#cadeias-n-m"><i class="fa fa-check"></i><b>6.2</b> Cadeias N-M</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="distribuicao-estacionaria-de-uma-cm.html"><a href="distribuicao-estacionaria-de-uma-cm.html"><i class="fa fa-check"></i><b>7</b> Distribuição estacionária de uma CM</a><ul>
+<li class="chapter" data-level="7.1" data-path="distribuicao-estacionaria-de-uma-cm.html"><a href="distribuicao-estacionaria-de-uma-cm.html#distribuicao-estacionaria-de-uma-cm."><i class="fa fa-check"></i><b>7.1</b> Distribuição Estacionária de uma CM.</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html"><i class="fa fa-check"></i><b>8</b> Distribuição estacionária de uma CM</a><ul>
+<li class="chapter" data-level="8.1" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html#metodo-de-decomposicao-especial"><i class="fa fa-check"></i><b>8.1</b> Método de Decomposição Especial</a></li>
+<li class="chapter" data-level="8.2" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html#de-p-c-n-m"><i class="fa fa-check"></i><b>8.2</b> DE p/ C-N-M</a></li>
+<li class="chapter" data-level="8.3" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html#cadeia-de-ehrenfest-modificada"><i class="fa fa-check"></i><b>8.3</b> Cadeia de Ehrenfest Modificada</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="processo-de-poisson.html"><a href="processo-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Processo de Poisson</a></li>
+<li class="chapter" data-level="10" data-path="processos-gaussianos.html"><a href="processos-gaussianos.html"><i class="fa fa-check"></i><b>10</b> Processos Gaussianos</a></li>
+<li class="chapter" data-level="11" data-path="procesos-de-wiener.html"><a href="procesos-de-wiener.html"><i class="fa fa-check"></i><b>11</b> Procesos de Wiener</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cadeias-de-markov" class="section level1">
+<h1><span class="header-section-number">4</span> Cadeias de Markov</h1>
+<p>Diremos que um PE {X(t), t <span class="math inline">\(\in\)</span> T} satisfaz a propriedade markoviana (PM) se:</p>
+<p><span class="math display">\[P(X(t_{n+1}) \leq | X(t_1) = x_1,...,X(t_n)=x_n) = P(X(t_{n+1}) \leq
+X_{n+1} | X(t_n) = x_n)\]</span></p>
+<p>Isso significa que a probabilidade condicional não leva em consideração o que ocorreu antes do instante <span class="math inline">\(t_n\)</span> para calcular a probabilidade no instante <span class="math inline">\(t_n + 1\)</span>_</p>
+<div id="caso-particular" class="section level2">
+<h2><span class="header-section-number">4.1</span> Caso particular</h2>
+<p>No caso particular em que as VA’s X(t) são DISCRETAS a propriedade markoviana (PM) fica:</p>
+<p><span class="math display">\[P(\underbrace{X_{n+1}}_{\text{Variável aleátoria}} =
+\underbrace{x_{n+1}}_{\text{número real}}| X_1 = x_1,...,X_n=x_n) =
+P(X_{n+1} = X_{n+1}| X_n = x_n)\]</span></p>
+<p>Nesse caso, o processo {<span class="math inline">\(X_n\)</span>, n <span class="math inline">\(\geq\)</span> 1} é chamado de <code>cadeia de markov</code>.</p>
+<p>Algunas autores resumem essa propriedade dizendo que:</p>
+<blockquote>
+<p>O futuro do processo depende somente do presente e não do passado. (ou instante mais recente)</p>
+</blockquote>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-19" class="example"><strong>Exemplo 4.1  </strong></span>No caso do experimento de jgoar uma moeda, seja <span class="math inline">\(G_n\)</span> o capital do jogador no instante n:</p>
+<p>{<span class="math inline">\(G_n\)</span> n <span class="math inline">\(\geq\)</span> 0} é um PE, discreto a tempo discreto.</p>
+<p>S = {-20,-19,…,27,28} -&gt; espaço de resultados possíveis</p>
+T = {0,1,2,…,24}
+</div>
+<br />
+
+<div class="definition">
+<span id="def:unnamed-chunk-20" class="definition"><strong>DEF 4.1  </strong></span>Para uma cadeia de markov (CM) {<span class="math inline">\(X_n\)</span>, n <span class="math inline">\(\geq\)</span> 0} a probabilidade condicional P(<span class="math inline">\(X_{n+1} = y | X_n = x)\)</span> será chamada de <strong>probabilidade de transfição</strong> e denotada como P(x,y).
+</div>
+<p><br />
+(Vamos sempre supor que essa probabilidade independe de m, ou seja, a CM é homogenea)</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-21" class="example"><strong>Exemplo 4.2  (CADEIA DE MARKOV DE 2 ESTADOS)  </strong></span>Suponha que uma máquina, em um dia qualquer, pode estar <em>quebrada</em> ou <em>operando</em>. Assuma que se ela esta <strong>quebrada</strong> no inicio do n-eisimo dia, a probabilidade ser <em>consertada</em> e estar operando no dia SEGUINTE é <code>p</code>.</p>
+<p>Por outro lado, se a máquina estiver <strong>funcionando</strong> no n-esimo dia, a probabilidade dela <em>quebrar</em> e não estar funcionando no dia seguinte é <code>q</code>.</p>
+<p>Vamos assumir que as probabilidades condicionais para o n-esimo dia depende apenas do estado do dia anterior.</p>
+<p>Seja <span class="math inline">\(\prod_0(0)\)</span> a probabilidade da máquina estar quebrada no instante inicial e <span class="math inline">\(\prod(0)(1)\)</span> a probabilidade de estar funcionando no instante inicial.</p>
+<p>Temos então que:</p>
+<p><span class="math display">\[
+X_n \left\{\begin{matrix}
+0 &amp;, \text{ se a maq. esta quebrada no dia n} \\
+1 &amp;, \text{ se a maq esta funcionando no dia n}
+\end{matrix}\right.
+\]</span></p>
+</div>
+<p> <img src="figuras/cmmaq.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>Ou seja,</p>
+<p><span class="math inline">\(P(0,1) = P(X_{n+1}=1|X_n=0) =p\)</span></p>
+<p><span class="math inline">\(P(1,0) = P(X_{n+1}=0|X_n=1) =q\)</span></p>
+<p><span class="math inline">\(P(0,0) = P(X_{n+1} =0|X_n=0)=1-p\)</span></p>
+<p><span class="math inline">\(P(1,1) = P(X_{n+1}=1|X_n=1)=1-q\)</span></p>
+</div>
+<div id="distribuicao-do-processo" class="section level2">
+<h2><span class="header-section-number">4.2</span> Distribuição do Processo</h2>
+<p>Antes de fazermos a distribuição do processo lembramos que:</p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-23" class="theorem"><strong>Teorema 4.1  (Probabilidade Total)  </strong></span><span class="math display">\[X,Y = P(X=x) = \sum_y P(X=x,Y=y)\]</span>
+</div>
+
+<p>PROBABILIDADE CONDICIONAL</p>
+<p><span class="math display">\[P(X=x,Y=y) = P(Y=y|X=x)P(X=x)\]</span></p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+P(X_{n+1}=0) &amp;= P(X_{n+1}=0,X_{n}=0) + P(X_{n+1}=0,X_n=1) \\
+&amp;= P(X_{n+1}=0|X_n = 0)P(X_n=0) + P(X_{n+1}=0|X_n = 1)P(X_n=1)\\
+&amp;= (1-p)P(X_n=0) + qP(X_n=1) \text{  // observe que }P(X_n=1)=1 -
+P(X_n=0)\\
+&amp;= (1-p)P(X_n=0)+ q(1-P(X_n=0))\\
+&amp;= (1-p-q)P(X_n=0) + q
+\end{split}
+\end{equation}\]</span>
+<p>seja n = 0</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+P(X_1=0) &amp;= (1-p-q)\overbrace{P(X_0=0)}^{\prod_0(0)} + q\\
+&amp;=(1-p-q)\prod_0(0) + q
+\end{split}
+\end{equation}\]</span>
+<p>Seja n = 1</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+P(X_2=0)&amp;=(1-p-q)P(X_1=0) + q \text{ // utilizando o resultado
+anterior}\\
+&amp;= (1-p-q)[(1-p-q)\prod_0(0) + q] + q\\
+&amp;= (1-p-q)^2 \prod_0(0) + (1-p-q)q + q\\
+&amp;= (1-p-q)^2\prod_0(0) + q(1-p-q + 1)
+\end{split}
+\end{equation}\]</span>
+<p>Seja n = 2</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+P(X_3=0)&amp;=(1-p-q)P(X_2=0) + q \text{ // utilizando o resultado
+anterior}\\
+&amp;= (1-p-q)[(1-p-q)^2\prod_0(0) + (1-p-q)q + q] + q\\
+&amp;= (1-p-q)^3 \prod_0(0) + (1-p-q)q + (1-p-q)^2q + q\\
+&amp;= (1-p-q)^3 \prod_0(0) + q(1 + (1-p-q) + (1-p-q)^2)
+\end{split}
+\end{equation}\]</span>
+<p>Forma geral</p>
+<p><span class="math display">\[P(X_n=0)=(1-p-q)^2\prod_0(0) + q \sum_{j=0}^{n-1}(1-p-q)^j\]</span></p>
+<p>Vamos supor que p + q &gt; 0 logo:</p>
+<p>PROGRESSÃO GEOMETRICA</p>
+<p><span class="math display">\[\sum_{j=0}^{n-1} r^j = \frac{1-r^m}{1-r}\]</span></p>
+<p>No nosso caso:</p>
+<p><span class="math display">\[\sum_{j=0}^{n-1} (1-p-q)^j = \frac{1-(1-p-q)^n}{p+q}\]</span></p>
+<p>Finalmente</p>
+<p><span class="math display">\[P(X_n=0)= \frac{q}{p+q} + (1-p-q)^n[\prod_0(0) - \frac{q}{p+q}]\]</span></p>
+<p><span class="math display">\[P(X_n=1)= \frac{p}{p+q} + (1-p-q)^n[\prod_0(1) - \frac{p}{p+q}]\]</span></p>
+<p>OBS:</p>
+<p>Distribuição limite</p>
+<p><span class="math display">\[\underset{n \to \infty}{lim} P(X_n=0) = \frac{q}{p+q}\]</span></p>
+<p><span class="math display">\[\underset{n \to \infty}{lim} P(X_n=1) = \frac{p}{p+q}\]</span></p>
+</div>
+<div id="forma-matricial" class="section level2">
+<h2><span class="header-section-number">4.3</span> Forma matricial</h2>
+<p>Temos conhecido as probabilidades:</p>
+<p><span class="math display">\[P(X_{n+1} = 1| X_n = 0) = P(0,1) = p\]</span></p>
+<p><span class="math display">\[P(X_{n+1}|X_n=1) = P(1,0) = q\]</span></p>
+<p>Podemos colocar essas probabilidades na forma de uma matriz.</p>
+<span class="math display">\[\begin{equation}
+
+P = \begin{bmatrix}
+P(0,0) &amp; P(0,1) \\
+P(1,0) &amp; P(1,1)
+\end{bmatrix} =
+\begin{bmatrix}
+1-p &amp; p \\
+q &amp; 1-q
+\end{bmatrix}
+
+\end{equation}\]</span>
+<p>A matriz P será chamada de matriz de transição de <strong>um passo</strong>.</p>
+<p>Carácteristicas da Matriz:</p>
+<ul>
+<li><p>Matriz quadrada</p></li>
+<li>Matriz estocástica</li>
+<li><p>significa que a soma das linhas é igual a 1.</p></li>
+</ul>
+</div>
+<div id="espacos-de-estados" class="section level2">
+<h2><span class="header-section-number">4.4</span> Espaços de estados</h2>
+<p>Seja {<span class="math inline">\(X_n\)</span>, n <span class="math inline">\(\geq\)</span> 0} uma CM com <span class="math inline">\(\overbrace{\text{espaços de
+estados}}^{\text{o &#39;passo&#39;}}\)</span> S definimos a função de transição a 1 passo como P(x,y)=P(<span class="math inline">\(X_{n+1}\)</span>=y|<span class="math inline">\(X_n\)</span>=n).</p>
+<p>Notar que P(x,y) é uma distribuição de probabilidade pois <span class="math inline">\(P(x,y) \geq 0\)</span> e <span class="math inline">\(\underbrace{\sum_{y \in S} P(x,y) = 1}_{\text{soma das linhas}}, x \in S\)</span></p>
+<p>A função <span class="math inline">\(\prod_0(x)\)</span>, x <span class="math inline">\(\in\)</span> S, definido por <span class="math inline">\(\prod_0(x)=P(X_0=x), x \in S\)</span> é chamada de <strong>distribuição inicial</strong> do CM.</p>
+<p>Também, <span class="math inline">\(\prod_0(x) \geq 0\)</span> e <span class="math inline">\(\sum_{x \in S}\underbrace{\prod_0(x_i)}_{\text{instante inicial}}=1\)</span>.</p>
+<p>Pode ser provado que a distribuição da cadeia em qualquer instante fica completamente determinado pelo conhecimento das probabilidades de transição e pela distribuição normal.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-24" class="example"><strong>Exemplo 4.3  </strong></span>
+<span class="math display">\[\begin{equation}
+\begin{split}
+
+P(X_0=x_0,X_1=x_1) &amp;= \overbrace{P(X_1=x_1 | X_0 = x_0)}^{P(x_0,x_1)} \overbrace{P(X_0=x_0)}^{\prod_0(x)}\\
+&amp;= P(x_0,x_1) \prod_0(x)
+\end{split}
+\end{equation}\]</span>
+<p>Da mesma forma <span class="math inline">\(P(X_0=x_0,X_1=x_1,X_2=x_2)\)</span></p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+P(\overbrace{X_0=x_0,X_1=x_1}^{A},\overbrace{X_2=x_2}^{B}) &amp;= P(X_2 =
+x_2 | X_0 = x_0, X_1 = x_1) P(X_1=x_1|X_0=x_0) P(X_0=x_0)\\
+&amp;= P(X_2 = x_2, X_1 = x_1) P(x_0,x_1)\prod_0(x_0) \text{\\ corta-se }
+X_0 \text{ por que é uma CM}\\
+&amp;= \prod_0(x_0) P(x_0,x_1) P(x_1,x_2)
+\end{split}
+\end{equation}\]</span>
+<h1 id="formula-geral"><span class="header-section-number">4.4</span> Fórmula geral</h1>
+<p>Em geral, a distribuição da cadeia vai ser:</p>
+<span class="math display">\[P(X_0 = x_0, X_1 = x_1,...,X_n=x_n) = \prod_0(x_0) P(x_0,x_1)
+P(x_1,x_2) ... P(x_{n-1},x_{n})\]</span>
+</div>
+
+
+<div class="example">
+<p><span id="exm:Exemplo da máquina" class="example"><strong>(#exm:Exemplo da máquina) </strong></span> No exemplo da máquina que queremos calcular a probabilidade da máquina estar funcionando hoje e estar funcionando ainda depois de amanhã. Ou seja, precisamos calcular:</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+P(X_{n+2} = 1| X_n=1) &amp;= P(1,0) \* P(0,1) + P(1,1) \* P(1,1)\\
+&amp;= qp + (1-q)(1-q)\\
+&amp;=pq + (1-q)^2
+\end{split}
+\end{equation}\]</span>
+<p>As probabilidades de transição a n-passos podem ser facilmente obtidas pela matriz <span class="math inline">\(P^n\)</span> sendo:</p>
+<p><span class="math display">\[P^n = p*p*...*p\]</span></p>
+<p>No exemplo:</p>
+<span class="math display">\[\begin{equation}
+P^2 = \begin{bmatrix}
+1-p &amp; p \\
+q &amp; 1-q
+\end{bmatrix}
+
+\begin{bmatrix}
+1-p &amp; p \\
+q &amp; 1-q
+\end{bmatrix}
+=
+
+\begin{bmatrix}
+(1-p)^2 +pq &amp;  (1-p)p + (1-q)p \\
+q(1-p) + q(1-q) &amp; pq + (1-q)^2
+\end{bmatrix}
+\end{equation}\]</span>
+<p>Em resumo, a função de transição a n-passos <span class="math inline">\(P^n(x,y)\)</span> é definida por:</p>
+<span class="math display">\[P^n(x,y)= \sum_{y_1} ... \sum_{y_{n-1}} P(x_1,y_1) P(y_1,y_2)
+... P(y_{n-1},y_n)\]</span>
+</div>
+<br />
+<br />
+
+<div class="proposition">
+<p><span id="prp:Fórmula de CHAPMAN-KOLMOGOROV" class="proposition"><strong>(#prp:Fórmula de CHAPMAN-KOLMOGOROV) </strong></span><span class="math display">\[P^{n+m}(x,y) = \sum_z P^n(x,z) P^m(z,y)\]</span></p>
+<p>Para uma CM com espaços de estados finitos a matriz <span class="math inline">\(P^n\)</span> será uma matriz finita.</p>
+<p>Notar que a:</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+P(X_n=y) &amp;= \sum_{x \in S} P(X_0=x,X_n=y)\\
+&amp;= \sum_{x \in S} \overbrace{P(X_n=y|X_0=x)}^{P^n}
+\overbrace{P(X_0=x_0)}^{\prod_0(x)}\\
+&amp;= \sum_{x \in S} \prod_0(x) P^n(x,y).
+\end{split}
+\end{equation}\]</span>
+<p>Matricialmente, <span class="math inline">\(\prod_n=\prod_0P^n\)</span></p>
+sendo que <span class="math inline">\(\prod_n\)</span> é a distribuição de <span class="math inline">\(X_n\)</span>
+</div>
+
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="classificacao-de-processos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="extensoes-da-cadeia-de-markov.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["CE222.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

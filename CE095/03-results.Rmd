@@ -1,0 +1,581 @@
+# Resultados
+
+## Pré-Processamento
+
+```{r pre-processamento}
+# Quantidade de NA por linha
+na_per_row <- apply(resp, 1, function(x) sum(is.na(x)))
+# na_per_row
+# Individuos com mais de 3 itens sem respostas descartados
+exc <- na_per_row > 3
+# exc
+
+resp <- resp[!exc, ]
+fatores <- fatores[!exc, ]
+
+fatores$X1 <- forcats::fct_infreq(fatores$X1)
+fatores$X2 <- forcats::fct_infreq(fatores$X2)
+fatores$X3 <- forcats::fct_infreq(fatores$X3)
+
+# Novo Código Gráfico ------------------------------------
+tb_f1 <- as.data.frame(table(fatores$X1, useNA = "always"))
+tb_f1$Var1 <-  as.character(tb_f1$Var1)
+tb_f1[is.na(tb_f1)] <- "NA"
+
+tb_f2 <- as.data.frame(table(fatores$X2, useNA = "always"))
+tb_f2$Var1 <-  as.character(tb_f2$Var1)
+tb_f2[is.na(tb_f2)] <- "NA"
+
+tb_f3 <- as.data.frame(table(fatores$X3, useNA = "always"))
+tb_f3$Var1 <-  as.character(tb_f3$Var1)
+tb_f3[is.na(tb_f3)] <- "NA"
+
+# colnames(fatores.cols[1])
+```
+
+Antes de prosseguir para análise descritiva dos dados, houve um
+pré-processamento para a limpeza do conjunto de dados. Observou-se que alguns
+respondentes deixaram o questionário em branco, por isso para este estudo
+indivíduos que deixaram mais de 3 itens sem resposta foram
+desconsiderados. Assim o conjunto de dados passou a ter `r nrow(resp)`
+respondetes que deixaram no máximo 3 questões sem resposta. E esses
+individuos que não responderam foi considerado a ausência de resposta como
+errado.
+
+
+## Análise Descritiva
+
+### Fatores Associados
+
+Para dar inicio a análise descritiva iniciamos explorando a frequência dos
+fatores associados.
+
++ a) Você procura se informar sobre os principais acontecimentos políticos no
+país?
+
++ b) Você participou de alguma manifestação de apoio a Operação Lava Jato?
+Por  exemplo: participou de alguma passeata ou protesto, mandou mensagens por
+redes sociais na internet etc.
+
++ c) Você mora em Curitiba?
+
+```{r plot_fatores_associados, fig.width = 8, fig.height = 6}
+p1 <- ggplot(tb_f1,
+             aes(forcats::fct_reorder(Var1, Freq), y =  Freq)) +
+  geom_bar(stat =  "identity",  fill = "dodgerblue4") +
+  labs(x = "", y = "Frequência") +
+  geom_text(aes(y = Freq + 10, label = Freq), size = 5) +
+  # ggtitle(fatores.cols[1]) +
+  ggtitle("a)") +
+  coord_flip() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+p2 <- ggplot(tb_f2,
+             aes(forcats::fct_reorder(Var1, Freq), y =  Freq)) +
+  geom_bar(stat =  "identity",  fill = "dodgerblue4") +
+  labs(x = "", y = "Frequência") +
+  geom_text(aes(y = Freq + 10, label = Freq), size = 5) +
+  coord_flip() +
+  # ggtitle(fatores.cols[2]) +
+  ggtitle("b)") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+p3 <- ggplot(tb_f3,
+             aes(forcats::fct_reorder(Var1, Freq), y =  Freq)) +
+  geom_bar(stat =  "identity",  fill = "dodgerblue4") +
+  labs(x = "", y = "Frequência") +
+  geom_text(aes(y = Freq + 10, label = Freq), size = 5) +
+  ggtitle(fatores.cols[3]) +
+  coord_flip() +
+  ggtitle("c)") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+gridExtra::grid.arrange(p1, p2, p3)
+```
+
+Nota-se pelos gráficos acima que não existe nenhuma concentração de
+frequências, pode-se dizer que os fatores associados tem boa variabilidade.
+
+### Frequência de Acertos
+
+Pelo gráfico abaixo pode-se observar a frequência de indíviduos que acertaram
+um número determinado de itens. Tem-se que a concentração da quantidade de
+acertos está entre 10 e 17.
+
+```{r freq-acertos, fig.cap = "Frequência da quantidade de acertos", fig.height=5,fig.width=7}
+lvls <- lapply(resp, levels)
+
+for (i in 1:26) {
+    gab[[i]] <- factor(gab[[i]],  lvls[[i]])
+}
+
+# Correção
+quest <- mult.choice(resp, as.numeric(gab))
+
+# Assume NA = 0, não respondente
+quest <- ifelse(is.na(quest),0, quest)
+
+desc <- descript(quest)
+
+acertos <- rowSums(quest)
+
+ggplot(as.data.frame(acertos),  aes(x =  as.factor(acertos))) +
+    geom_bar(fill = "dodgerblue4") +
+    labs(x =  "Número de Acertos", y = "Frequência")
+```
+
+
+## Teoria Clássica dos Testes
+
+### Alpha de Cronbach
+
+Para verificar a consistência internar do instrumento foi calculado o *Alpha
+de Cronbach*.
+
+$$\alpha = `r ltm::cronbach.alpha(quest)[[1]]`$$
+
+Utilizando como referência @landis, tem-se que o Alpha de Cronbach
+apresentou um valor substâncial de consistência interna do instrumento.
+
+### Dificuldade
+
+Abaixo temos a tabela com a Dificuldade do item e a proporção de respondentes por distrator.
+
+
+```{r}  
+# Troca leveis das questões para A,B,C,D e E
+lvls <- lapply(resp, levels)
+propTCT <- resp
+
+for(i in 1:ncol(propTCT)){
+    propTCT[[i]] <- factor(propTCT[[i]], lvls[[i]], LETTERS[1:5])
+}
+
+# Proporção de Acertos
+prop.acertos <- sapply(propTCT,table) / colSums(sapply(propTCT,table))
+prop.acertos <- t(prop.acertos)
+
+prop.acertos <- cbind(Dificuldade = desc$perc[,2], prop.acertos)
+
+kable(prop.acertos, row.names = TRUE, booktabs = TRUE,
+      caption = "Tabela de dificuldade com a proporção por distrator") %>%
+  kable_styling(latex_options = "hold_position")
+```
+
+\newpage
+
+### Coeficiente Ponto Bisserial
+
+Abaixo os valores calculados para cada item do coeficiente de correlação ponto-bisserial. 
+
+```{r}
+kable(as.data.frame(t(desc$bisCorr))[,1:13], row.names = FALSE,
+      booktabs = TRUE,
+      escape = TRUE, caption = "Coeficiente de Correlação Ponto-Bisserial",
+      digits = 2) %>%
+  kable_styling(latex_options = c("hold_position","scale_down"),
+                font_size =14)
+
+kable(as.data.frame(t(desc$bisCorr))[,14:26], row.names = FALSE,
+      booktabs = TRUE, digits = 2,
+      escape = TRUE, caption = "Coeficiente de Correlação Ponto-Bisserial") %>%
+  kable_styling(latex_options = c("hold_position","scale_down"),
+                font_size = 14)
+
+```
+
+Adotando como ponto de corte itens que apresentem um coeficiente de correlação ponto de bisserial acima de 0.3, os itens que ficam são:
+
+```{r}
+new_pb <- names(desc$bisCorr)[desc$bisCorr >= 0.3 ]
+```
+
+`r new_pb`
+
+
+## Modelo de três Parâmetros
+
+O modelo de três parâmetro foi ajustado considerando todos os itens, e foi 
+feito ajustes sequenciais, removendo itens que apresentaram problemas de estimativas. Por fim foi comparado todos os itens removidos nesse processo com os itens removidos pelo coeficiente de correlação ponto bisserial.
+
+```{r est}
+m3p <- est(quest, model =  "3PL", engine = "ltm", nqp = 21)
+
+# Seleciona Itens com Discriminação menor que 3.5 e maior que 0.8
+# Seleciona Itens com Dificuldade menor que 3 e maior que 3
+itens <- rownames(m3p$est)[m3p$est[, 1] <= 3.5 &
+                           m3p$est[, 1] >= 0.8 &
+                           m3p$est[, 2] >= -3 &
+                           m3p$est[, 2] <= 3]
+
+# Itens que não estão nos intervalos
+difitens <- rownames(m3p$est)[!(rownames(m3p$est) %in%  itens)]
+
+quest2 <- quest[, itens]
+
+# Novo Modelo
+m3p1 <- est(quest2, model =  "3PL", engine = "ltm", nqp = 21)
+
+# Ainda com itens com alto valor discriminatorio
+# Remove Itens com Discriminação maior que 3
+itens2 <- rownames(m3p1$est)[m3p1$est[, 1] <= 3.5 &
+                            m3p1$est[, 1] >= 0.8 &
+                            m3p1$est[, 2] >= -3 &
+                            m3p1$est[, 2] <= 3]
+
+
+difitens <- c(difitens, rownames(m3p1$est)[!(rownames(m3p1$est) %in%  itens2)])
+
+quest3 <- quest2[, itens2]
+
+# Novo Modelo
+m3p2 <- est(quest3, model =  "3PL", engine = "ltm", nqp = 21)
+
+# Ordena conjunto de difitens
+difitens <- difitens[order(as.integer(stringr::str_extract(difitens,
+                                                           "[0-9]+")))]
+```
+
+Para este trabalho foi considerado o modelo de três parâmetros e foi excluido
+itens que tiveram estimativas dos parâmetros de dificuldade e discriminação
+que não estivessem nos seguintes intervalos:
+
+$$-3 \leq \text{Dificuldade} \leq 3$$
+$$0.8 \leq \text{Discriminacao} \leq 3.5$$
+
+estes foram determinados com base no que é mais comumente usado na
+literatura, exeto pelo valor superior de Discriminação que , em geral, é
+usado um valor de 2.5 mas aqui estamos adotando um valor de 3.5
+
+Assim, foram removidos os seguintes itens pela tri:
+
+`r difitens`
+
+Os itens em comum removidos pelo coeficiente de correlação ponto bisserial e pela tri: 
+
+`r intersect(difitens,names(desc$bisCorr)[!(names(desc$bisCorr) %in% new_pb)])`
+
+Observa-se que os itens que não foram removidos pela tri que teriam sido removidos pela ponto-bisserial seriam: *i13, i19 e i24*. Os itens restantes foram concordantes.
+
+### Estimativas do Modelo
+
+Abaixo, na Tabela \@ref(tab:tabest), tem-se estão as estimativas dos parâmetros de
+**Discriminação**, **Dificuldade** e **Acerto Casual**.
+
+```{r tabest}
+tabest <- m3p2$est
+colnames(tabest) <- c("Discriminação", "Dificuldade", "Acerto Casual")
+
+kable(tabest, "latex", booktabs = TRUE, caption =
+    "Estimativas dos parâmetros do modelo") %>%
+    kable_styling(latex_options = "hold_position")
+```
+
+Observa-se que as estimativas dos parâmetros estão todas contidas nos
+intervalos especificados. Tem-se que os itens mais difíceis são os itens i5 e
+i13 e os itens mais fáceis foram i19 e i1. Já os itens que tiveram a maior
+discriminação foram os itens i13 e i16.
+
+### Informação dos itens
+
+Pelo gráfico abaixo pode-se observar o quão informativo é o item para uma
+determinada Habilidade ($\theta$).
+
+```{r}
+ii <- as.data.frame(cbind(iif(m3p2)$f, x = iif(m3p2)$x))
+ii <- reshape2::melt(ii, id.vars = "x")
+
+ggplot(ii, aes(x =  x, y = value)) +
+    geom_density(stat =  "identity",  colour =  "dodgerblue4") +
+    facet_wrap(~ variable, nrow = 3) +
+    labs(x =  "Habilidade",  y = "Informação do item")
+```
+
+Assim, observa-se que  o item i1, por exemplo, é mais informativo para
+indivíduos com um traço latente menor e que o item i16 que é mais informativo
+para indivíduos com um traço latente maior. Segue a mesma interpretação para
+os demais itens.
+
+### Informação do teste
+
+Para a informação do teste, observa-se pelo gráfico abaixo que nosso
+instrumento de medidade foi mais informativo para indivíduos com um traço
+latente um pouco maior que a média. Ou seja, para melhorar o instrumento
+seria necessário adicionar itens com uma dificuldade baixa e moderada.
+
+
+```{r, fig.width=7,fig.height=5}
+it <- as.data.frame(cbind(tif(m3p2$est)$f,  x = tif(m3p2)$x))
+colnames(it) <- c("inf", "x")
+
+ggplot(it, aes(x = x, y = inf)) +
+    geom_density(stat =  "identity", colour =  "dodgerblue4") +
+    labs(x = "Habilidade",  y = "Informação")
+```
+
+### Traço Latente ($\theta$)
+
+Pela Tabela \@ref(tab:latente1), observa-se que existe diferença na
+colocação do indivíduo quando comparamos pela quantidade de Acertos com
+$\theta$ (Traço Latente) estimado.
+
+```{r latente1}
+# Estima o traço latente posteriori
+tlp <- eap(quest3, m3p2$est, qu=normal.qu())
+
+final.rank <- data.frame('ID' = 1:nrow(tlp),
+                         'Escore' = tlp[,1],
+                         'Posição' = rank(-tlp[,1]),
+                         'Acertos' = rowSums(quest3))
+
+final <- as.data.frame(cbind(final.rank[order(final.rank$Acertos),],
+                             "",
+                             "",
+                             final.rank[order(final.rank$Escore),]))
+
+
+kable(head(final), "latex",
+      booktabs = TRUE, row.names = FALSE,
+      caption = "6 Primeiras linhas") %>%
+    add_header_above(c("Ordenado por Acerto" = 4,
+                       " " =  1,
+                       " " =  1,
+                       "Ordenado por Escore" = 4)) %>%
+    kable_styling(latex_options = c("hold_position"))
+```
+
+
+```{r tab-traço-latente2}
+kable(tail(final), "latex",
+      booktabs = TRUE, row.names = FALSE,
+      caption = "6 Últimas linhas") %>%
+    add_header_above(c("Ordenado por Acerto" = 4,
+                       " " =  1,
+                       " " =  1,
+                       "Ordenado por Escore" = 4)) %>%
+    kable_styling(latex_options = c("hold_position"))
+```
+
+Observando os indivíduos 112 e 418, vemos que, por mais que o indivíduo
+418 tenha acertado uma questão a mais que o indivíduo 112, este está mais bem
+posicionado. Isto se deve ao modelo usado que leva em consideração a
+coerência de resposta para o respectivo traço latente.
+
+
+### Interpretação da Escala
+
+Devido a utilização de um modelo de probabilidade para a estimação do traço
+latente dos indivíduos, é possível posicionar os itens na escala do traço
+latente e fazer uma interpretação pedagógica da escala. Seguindo a definição
+de um item âncora e quase-âncora dado em [Métodos](#metodos) os seguintes
+itens foram classificados como itens âncora e quase-âncora.
+
+
+
+```{r, fig.width= 6, fig.height=4}
+quest4 <- cbind(quest3, theta = tlp[, 1])
+quest4 <- as.data.frame(quest4)
+
+itens <- colnames(quest4)[-ncol(quest4)]
+
+# Theta
+theta <- -3:3
+
+cen <- expand.grid(item = 1:length(itens),
+                   theta = theta)
+
+# mapply(j = cen$item,
+#       k = cen$theta,
+#       FUN =  function(j, k) {
+#           print(paste0("Item: ", j, " - \theta: ", k))
+#       })
+
+anchor <- mapply(j = cen$item,
+       k = cen$theta,
+       SIMPLIFY = FALSE,
+       FUN =  function(j, k) {
+           # Theta
+           Z <- k
+           Y <- Z - 1
+             # Item
+           item <- itens[j]
+
+
+           # Condição I
+           # P(U = u | \theta = Z) >= 0.65
+           z <- quest4[quest4$theta <= Z, item]
+           pz <- sum(z) / nrow(quest4)
+
+           I <- pz >=  0.65
+
+           # Condição II
+           # P(U = u | \theta = Y) < 0.5
+           y <- quest4[quest4$theta <= Y, item]
+           py <- sum(y) / nrow(quest4)
+
+           II <- py < 0.5
+
+           # Condição III
+           # P(U = u | \theta = Z) - P(U = u | \theta = Y) >= 0.3
+           yz <- pz - py
+
+           III <- yz >= 0.3
+
+           status <- ifelse(I & II & III, "ancora",
+                     ifelse((I & II) | (I & III) | (II & III),
+                            "quase-ancora", "none"))
+           data.frame(item, Z, I, II, III, status)
+           # results <- rbind(results, data.frame(i, Z, I, II, III, status))
+
+       })
+
+anchor <- do.call(rbind, anchor)
+# anchor
+
+# table(anchor$status)
+```
+
+
+```{r itemancoras}
+db_ancor <- anchor[anchor$status !=  "none", ]
+
+
+
+ggplot(db_ancor,
+       aes(Z, item, label = item, colour = status, fill = status)
+       ) +
+    geom_label(colour = "white", fontface = "bold") +
+    scale_x_continuous(breaks = c(0, 1), limits = c(-0.2, 1.2)) +
+    theme(axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    labs(title = "Itens Âncora no Traço Latente", x = "Traço Latente") +
+    theme(plot.title = element_text(hjust = 0.5),
+          legend.title = element_blank())
+```
+
+# Dimensionalidade
+
+
+```{r}
+mytest.tetra <- psych::tetrachoric(quest[, c(1, 5, 8, 9, 11, 
+                                             12, 13, 16, 17, 19, 
+                                             20, 25)],
+                                   correct = TRUE,
+                                   smooth = TRUE,
+                                   global = TRUE)
+
+distrator <- c("D1",  "D6", "D9", "D1", "D2", 
+               "D3", "D3", "D5", "D6", "D3", 
+               "D5", "D6")
+
+tetmat <- mytest.tetra$rho
+tetmat <- as.data.frame(tetmat)
+
+pca_itens <- FactoMineR::PCA(tetmat, graph = FALSE, scale.unit = FALSE)
+
+g1 <- factoextra::fviz_pca_var(pca_itens)
+
+g1$data$distrator <- distrator
+
+ggplot(g1$data) +
+  geom_segment(aes(x = 0, xend = x, y = 0, yend = y, color = distrator),
+               size = 0.8,
+               arrow = arrow(length = unit(0.35, "cm"))) +
+  # geom_text(aes(x, y), label = names) +
+  scale_x_continuous(limits = c(-.25, .2)) +
+  scale_y_continuous(limits = c(-.25, .2)) + 
+  theme_bw() +
+  labs(x = "Dim 1 (26.9%)", y = "Dim 2 (17.9%)", title = "PCA itens") +
+  scale_color_brewer(palette = "Dark2") +
+  geom_text(data = g1$data, aes(g1$data$x + 0.01, g1$data$y + 0.005), 
+            label = g1$data$name, size = 5)
+
+```
+
+
+Para a criação deste gráfico foi necessário construir a matrix tetracórica dos itens   filtrados pelo critério da TRI. No gráfico é apresentado uma flecha respectiva da origem para as coordenadas do componente.  A cor da flecha está atribuídas para os diferentes distratores.  Os distratores em geral não estão totalmente agrupados pelos respectivos grupos.  Outra consequência é que a baixa explicação dos componentes em duas dimensões.  O item i3 é a que possui maior peso na dimensão x, ao mesmo, é a curva de informação do item mais estreita.
+
+## Análise dos Fatores Associados
+
+Por último tem-se a análise de regressão linear múltipla para verificar quais
+fatores associados tem um maior ou menor efeito sobre o traço latente
+estimado pelo modelo de 3 parâmetros.
+
+Lembrando que:
+
+X1: `r fatores.cols[1]`
+
+X2: `r fatores.cols[2]`
+
+X3: `r fatores.cols[3]`
+
+Para o primeiro modelo ajustado com todas as covariáveis o seguinte resultado
+é obtido.
+
+```{r first-model}
+tfatores <- cbind(fatores, theta = tlp[, 1])
+tfatores <- as.data.frame(tfatores)
+
+rl <- lm(theta ~ ., data = tfatores)
+
+kable(broom::tidy(rl),  caption = "Modelo com todos fatores associados",
+      booktabs =  TRUE) %>%
+     kable_styling(latex_options = c("hold_position"))
+```
+
+Logo, o único fator associado que não foi significativo foi X3 (`r fatores.cols[3]`). Assim, esse fator associado foi removido e o modelo foi
+reajustado. O novo modelo ficou como segue-se:
+
+```{r}
+rl2 <- update(rl, theta ~  . -X3)
+
+kable(broom::tidy(rl2), caption =
+                            "Modelo com os fatores associados X1 e X2",
+      booktabs =  TRUE) %>%
+     kable_styling(latex_options = c("hold_position"))
+```
+
+### Diagnóstico do Modelo
+
+Abaixo tem-se o diagnóstico do Modelo.
+
+```{r}
+p1 <- autoplot(rl2,which = 1,smooth.linetype = "blank") +
+  labs(x = "Valor predito", y = "Resíduo") +
+  ggtitle("Resíduo vs Predito") + geom_smooth(method = "loess", se = FALSE)
+
+p2 <- autoplot(rl2,which = 2) +
+  labs(x = "Quantis teórico", y = "Resíduo observado")  +
+  ggtitle("Normal Q-Q")
+p3 <- autoplot(rl2,which = 3,smooth.linetype = "blank") +
+  labs(x = "Valor predito", y = "Raiz do resíduo observado") +
+  ggtitle("Homocedasticidade") + geom_smooth(method = "loess",se = FALSE)
+p4 <- autoplot(rl2,which = 5,smooth.linetype = "blank") +
+    labs(x =  "Leverage",  y = "Resíduo de Pearson") +
+  ggtitle("Resíduo de Pearson vs Leverage") +
+  geom_smooth(method = "loess", se = FALSE)
+
+gridExtra::grid.arrange(p1[[1]],p2[[1]],p3[[1]],p4[[1]],
+             ncol = 2,
+             top="Diagnóstico do modelo")
+```
+
+O diagnostico do modelo está satisfatório, não temos evidências de quebra de
+nenhum dos pressupostos. Quanto a esse agrupamento de dados, isto é natural
+dos dados pois as preditoras são duas variáveis categoricas.
+
+
+### Interpretações do Modelo
+
+Para as estimativas dos fatores associados tem-se que os indivíduos que
+responderam **Sempre** para a pergunta *`r fatores.cols[1]`* tem um aumento
+de 0.62 no valor de $\theta$, indivíduos que respoderam **Raramente** tem um
+decréscimo de -0.53 no valor de $\theta$ e indivíduos que responderam
+**Nunca** tem um decréscimo de -0.44 no valor de $\theta$.
+
+Por último indíviduos que responderam **Sim** para *`r fatores.cols[2]`* tem
+uma aumento de 0.17 no valor de $\theta$.
+
+As categorias de referência para as estimativas acima foram **As vezes** da
+pergunta *`r fatores.cols[1]`* e **Não** da pergunta *`r fatores.cols[2]`*.

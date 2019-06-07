@@ -1,0 +1,84 @@
+---
+output: bookdown::pdf_book
+tables: yes
+---
+
+# Introdução {-}
+
+```{r config, warning=FALSE, echo=FALSE, message=FALSE}
+# Options default dos chuncks
+knitr::opts_chunk$set(
+  message = FALSE,
+  echo = TRUE,
+  warning = FALSE,
+  cache = TRUE,
+  fig.pos = "H",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 9,
+  ## dpi = 80, ## aumentar o dpi para exibir maior.
+  ## dev = "png",
+  fig.path = "figuras/",
+  cache.path = "cache/"
+)
+
+# Options xtable
+# options(xtable.comment = FALSE,
+#         xtable.table.placement = "H",
+#         knitr.kable.NA = "")
+```
+
+```{r biblioteca, echo = FALSE}
+# Bibliotecas
+```
+
+```{r data, echo = FALSE}
+# Carrega dados
+```
+
+
+```{r extraFun, echo = FALSE}
+# # Tipo de output
+# getOutputFormat <- function() {
+#   stringr::str_extract(readLines("index.Rmd",warn = FALSE)[2],
+#                        "html_document2|pdf_book|gitbook")
+# }
+# # Índice das tabelas e figuras
+# getExtFormat <- function() {
+#   stringr::str_extract(readLines("index.Rmd",warn = FALSE)[2],
+#                        "html|pdf")
+# }
+```
+
+O objetivo dessa página é guardar as anotações, atividades e trabalhos
+da disciplina CE222 - Processos Estocásticos Aplicados, ministrada pelo
+Professor [Benito Olivares Aguilera](https://docs.ufpr.br/~benitoag/).
+
+## Processos Estocásticos Aplicados {-}
+
+Objetivo da disciplina: Possibilitar ao aluno a aplicação de técnicas de
+processos estocásticos na análise de problemas de diversas áreas.
+
+
+### EMENTA {-}
+
+A ementa da disciplina está dividida em duas partes. A primeira parte
+referente a teoria básica de processos. A segunda parte é o
+desenvolvimente da parte teórica em diversas aplicações.
+
+### Parte I - Teórica {-}
+
+1. PROCESSOS ESTOCÁSTICOS: Introdução. Teoria básica de processos. Classificação de processos. Processos Estacionários. Seqüências Independentes. Passeio Aleatório. Ruína do Jogador. Sistemas Lineares.
+2. PROCESSOS DE SEGUNDA ORDEM: Função Média, Variância e Covariância. Processos Fracamente Estacionários.
+3. CADEIAS DE MARKOV: Cadeias Markovianas de Parâmetro Discreto. Cadeias Markovianas de Parâmetro Contínuo. O Processo de Nascimento e Morte. Processo de Poisson. Introdução à Teoria das Filas.
+4. PROCESSOS GAUSSIANOS: O Processo de Wiener.
+
+### Parte II - Prática {-}
+
+5. Aplicações de Cadeias de Markov
+6. Teoria de Filas
+7.  Sistemas lineares e controle.
+
+
+
+Link para [disciplina](https://docs.ufpr.br/~benitoag/ce222-2018.html)

@@ -1,0 +1,126 @@
+---
+title: "Experimento fatorial em quadrado latino: Um estudo sobre a velocidade da leitura digital"
+subtitle: "Controle de Processos Industriais - CE074"
+author: "Andryas Waurzenczak, Aline Benatti, Elias Santiago Diniz"
+date: "Novembro, 2017"
+include-hears:
+  -\usepackage{subfig}
+  -\usepackage{graphicx}
+  -\usepackage{amsmath}
+output: beamer_presentation
+---
+
+# Objetivo do experimento
+
+O objetivo do experimento é medir a velocidade com que os indivíduos leem, variando o estilo com que o texto digital é apresentado. Em outras palavras, encontrar a combinação entre as variáveis explicativas que minimiza o tempo de leitura.
+
+# Conhecimento relevante sobre o problema
+
+A maioria dos estudos focam na qualidade da leitura e não na velocidade. E sobre a qualidade da leitura tem-se que:
+
+* Tamanho ideal de uma linha é entre 50-60 caracteres
+
+* Fontes serifadas apresentam uma maior retenção do conteúdo lido
+
+* Tamanho de letra não altera a qualidade da leitura
+
+* Subjetivo, de pessoa para pessoa
+
+# Variável resposta
+
+Neste tipo de experimento é comum utilizar as variações insertas no estilo do texto para mensurar a qualidade da leitura. Em geral esse procedimento é avaliado atráves de questões de multipla escolha. Contudo para esse experimento a variável resposta vai ser dada pelo **tempo de leitura**.
+
+O tempo começa a contar no instante em que o indivíduo clica em "start" e para no momento que clica em "stop", a diferença entre o tempo final menos o inicial é o tempo de leitura do indivíduo.
+
+$$\text{TL} = \text{Stop} - \text{Start}$$
+
+TL = Tempo de Leitura
+
+# Variáveis explicativas (fatores controláveis)
+
+Muitos fatores podem influenciar na leitura de uma pessoa. Mais ainda quando essa leitura é digital, pois estamos mais expostos a fatores distrativos.
+
+As principais variáveis que podem ter efeito no tempo de leitura são: tamanho da fonte, tipo da fonte, espaçamento entre as linhas, quantidade de caracteres por linha, cor da fonte, interesse e conhecimento do indivíduo, luminosidade do aparelho, ambiente, poluição da página etc...
+
+As covariáveis consideradas para este experimento são:
+
+* tamanho da fonte (12px-16px)
+
+* tipo da fonte (arial-serif)
+
+* espaçamento das linhas (120%-180%)
+
+* quantidade de caracteres por linha (60-75)
+
+# Fatores mantidos constantes
+
+Os fatores mantidos constantes são:
+
+* Cor da fonte: Preto
+
+* Poluição da página: Branca, sem propagandas e efeitos
+
+
+A forma de controle é feita atráves da aplicação em shiny.
+
+# Fatores nuisance
+
+Os fatores considerados nuisances para este experimento são:
+
+* Interesse
+
+* Conhecimento prévio
+
+* Ambiente
+
+Para minimizar os possiveis efeitos advindos dessas fontes de variação, as pessoas serão consideradas blocos e instruidas a realizar o experimento na parte do dia que se sentirem mais confortaveis. 
+
+# Interações
+
+Espera-se que tamanho e estilo da fonte junto com a quantidade de caracteres por linha tenham uma interação tripla. Neste caso a combinação que se espera que minimize o tempo de leitura é estilo: Arial, tamanho: 16px e quantidade de caraceteres: 60.
+
+
+# Restrições do experimento
+
+Algumas dificuldades do experimento consistem principalmente no processo de execução. Pois para garantirmos resultados integros optou-se por uma amostra selecionada de pessoas próximas ao integrantes do grupo para a execução do experimento. Pessoas essas que garantimos que querem e executarão o experimento de forma integra.
+
+# Desenho experimental inicial
+
+Experimento fatorial em quadrado latino.
+
+Combinações do experimento
+
+```{r,echo=FALSE,results='asis'}
+ql <- readRDS("ql")
+ql1 <- ql[1:8,c(1,2,3)]
+ql2 <- ql[9:16,c(1,2,3)]
+
+cat('\\begin{center}')
+cat('\\begin{tabular}{ c c }')
+cat('\\footnotesize')
+print(knitr::kable(ql1, format = 'latex', booktabs = TRUE, row.names = FALSE))
+cat('&')
+cat('\\footnotesize')
+print(knitr::kable(ql2, format = 'latex', booktabs = TRUE,row.names = FALSE))
+cat('\\end{tabular}')
+cat('\\end{center}')
+```
+
+# 
+
+Onde cada combinação é aplicado uma vez a uma das cazelas abaixo.
+
+```{r,echo=FALSE}
+set.seed(1234)
+rep <- sample(1:16,16,replace = FALSE)
+
+knitr::kable(matrix(rep,nrow = 4,ncol = 4,dimnames = list(c("I","II","III","IV"),c("txt1","txt2","txt3","txt4"))))
+```
+
+
+# Análise e apresentação dos dados
+
+<!-- 10. **Análise e apresentação dos dados** -->
+<!-- 	- Propor uma análise inicial dos dados (ANOVA, regressão, testes de -->
+<!--     hipótese, etc), e as técnicas de representação dos resultados e do -->
+<!--     experimento -->

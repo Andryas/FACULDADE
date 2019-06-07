@@ -1,0 +1,9 @@
+# Considerações Finais
+
+Considerando os resultados já apresentados na seção anterior conclui-se
+que  VH não teve ganho significativo em frente o modelo MVE, porém este
+último modelo traz sobre si um potencial superior, devido a utilização
+de métodos estocásticos, em que permitirá estimar os resultados da
+volatilidade futura. Mediante a complexidade do assunto abordado, este
+trabalho foi restringido o objetivo de comparar dois tipos de modelos
+que estuda a volatilidade em um período de tempo no passado.

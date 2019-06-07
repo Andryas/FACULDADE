@@ -1,0 +1,52 @@
+\select@language {brazil}
+\contentsline {section}{Introdu\IeC {\c c}\IeC {\~a}o}{2}{section*.2}
+\contentsline {subsection}{Processos Estoc\IeC {\'a}sticos Aplicados}{2}{section*.3}
+\contentsline {subsubsection}{EMENTA}{2}{section*.4}
+\contentsline {subsubsection}{Parte I - Te\IeC {\'o}rica}{2}{section*.5}
+\contentsline {subsubsection}{Parte II - Pr\IeC {\'a}tica}{2}{section*.6}
+\contentsline {section}{\numberline {1}Revis\IeC {\~a}o}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Fen\IeC {\^o}menos}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Defini\IeC {\c c}\IeC {\~o}es de Probabilidade}{3}{subsection.1.2}
+\contentsline {section}{\numberline {2}Processo Estoc\IeC {\'a}stico}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}O que \IeC {\'e} um Processo?}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Processos Estoc\IeC {\'a}sticos}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Espa\IeC {\c c}os T e S}{5}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}T discreto e S discreto}{5}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}T \IeC {\'e} cont\IeC {\'\i }nuo e S discreto}{5}{subsubsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3}T discreto e S cont\IeC {\'\i }nuo}{5}{subsubsection.2.3.3}
+\contentsline {subsubsection}{\numberline {2.3.4}T cont\IeC {\'\i }nuo e S cont\IeC {\'\i }nuo}{5}{subsubsection.2.3.4}
+\contentsline {subsection}{\numberline {2.4}Descri\IeC {\c c}\IeC {\~a}o probabil\IeC {\'\i }stica}{5}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}M\IeC {\'e}dia, vari\IeC {\^a}ncia e covari\IeC {\^a}ncia}{6}{subsection.2.5}
+\contentsline {section}{\numberline {3}Classifica\IeC {\c c}\IeC {\~a}o de Processos}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Processos estacion\IeC {\'a}rios}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Processos fracamente estacin\IeC {\'a}rio}{7}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Processos independentes}{7}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Processos, com incrementos independentes e estacion\IeC {\'a}rios}{8}{subsection.3.4}
+\contentsline {section}{\numberline {4}Cadeias de Markov}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}Caso particular}{8}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Distribui\IeC {\c c}\IeC {\~a}o do Processo}{9}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Forma matricial}{11}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Espa\IeC {\c c}os de estados}{11}{subsection.4.4}
+\contentsline {section}{\numberline {5}F\IeC {\'o}rmula geral}{12}{section.5}
+\contentsline {section}{\numberline {6}Extens\IeC {\~o}es da Cadeia de Markov}{13}{section.6}
+\contentsline {subsection}{\numberline {6.1}Constru\IeC {\c c}\IeC {\~a}o do Modelo}{13}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Passeio ale\IeC {\'a}torio}{14}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Cadeia de Ehrenfest}{15}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Ru\IeC {\'\i }na do jogador}{16}{subsection.6.4}
+\contentsline {subsection}{\numberline {6.5}Cadeia de Nascimento e Morte \textbf {(C N-M)}}{17}{subsection.6.5}
+\contentsline {subsection}{\numberline {6.6}Cadeia de Fila}{17}{subsection.6.6}
+\contentsline {subsection}{\numberline {6.7}Cadeia de ramifica\IeC {\c c}\IeC {\~a}o}{17}{subsection.6.7}
+\contentsline {section}{\numberline {7}Estados Transientes e Recorrentes}{18}{section.7}
+\contentsline {subsection}{\numberline {7.1}Martingales}{21}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Cadeias N-M}{22}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}a.}{23}{subsubsection.7.2.1}
+\contentsline {subsubsection}{\numberline {7.2.2}b.}{23}{subsubsection.7.2.2}
+\contentsline {section}{\numberline {8}Distribui\IeC {\c c}\IeC {\~a}o estacion\IeC {\'a}ria de uma CM}{24}{section.8}
+\contentsline {subsection}{\numberline {8.1}Distribui\IeC {\c c}\IeC {\~a}o Estacion\IeC {\'a}ria de uma CM.}{24}{subsection.8.1}
+\contentsline {section}{\numberline {9}Distribui\IeC {\c c}\IeC {\~a}o estacion\IeC {\'a}ria de uma CM}{27}{section.9}
+\contentsline {subsection}{\numberline {9.1}M\IeC {\'e}todo de Decomposi\IeC {\c c}\IeC {\~a}o Especial}{27}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}DE p/ C-N-M}{28}{subsection.9.2}
+\contentsline {subsection}{\numberline {9.3}Cadeia de Ehrenfest Modificada}{28}{subsection.9.3}
+\contentsline {section}{\numberline {10}Processo de Poisson}{29}{section.10}
+\contentsline {section}{\numberline {11}Processos Gaussianos}{30}{section.11}
+\contentsline {section}{\numberline {12}Procesos de Wiener}{31}{section.12}

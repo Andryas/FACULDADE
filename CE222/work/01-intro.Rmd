@@ -1,0 +1,18 @@
+# Introdução
+
+O mercado de ações é um ambiente público e organizado para negociação de
+alguns títulodes mobiliários (ações, opções de fundos, etc...). Neste
+trabalho o objeto de estudo são títulodes mobiliários chamados de ações.
+
+Ação é a menor parcela do capital social das companhias de capital aberto,
+que têm seus papéis negociados na [BM& Bovespa]() (Bolsa de Valores do
+Brasil). É um título patrimonial e concede aos seus dententores, chamados de
+acionistas, os direitos e deveres de um sócio.
+
+Estas ações são negociadas diariamente e com o avanço da tecnologia elas se
+tornam cada vez mais rápidas, isso faz com que o mercado se torne cada vez
+mais complexo. O principal objetivo de se entrar nesse mundo de acionistas é
+o ganho de dinheiro, que se torna cada vez mais difícil pelo motivo citado
+anteriormente e pela competitividade mais acirrada. Assim estratégias e
+medidas de risco podem auxiliar o acionista a um melhor desempenho em suas
+negociações.

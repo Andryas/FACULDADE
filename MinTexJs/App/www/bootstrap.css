@@ -1,0 +1,36 @@
+ul {
+  list-style-type:none;
+  position:fixed;
+  max-height: 450px;
+  overflow: scroll;
+  margin-left:300px;
+}
+
+.pro-p {
+  width: 900px;
+  margin-left:200px;
+  text-align:justify;
+  max-height:480px;
+  position:fixed;
+  overflow:scroll;
+}
+
+.mainplot {
+  width: 100%;
+  height: 60%;
+  min-height: 500px;
+  max-height: 600px;
+}
+
+.column1, .column2, .column3 {
+  width: 300px;
+  height:300px;
+  float:left;
+  margin:45px;
+  background-color:#efefef;
+  text-align: center;
+}
+
+.centrado {
+ margin: 20% 20px 20% 30px;
+}

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Teoria do Risco</title>
+  <meta name="description" content="Teoria do Risco">
+  <meta name="generator" content="bookdown 0.4.1 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Teoria do Risco" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Teoria do Risco" />
+  
+  
+  
+
+<meta name="author" content="Andryas Waurzenczak">
+
+
+<meta name="date" content="2017-06-29">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="trabalho-1.html">
+<link rel="next" href="prova-1.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://andryas.github.io/"><center><i class="fa fa-arrow-left" aria-hidden="true"></i></center></\a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="1" data-path="conteudo.html"><a href="conteudo.html"><i class="fa fa-check"></i><b>1</b> Conteúdo</a><ul>
+<li class="chapter" data-level="1.1" data-path="conteudo.html"><a href="conteudo.html#teorema-da-ruina-do-jogador"><i class="fa fa-check"></i><b>1.1</b> Teorema da ruína do jogador</a></li>
+<li class="chapter" data-level="1.2" data-path="conteudo.html"><a href="conteudo.html#equacao-fundamental-da-teoria-do-risco"><i class="fa fa-check"></i><b>1.2</b> Equação fundamental da teoria do risco</a></li>
+<li class="chapter" data-level="1.3" data-path="conteudo.html"><a href="conteudo.html#convolucao"><i class="fa fa-check"></i><b>1.3</b> Convolução</a></li>
+<li class="chapter" data-level="1.4" data-path="conteudo.html"><a href="conteudo.html#preco-comercial"><i class="fa fa-check"></i><b>1.4</b> Preço Comercial</a></li>
+<li class="chapter" data-level="1.5" data-path="conteudo.html"><a href="conteudo.html#preco-comercial-individual"><i class="fa fa-check"></i><b>1.5</b> Preço Comercial Individual</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="exercicio-1.html"><a href="exercicio-1.html"><i class="fa fa-check"></i><b>2</b> Exercício 1</a><ul>
+<li class="chapter" data-level="2.1" data-path="exercicio-1.html"><a href="exercicio-1.html#section"><i class="fa fa-check"></i><b>2.1</b> </a></li>
+<li class="chapter" data-level="2.2" data-path="exercicio-1.html"><a href="exercicio-1.html#section-1"><i class="fa fa-check"></i><b>2.2</b> </a></li>
+<li class="chapter" data-level="2.3" data-path="exercicio-1.html"><a href="exercicio-1.html#section-2"><i class="fa fa-check"></i><b>2.3</b> </a></li>
+<li class="chapter" data-level="2.4" data-path="exercicio-1.html"><a href="exercicio-1.html#section-3"><i class="fa fa-check"></i><b>2.4</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exercicio-2.html"><a href="exercicio-2.html"><i class="fa fa-check"></i><b>3</b> Exercício 2</a></li>
+<li class="chapter" data-level="4" data-path="exercicio-3.html"><a href="exercicio-3.html"><i class="fa fa-check"></i><b>4</b> Exercício 3</a></li>
+<li class="chapter" data-level="5" data-path="exercicio-4.html"><a href="exercicio-4.html"><i class="fa fa-check"></i><b>5</b> Exercício 4</a></li>
+<li class="chapter" data-level="6" data-path="exercicio-5.html"><a href="exercicio-5.html"><i class="fa fa-check"></i><b>6</b> Exercicío 5</a></li>
+<li class="chapter" data-level="7" data-path="trabalho-1.html"><a href="trabalho-1.html"><i class="fa fa-check"></i><b>7</b> Trabalho 1</a><ul>
+<li class="chapter" data-level="7.1" data-path="trabalho-1.html"><a href="trabalho-1.html#a"><i class="fa fa-check"></i><b>7.1</b> a</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="trabalho-1.html"><a href="trabalho-1.html#section-4"><i class="fa fa-check"></i><b>7.1.1</b> </a></li>
+<li class="chapter" data-level="7.1.2" data-path="trabalho-1.html"><a href="trabalho-1.html#section-5"><i class="fa fa-check"></i><b>7.1.2</b> </a></li>
+<li class="chapter" data-level="7.1.3" data-path="trabalho-1.html"><a href="trabalho-1.html#section-6"><i class="fa fa-check"></i><b>7.1.3</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="trabalho-1.html"><a href="trabalho-1.html#b"><i class="fa fa-check"></i><b>7.2</b> b</a></li>
+<li class="chapter" data-level="7.3" data-path="trabalho-1.html"><a href="trabalho-1.html#c"><i class="fa fa-check"></i><b>7.3</b> c</a></li>
+<li class="chapter" data-level="7.4" data-path="trabalho-1.html"><a href="trabalho-1.html#d"><i class="fa fa-check"></i><b>7.4</b> d</a></li>
+<li class="chapter" data-level="7.5" data-path="trabalho-1.html"><a href="trabalho-1.html#e"><i class="fa fa-check"></i><b>7.5</b> e</a></li>
+<li class="chapter" data-level="7.6" data-path="trabalho-1.html"><a href="trabalho-1.html#f"><i class="fa fa-check"></i><b>7.6</b> f</a></li>
+<li class="chapter" data-level="7.7" data-path="trabalho-1.html"><a href="trabalho-1.html#g"><i class="fa fa-check"></i><b>7.7</b> g</a></li>
+<li class="chapter" data-level="7.8" data-path="trabalho-1.html"><a href="trabalho-1.html#h"><i class="fa fa-check"></i><b>7.8</b> h</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="trabalho-2.html"><a href="trabalho-2.html"><i class="fa fa-check"></i><b>8</b> Trabalho 2</a><ul>
+<li class="chapter" data-level="8.1" data-path="trabalho-2.html"><a href="trabalho-2.html#a-1"><i class="fa fa-check"></i><b>8.1</b> a</a></li>
+<li class="chapter" data-level="8.2" data-path="trabalho-2.html"><a href="trabalho-2.html#b-1"><i class="fa fa-check"></i><b>8.2</b> b</a></li>
+<li class="chapter" data-level="8.3" data-path="trabalho-2.html"><a href="trabalho-2.html#c-1"><i class="fa fa-check"></i><b>8.3</b> c</a></li>
+<li class="chapter" data-level="8.4" data-path="trabalho-2.html"><a href="trabalho-2.html#d-1"><i class="fa fa-check"></i><b>8.4</b> d</a></li>
+<li class="chapter" data-level="8.5" data-path="trabalho-2.html"><a href="trabalho-2.html#e-1"><i class="fa fa-check"></i><b>8.5</b> e</a></li>
+<li class="chapter" data-level="8.6" data-path="trabalho-2.html"><a href="trabalho-2.html#f-1"><i class="fa fa-check"></i><b>8.6</b> f</a></li>
+<li class="chapter" data-level="8.7" data-path="trabalho-2.html"><a href="trabalho-2.html#g-1"><i class="fa fa-check"></i><b>8.7</b> g</a></li>
+<li class="chapter" data-level="8.8" data-path="trabalho-2.html"><a href="trabalho-2.html#h-1"><i class="fa fa-check"></i><b>8.8</b> h</a></li>
+<li class="chapter" data-level="8.9" data-path="trabalho-2.html"><a href="trabalho-2.html#i"><i class="fa fa-check"></i><b>8.9</b> i</a></li>
+<li class="chapter" data-level="8.10" data-path="trabalho-2.html"><a href="trabalho-2.html#j"><i class="fa fa-check"></i><b>8.10</b> j</a></li>
+<li class="chapter" data-level="8.11" data-path="trabalho-2.html"><a href="trabalho-2.html#k"><i class="fa fa-check"></i><b>8.11</b> k</a></li>
+<li class="chapter" data-level="8.12" data-path="trabalho-2.html"><a href="trabalho-2.html#l"><i class="fa fa-check"></i><b>8.12</b> l</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="prova-1.html"><a href="prova-1.html"><i class="fa fa-check"></i><b>9</b> Prova 1</a><ul>
+<li class="chapter" data-level="9.1" data-path="prova-1.html"><a href="prova-1.html#a-2"><i class="fa fa-check"></i><b>9.1</b> a</a></li>
+<li class="chapter" data-level="9.2" data-path="prova-1.html"><a href="prova-1.html#b-2"><i class="fa fa-check"></i><b>9.2</b> b</a></li>
+<li class="chapter" data-level="9.3" data-path="prova-1.html"><a href="prova-1.html#c-2"><i class="fa fa-check"></i><b>9.3</b> c</a></li>
+<li class="chapter" data-level="9.4" data-path="prova-1.html"><a href="prova-1.html#d-2"><i class="fa fa-check"></i><b>9.4</b> d</a></li>
+<li class="chapter" data-level="9.5" data-path="prova-1.html"><a href="prova-1.html#e-2"><i class="fa fa-check"></i><b>9.5</b> e</a></li>
+<li class="chapter" data-level="9.6" data-path="prova-1.html"><a href="prova-1.html#f-2"><i class="fa fa-check"></i><b>9.6</b> f</a></li>
+<li class="chapter" data-level="9.7" data-path="prova-1.html"><a href="prova-1.html#g-2"><i class="fa fa-check"></i><b>9.7</b> g</a></li>
+<li class="chapter" data-level="9.8" data-path="prova-1.html"><a href="prova-1.html#h-2"><i class="fa fa-check"></i><b>9.8</b> h</a></li>
+<li class="chapter" data-level="9.9" data-path="prova-1.html"><a href="prova-1.html#i-1"><i class="fa fa-check"></i><b>9.9</b> i</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Teoria do Risco</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="trabalho-2" class="section level1">
+<h1><span class="header-section-number">8</span> Trabalho 2</h1>
+<p>Um plano de saúde deseja precificar um particular tipo de exame, para uma carteira composta por 25000 pessoas. O custo de cada exame é igual a R$ 1.500,00 e cada segurado não tem limite de realização de exames no período contratado do seguro. O período de contratação é por 1 ano. Para avaliação da taxa de utilização deste exame, o estatístico fez o levantamento da utilização deste exame junto a um laboratório que atua na prestação deste tipo de serviço e que tem 12.000 clientes cadastrados. No levantamento efetuado observou-se o número de credenciados no laboratório e o número de exames realizados. Na tabela abaixo é apresentada a distribuição destes resultados.</p>
+<p>Considerando que estas informações são uma base fidedigna para a precificação de uma carteira com 25.000 segurados, responda as questões abaixo. Para resolução das questões considere que a seguradora trabalha com uma despesa administrativa de 20%, comissão de corretagem de 15% e margem de lucro de 5%. A probabilidade de ruína adotada é de 0,01. Para solução considere a aproximação pelo Teorema Central do Limite</p>
+<p><span class="math display">\[\begin{array}{cc}
+\text{Número de segurados} &amp; \text{Número de exames} \\
+4900 &amp; 0 \\
+4402 &amp; 1 \\
+1950 &amp; 2 \\
+590 &amp; 3 \\
+135 &amp; 4 \\
+23 &amp; 5 \\
+12000 &amp; Total
+\end{array}\]</span></p>
+<p><em>INFORMAÇÕES IMPORTANTES</em>:</p>
+<p><span class="math display">\[\begin{array}{cc}
+N = 25000        &amp; n = 12000         \\
+c = R\$ 1.500,00 &amp;                   \\
+DA = 20\%        &amp;  \epsilon = 0.01  \\
+L = 5\%          &amp; CC = 15\%         
+\end{array}\]</span></p>
+<div id="a-1" class="section level2">
+<h2><span class="header-section-number">8.1</span> a</h2>
+<p>Determine a taxa de utilização por segurado por ano.</p>
+<p>Para determinr a taxa de utilização por segurado vamos usar o levantamento feito pelo estatístico.</p>
+<p>A taxa de utilização será dada pela esperança sobre o número de segurados.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n0 &lt;-<span class="st"> </span><span class="dv">4900</span>
+n0</code></pre></div>
+<pre><code>## [1] 4900</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n1 &lt;-<span class="st"> </span><span class="dv">4402</span>
+n1</code></pre></div>
+<pre><code>## [1] 4402</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n2 &lt;-<span class="st"> </span><span class="dv">1950</span>
+n2</code></pre></div>
+<pre><code>## [1] 1950</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n3 &lt;-<span class="st"> </span><span class="dv">590</span>
+n3</code></pre></div>
+<pre><code>## [1] 590</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n4 &lt;-<span class="st"> </span><span class="dv">135</span>
+n4</code></pre></div>
+<pre><code>## [1] 135</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n5 &lt;-<span class="st"> </span><span class="dv">23</span>
+n5</code></pre></div>
+<pre><code>## [1] 23</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ey &lt;-<span class="st"> </span><span class="dv">0</span> *<span class="st"> </span>n0 +<span class="st"> </span><span class="dv">1</span> *<span class="st"> </span>n1 +<span class="st"> </span><span class="dv">2</span> *<span class="st"> </span>n2 +<span class="st"> </span><span class="dv">3</span> *<span class="st"> </span>n3 +<span class="st"> </span><span class="dv">4</span> *<span class="st"> </span>n4 +<span class="st"> </span><span class="dv">5</span> *<span class="st"> </span>n5
+n &lt;-<span class="st"> </span><span class="dv">12000</span>
+
+taxa_utilizacao &lt;-<span class="st"> </span>ey /<span class="st"> </span>n
+taxa_utilizacao</code></pre></div>
+<pre><code>## [1] 0.89392</code></pre>
+<p><span class="math display">\[\frac{E[X]}{n} = \frac{\sum_{i=0}^{5}} = \frac{ 0 \ast 4900 + 1 \ast 4402 + 2 \ast 1950 + 3 \ast 590 + 4 \ast 135 + 5 \ast 23}{12000}\]</span></p>
+<p>Logo temos que a taxa de utilização é igual a 0.89392.</p>
+</div>
+<div id="b-1" class="section level2">
+<h2><span class="header-section-number">8.2</span> b</h2>
+<p>Avalie a hipótese de que o número de utilizações por segurado, por ano, segue uma distribuição Poisson (use para tanto o nível de significância igual a 0,05)</p>
+<p><span class="math inline">\(H_{0}\)</span>: A variável X segue uma dist <span class="math inline">\(\sim\)</span> Pois(<span class="math inline">\(\lambda\)</span>)</p>
+<p><span class="math inline">\(H_{1}\)</span>: A variável X não segue uma dist <span class="math inline">\(\sim\)</span> Pois(<span class="math inline">\(\lambda\)</span>)</p>
+<p><span class="math inline">\(\alpha\)</span> = 5%</p>
+<p><span class="math inline">\(\hat{\lambda}\)</span> = 0.89392</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Tabela 1 NEX =  Número de exames e NSO = Número de Segurados Observados</span>
+dt &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">NEX =</span> <span class="dv">0</span>:<span class="dv">5</span>,<span class="dt">NSO =</span> <span class="kw">c</span>(<span class="dv">4900</span>,<span class="dv">4402</span>,<span class="dv">1950</span>,<span class="dv">590</span>,<span class="dv">135</span>,<span class="dv">23</span>))
+
+<span class="co"># Probabilidade Poisson</span>
+dt$Prob_Poisson &lt;-<span class="st"> </span><span class="kw">dpois</span>(dt$NEX,taxa_utilizacao)
+
+<span class="co"># NSE = Número de Segurados Esperados</span>
+dt$NSE &lt;-<span class="st"> </span>dt$Prob_Poisson *<span class="st"> </span>n
+
+knitr::<span class="kw">kable</span>(dt)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">NEX</th>
+<th align="right">NSO</th>
+<th align="right">Prob_Poisson</th>
+<th align="right">NSE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">4900</td>
+<td align="right">0.40905</td>
+<td align="right">4908.606</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">4402</td>
+<td align="right">0.36566</td>
+<td align="right">4387.885</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">1950</td>
+<td align="right">0.16343</td>
+<td align="right">1961.202</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">590</td>
+<td align="right">0.04870</td>
+<td align="right">584.384</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">135</td>
+<td align="right">0.01088</td>
+<td align="right">130.598</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">23</td>
+<td align="right">0.00195</td>
+<td align="right">23.349</td>
+</tr>
+</tbody>
+</table>
+<p>NEX = Número de exames</p>
+<p>NSO = Número de Segurados Observados</p>
+<p>NSE = Número de Segurados Esperados</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(dt$NSO,dt$NSE)</code></pre></div>
+<pre><code>## Warning in chisq.test(dt$NSO, dt$NSE): Chi-squared approximation may be
+## incorrect</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  dt$NSO and dt$NSE
+## X-squared = 30, df = 25, p-value = 0.22</code></pre>
+<p>Com um p-value maior que 0,05, optamos por não rejeitar <span class="math inline">\(H_0\)</span> e concluímos que os dados provavelmente seguem uma distribuição Poisson.</p>
+</div>
+<div id="c-1" class="section level2">
+<h2><span class="header-section-number">8.3</span> c</h2>
+<p>Considerando a taxa calculada em <strong>a</strong>, na carteira com 25000 segurados, qual o número esperado de segurados com nenhuma utilização em um ano? Qual o número esperado de segurados com mais de 3 utilizações em 1 ano?</p>
+<p>Vamos calcular a probabilidade de P[X=0] e P[X&gt;3].</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p0 &lt;-<span class="st"> </span><span class="kw">dpois</span>(<span class="dv">0</span>,taxa_utilizacao)
+p0</code></pre></div>
+<pre><code>## [1] 0.40905</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p3 &lt;-<span class="st"> </span><span class="dv">1</span>  -<span class="st"> </span><span class="kw">ppois</span>(<span class="dv">3</span>,taxa_utilizacao)
+p3</code></pre></div>
+<pre><code>## [1] 0.01316</code></pre>
+<p>Obtemos os seguites resultados.</p>
+<p>Para P[X=0]</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="dv">25000</span>
+rc1 &lt;-<span class="st"> </span>N *<span class="st"> </span>p0
+rc1</code></pre></div>
+<pre><code>## [1] 10226</code></pre>
+<p>Para P[X&gt;3] = 1 - P[X <span class="math inline">\(\leq\)</span> 3]</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rc2 &lt;-<span class="st"> </span>N *<span class="st"> </span>p3
+rc2</code></pre></div>
+<pre><code>## [1] 329.01</code></pre>
+<p>Temos então que o número esperado na carteira de 25000 com nenhuma utilização é igual a 10226.26242 segurados e com mais de três utilizações 329.00861 segurados.</p>
+</div>
+<div id="d-1" class="section level2">
+<h2><span class="header-section-number">8.4</span> d</h2>
+<p>Qual a taxa de utilização do exame, na carteira por ano?</p>
+<p><span class="math display">\[N \ast \lambda\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mu &lt;-<span class="st"> </span>N *<span class="st"> </span>taxa_utilizacao
+mu</code></pre></div>
+<pre><code>## [1] 22348</code></pre>
+<p>Logo, esperamos que na carteira, no período de um ano, ocorram em média 22347.91667 sinistros.</p>
+</div>
+<div id="e-1" class="section level2">
+<h2><span class="header-section-number">8.5</span> e</h2>
+<p>Qual o prêmio de risco da carteira?</p>
+<p>Utilizando o resultado em <a href="conteudo.html#eq:premiorisco">(1.4)</a>.</p>
+<p>Temos então:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c &lt;-<span class="st"> </span><span class="dv">1500</span>
+ex &lt;-<span class="st"> </span>c *<span class="st"> </span>N *<span class="st"> </span>taxa_utilizacao
+ex</code></pre></div>
+<pre><code>## [1] 33521875</code></pre>
+<p>Logo o prêmio de risco da carteira é R$ 33521875.</p>
+</div>
+<div id="f-1" class="section level2">
+<h2><span class="header-section-number">8.6</span> f</h2>
+<p>Se não for adotado capital de garantia, qual o carreamento de segurança a ser praticado e qual o prêmio puro a ser considerado, com a probabilidade de ruína adotada no enunciado?</p>
+<p>Aproximando uma Poisson para uma Normal temos que:</p>
+<p><span class="math display">\[\mu = \lambda\]</span></p>
+<p><span class="math display">\[\sigma^2 = \lambda\]</span> <span class="math display">\[\xi_\epsilon = 0.01\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Média</span>
+mu</code></pre></div>
+<pre><code>## [1] 22348</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Desvio-Padrão</span>
+sigma &lt;-<span class="st"> </span><span class="kw">sqrt</span>(mu)
+
+<span class="kw">curve</span>(<span class="kw">dnorm</span>(x,<span class="dt">mean =</span> mu,<span class="dt">sd =</span> sigma), <span class="dt">from =</span> mu -<span class="st"> </span><span class="dv">6</span> *<span class="st"> </span>sigma, <span class="dt">to =</span> mu +<span class="st"> </span><span class="dv">6</span> *<span class="st"> </span>sigma,
+      <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span> , <span class="dt">xlab =</span> <span class="st">&quot;Número de sinistros&quot;</span>)
+
+<span class="co"># Número de sinistros respectivo a um \xi = 0.01</span>
+ye &lt;-<span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.99</span>,<span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma)
+
+<span class="kw">abline</span>(<span class="dt">v =</span> ye, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)
+
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="st">&quot;Ye&quot;</span>, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="fl">1.5</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>)</code></pre></div>
+<p><img src="CE072_files/figure-html/t210-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Temos então que o prêmio puro é igual a:</p>
+<p><span class="math display">\[PP = cY_\epsilon - U_0\]</span></p>
+<p>Como <span class="math inline">\(U_0\)</span> = 0</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pp &lt;-<span class="st">  </span>c *<span class="st"> </span>ye
+pp</code></pre></div>
+<pre><code>## [1] 34043531</code></pre>
+<p><span class="math display">\[PP = 34043531.27855\]</span></p>
+<p>E o carregamento de segurança é igual a:</p>
+<p><span class="math display">\[PP = P(1 + \lambda)\]</span> <span class="math display">\[\lambda = \frac{PP - P}{P}\]</span></p>
+<p>Com <span class="math inline">\(U_0\)</span> = 0.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  lembrando que ex é igual o prêmio de risco</span>
+lcar &lt;-<span class="st"> </span>(pp -<span class="st"> </span>ex) /<span class="st"> </span>ex
+lcar</code></pre></div>
+<pre><code>## [1] 0.015562</code></pre>
+<p>Temos então que:</p>
+<p><span class="math display">\[\lambda = 0.01556\]</span></p>
+</div>
+<div id="g-1" class="section level2">
+<h2><span class="header-section-number">8.7</span> g</h2>
+<p>Neste caso, qual o prêmio comercial individual mensal, considerando um parcelamento em 12 meses, sem adotar-se juros?</p>
+<p><span class="math display">\[PC = \frac{PP}{1 - [DA + L + CC]}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">da &lt;-<span class="st"> </span><span class="fl">0.2</span>
+l &lt;-<span class="st"> </span><span class="fl">0.05</span>
+cc &lt;-<span class="st"> </span><span class="fl">0.15</span>
+
+pc &lt;-<span class="st"> </span>pp /<span class="st"> </span>(<span class="dv">1</span> -<span class="st"> </span>(da +<span class="st"> </span>l +<span class="st"> </span>cc))
+pc</code></pre></div>
+<pre><code>## [1] 56739219</code></pre>
+<p><span class="math display">\[PC_{i,m} = \frac{PC}{m \ast N}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="dv">12</span>
+pci &lt;-<span class="st"> </span>pc /<span class="st"> </span>(m *<span class="st"> </span>N)
+pci</code></pre></div>
+<pre><code>## [1] 189.13</code></pre>
+<p><span class="math display">\[PC_{i,m} = \frac{56739218.79758}{12 \ast 25000} = 189.13073\]</span></p>
+<p>Logo temos que o Prêmio Individual Mensal é igual a R$ 189.13073.</p>
+</div>
+<div id="h-1" class="section level2">
+<h2><span class="header-section-number">8.8</span> h</h2>
+<p>Se for praticado um prêmio comercial individual mensal igual a R$ 150,00 qual deve ser o capital de garantia a ser adotado para manutenção da probabilidade de ruína almejada?</p>
+<p><span class="math display">\[PC_{i,m} = \frac{PC}{mN} = \frac{ \frac{PP}{1 - [DA + L + CC]}}{ m N} = \frac{PP}{(1 - [DA + CC + L])mN} = \frac{cY_\epsilon - U_0}{(1 - [DA + CC + L])Mn}\]</span></p>
+<p><span class="math display">\[PC_{i,m}(1 - [DA + L + CC])nM - cY_\epsilon = - U_0\]</span></p>
+<p><span class="math display">\[U_0 = cY_\epsilon - PC_{i,m}(1 - [DA + L + CC])nM\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># preço comercial individual da questão h</span>
+pci_h &lt;-<span class="st"> </span><span class="dv">150</span>
+
+U &lt;-<span class="st"> </span>c *<span class="st"> </span>ye -<span class="st"> </span>pci_h *<span class="st"> </span>(<span class="dv">1</span> -<span class="st"> </span>(da +<span class="st"> </span>l +<span class="st"> </span>cc)) *<span class="st"> </span>m *<span class="st"> </span>N
+U</code></pre></div>
+<pre><code>## [1] 7043531</code></pre>
+<p>Logo o capital de garantia que deve ser adotado para se manter as mesmas condições tem que ser igual a R$ 7043531.27855.</p>
+</div>
+<div id="i" class="section level2">
+<h2><span class="header-section-number">8.9</span> i</h2>
+<p>Ao se praticar um prêmio comercial individual mensal de R$ 160,00 e um capital de garantia de R$ 5000000. Qual será a probabilidade de ruína que a seguradora estará incorrendo?</p>
+<p>Utilizando o desenvolvimento de <span class="math inline">\(PC_{i,m}\)</span> da questão anterior, só que ao invez de isolarmos <span class="math inline">\(U_0\)</span> vamos isolar <span class="math inline">\(Y_\epsilon\)</span>.</p>
+<p><span class="math display">\[PC_{i,m}(1 - [DA + L + CC])nM = cY_\epsilon - U_0\]</span></p>
+<p><span class="math display">\[Y_\epsilon = \frac{PC_{i,m}(1 - [DA + L + CC])nM + U_0}{c}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pci_i &lt;-<span class="st"> </span><span class="dv">160</span>
+U_i &lt;-<span class="st"> </span><span class="dv">5000000</span>
+ye_i &lt;-<span class="st">  </span>(pci_i *<span class="st"> </span>(<span class="dv">1</span> -<span class="st"> </span>(da +<span class="st"> </span>l +<span class="st"> </span>cc)) *<span class="st"> </span>m *<span class="st"> </span>N +<span class="st"> </span>U_i) /<span class="st"> </span>c
+ye_i</code></pre></div>
+<pre><code>## [1] 22533</code></pre>
+<p>Encontrando a probabilidade de ruína para <span class="math inline">\(Y_\epsilon\)</span> = 22533.33333.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">to &lt;-<span class="st"> </span>mu +<span class="st"> </span><span class="dv">6</span> *<span class="st"> </span>sigma
+
+<span class="kw">curve</span>(<span class="kw">dnorm</span>(x,<span class="dt">mean =</span> mu,<span class="dt">sd =</span> sigma ),<span class="dt">from =</span> mu -<span class="st"> </span><span class="dv">6</span> *<span class="st"> </span>sigma ,<span class="dt">to =</span> to ,<span class="dt">xlab =</span> <span class="st">&quot;Número de Sinistros&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>)
+
+cord.x &lt;-<span class="st"> </span><span class="kw">c</span>(ye_i,<span class="kw">seq</span>(ye_i,to,<span class="fl">0.01</span>),to)
+cord.y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">dnorm</span>(<span class="kw">seq</span>(ye_i,to,<span class="fl">0.01</span>),mu,sigma),<span class="dv">0</span>)
+<span class="kw">polygon</span>(cord.x,cord.y,<span class="dt">col =</span> <span class="st">&#39;skyblue&#39;</span>)</code></pre></div>
+<p><img src="CE072_files/figure-html/t217-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ee &lt;-<span class="st">  </span><span class="kw">round</span>(<span class="dv">1</span> -<span class="st"> </span><span class="kw">pnorm</span>(ye_i, mu , sigma),<span class="dv">2</span>)
+ee</code></pre></div>
+<pre><code>## [1] 0.11</code></pre>
+<p>Logo a probabilidade de ruína fica igual a 0.11.</p>
+</div>
+<div id="j" class="section level2">
+<h2><span class="header-section-number">8.10</span> j</h2>
+<p>Adotando-se o capital de garantia de R$ 400000 e a probabilidade de ruína de 0.01, qual deve ser o prêmio comercial individual a ser cobrado do segurado?</p>
+<p>Calculando o novo prêmio puro.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">u_j &lt;-<span class="st"> </span><span class="dv">400000</span>
+pp_j &lt;-<span class="st"> </span>c *<span class="st"> </span>ye -<span class="st"> </span>u_j
+<span class="co"># Novo prêmio puro</span>
+pp_j</code></pre></div>
+<pre><code>## [1] 33643531</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pc_j &lt;-<span class="st"> </span>pp_j /<span class="st"> </span>(<span class="dv">1</span> -<span class="st"> </span>(da +<span class="st"> </span>l +<span class="st"> </span>cc))
+<span class="co"># Novo prêmio comercial</span>
+pc_j</code></pre></div>
+<pre><code>## [1] 56072552</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pci_j &lt;-<span class="st"> </span>pc_j /<span class="st"> </span>(m *<span class="st"> </span>N)
+<span class="co"># Prêmio comercial individual</span>
+pci_j</code></pre></div>
+<pre><code>## [1] 186.91</code></pre>
+<p>Logo o novo prêmio comercial individual mensal é de R$ 186.90851.</p>
+</div>
+<div id="k" class="section level2">
+<h2><span class="header-section-number">8.11</span> k</h2>
+<p>Com o prêmio comercial definido em <strong>j</strong> qual fica sendo a probabilidade de lucro com a subscrição?</p>
+<p>Vamos verificar quanto o montante agregado pode pagar.</p>
+<p><span class="math display">\[\xi = \frac{PP}{c}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xi &lt;-<span class="st"> </span>pp_j /<span class="st"> </span>c
+xi</code></pre></div>
+<pre><code>## [1] 22429</code></pre>
+<p>Agora vamos ver qual a probabilidade de P(Y &lt; 22429.02085).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">to &lt;-<span class="st"> </span>mu +<span class="st"> </span><span class="dv">6</span> *<span class="st"> </span>sigma
+from &lt;-<span class="st"> </span>mu -<span class="st"> </span><span class="dv">6</span> *<span class="st"> </span>sigma
+
+<span class="kw">curve</span>(<span class="kw">dnorm</span>(x,<span class="dt">mean =</span> mu,<span class="dt">sd =</span> sigma ),<span class="dt">from =</span> from ,<span class="dt">to =</span> to ,<span class="dt">xlab =</span> <span class="st">&quot;Número de Sinistros&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>)
+
+cord.x &lt;-<span class="st"> </span><span class="kw">c</span>(from,<span class="kw">seq</span>(from,xi,<span class="fl">0.01</span>),xi)
+cord.y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">dnorm</span>(<span class="kw">seq</span>(from,xi,<span class="fl">0.01</span>),mu,sigma),<span class="dv">0</span>)
+<span class="kw">polygon</span>(cord.x,cord.y,<span class="dt">col =</span> <span class="st">&#39;skyblue&#39;</span>)</code></pre></div>
+<p><img src="CE072_files/figure-html/t221-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l_k &lt;-<span class="st">   </span><span class="kw">round</span>(<span class="kw">pnorm</span>(xi, mu , sigma),<span class="dv">2</span>)
+l_k</code></pre></div>
+<pre><code>## [1] 0.71</code></pre>
+<p>Logo a probabilidade de lucro é igual a 0.71.</p>
+</div>
+<div id="l" class="section level2">
+<h2><span class="header-section-number">8.12</span> l</h2>
+<p>Com a especificação do prêmio comercial definido em <strong>j</strong> qual a distribuição do prêmio comercial para despesas administrativas, comissão de corretagem, margem de lucro e pagamento de sinistros.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>pci_j *<span class="st"> </span>N *<span class="st"> </span>m
+DA &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;R$ &quot;</span>, x *<span class="st"> </span><span class="fl">0.2</span>)
+CC &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;R$ &quot;</span>, x *<span class="st"> </span><span class="fl">0.15</span>)
+L &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;R$ &quot;</span>, x *<span class="st"> </span><span class="fl">0.05</span>)
+PP &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;R$ &quot;</span>, pp_j)
+
+
+df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">PCim =</span> <span class="kw">c</span>(<span class="st">&quot;Despesas Administrativas&quot;</span>, 
+                          <span class="st">&quot;Comissão de Corretagem&quot;</span>,
+                          <span class="st">&quot;Margem de Lucro&quot;</span>,
+                          <span class="st">&quot;Pagamento de Sinistros&quot;</span>),
+                 <span class="dt">VL =</span> <span class="kw">c</span>(DA,
+                        CC,
+                        L,
+                        PP))
+
+
+knitr::<span class="kw">kable</span>(df)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">PCim</th>
+<th align="left">VL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Despesas Administrativas</td>
+<td align="left">R$ 11214510.426182</td>
+</tr>
+<tr class="even">
+<td align="left">Comissão de Corretagem</td>
+<td align="left">R$ 8410882.81963651</td>
+</tr>
+<tr class="odd">
+<td align="left">Margem de Lucro</td>
+<td align="left">R$ 2803627.6065455</td>
+</tr>
+<tr class="even">
+<td align="left">Pagamento de Sinistros</td>
+<td align="left">R$ 33643531.278546</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//andryas.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the
+<a href="https://disqus.com/?ref_noscript">
+comments powered by Disqus.</a></noscript>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="trabalho-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="prova-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["CE072.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

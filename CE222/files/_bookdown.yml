@@ -1,0 +1,18 @@
+book_filename: "CE222"
+delete_merged_file: true
+output_dir: "../"
+language:
+  label:
+    fig: 'Figura '
+    tab: 'Tabela '
+    eq: 'Equação '
+    thm: 'Teorema '
+    lem: 'Lema '
+    def: 'DEF '
+    cor: 'Corolário '
+    prp: 'Proposição '
+    exm: 'Exemplo '
+    proof: 'Prova '
+    remark: 'Remark. '
+ui:
+  chapter_name: ""

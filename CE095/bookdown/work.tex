@@ -1,0 +1,780 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{}
+  \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
+\usepackage{booktabs}
+% \usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[table]{xcolor}
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{ufpr.jpg}%
+\vfill
+}}}
+\AddToShipoutPicture*{\BackgroundPic}
+
+\begin{document}
+
+\begin{titlepage}
+\centering{\large{UNIVERSIDADE FEDERAL DO PARANÁ}}
+\\
+\centering{Departamento de Estatística}
+
+\vspace{7.5cm}
+
+\centering{\huge{Operação Lava Jato II}}
+
+\vspace{3cm}
+
+CE095 - Teorias de Avalição
+
+\vspace{2cm}
+
+Andryas Waurzenczak, GRR: 20149125 \\
+Gabriel Sartori Klostermann, GRR: 20124671
+
+
+\vfill
+
+07/06/2018
+\end{titlepage}
+
+
+\pagebreak
+\tableofcontents
+\pagebreak
+
+\section{Introdução}\label{introducao}
+
+A Política é um tema bastante debatido nos mais diversos lugares, seja
+nas universidades, bares, televisão, etc \ldots{} isto porque ela
+interessa a todos nós. Dito isso, o presente trabalho é uma tentativa de
+quantificar o quanto nossos amigos, amigos de nossos amigos, familiares
+e pessoas ao nosso redor estão atualizados/informados sobre a política
+atual do Brasil.
+
+Para tal quantificação selecionamos um tema recente e que tem tido muita
+repercusão. O assunto é a \textbf{Operaçao Lava Jato}, que é um conjunto
+de investigações ainda em andamento pela Polícia Federal do Brasil, que
+começou em 17 de março de 2014.
+
+\section{Materiais e Métodos}\label{materiais-e-metodos}
+
+Os materias e scripts estão disponíveis em
+\href{https://github.com/Andryas/ce095}{Andryas/CE095}
+
+\subsection{Materiais}\label{materiais}
+
+O conjunto de dados é um produto dos esforços da turma de Teorias de
+Avaliação, 1º semestre de 2018, com uma pequena contribuição da turma
+passada. A forma de coleta se deu atráves de um formulario online que
+ficou disponivel na plataforma do
+\href{https://www.google.com/forms/about/}{Google} por 21 dias.
+
+O desenvolvimento do questinário foi feito em 5 etapas.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Elaboração dos itens
+\item
+  Validação dos itens
+\item
+  Seleção dos itens
+\item
+  Elaboração de Fatores Associados
+\item
+  Disponibilização do formulário
+\end{enumerate}
+
+Para a execução da 1ª e 2ª etapa utilizou-se como embasamento o
+\href{www.ufpr.br/~aanjos/CE095/guia_elaboracao_revisao_itens_2012_INEP.pdf}{guia
+de elaboração de revisão de itens da INEP - 2012}. Cada aluno
+desenvolveu 3 questões que foram depois distribuidas de forma aleatoria
+para um dos colegas avaliar se o item estava de acordo ou não. A ideia
+básica para a criação e validação dos itens era possuir
+\textbf{TEXTO-BASE}, \textbf{ENUNCIADO}, \textbf{ALTERNATIVAS} e
+\textbf{GABARITO}. Dos itens que passaram dessas 2 primeiras etapas, 20
+foram selecionados e foram complementados com mais 6 itens de um
+instrumento de medida anterior ao nosso que apresentaram boa calibração.
+Ao todo tivemos 26 itens no nosso intrusmento de medida.
+
+Após isso foi elaborado candidatos a fatores associados dos quais foi
+escolhido três e então o questionario foi disponibilizado no dia 10 de
+Maio de 2018.
+
+O conjunto de dados teve ao todo 568 respondentes. Para informações
+sobre o questionário, perguntas e alternativas, consulte o
+\protect\hyperlink{Anexo}{Anexo}
+
+\hypertarget{metodos}{\subsection{Métodos}\label{metodos}}
+
+\textbf{Teoria Clássica dos Testes}
+
+Dificuldade
+
+\[D_i = \frac{C_i}{N_i}\]
+
+sendo que:
+
+C\_i: número de indivíduos que responderam corretamente o item
+
+N\_i: número de indivíduos submetidos ao item
+
+\textbf{Coeficiente de Alpha de Cronbach}\\
+
+Para avaliar a consistência do questionário utilizou-se o Coeficiente de
+Alpha que é expresso da seguinte maneira:
+
+\[\alpha = \frac{n}{n-1}(1 - \frac{\sum_i^nS_i^2}{S_T^2})\]
+
+onde:
+
+n: número de itens
+
+\(\sum_i^n S_i^2\): Soma da variância dos n itens
+
+\(S_T\): variância global do teste
+
+\textbf{Coeficiente de correlação ponto-bisserial}
+
+É a correlação de Pearson entre uma variável dicotômica e o escore do
+teste, é definido por:
+
+\[\rho_{pb} = \frac{\bar{X}_A - \bar{X}_T}{S_T}\sqrt{\frac{p}{1-p}}\]
+
+sendo que:
+
+\(\bar{X}_A\): é a média dos escores dos respondentes que acertaram o
+item
+
+\(\bar{X}_T\): é a média global dos escores do teste
+
+\(S_T\): é o desvio padrão dos escores obtidos pelos respondentes no
+teste
+
+p: é a proporção de respondentes que acertaram o item
+
+\textbf{Modelo de 3 Parâmetros}\\
+
+Para o ajuste do modelo foi considerado o modelo logístico de três
+parâmetros \citet{tri}. Assim, a probabilidade de um avaliado j, com
+proeficiência \(\theta_j\), acertar o item i é dada por:
+
+\[p_{ij} = c_i + (1 - c_i) \frac{1}{1 + e^{-a_j(\theta_j - b_j)}}\]
+
+sendo que os parâmetros a, b e c referem-se ao item e o parâmetro
+\(\theta\) ao avaliado.
+
+\(a_i\): discriminação do item i
+
+\(b_i\): dificuldade do item i
+
+\(c_i\): probabilidade de acerto casual do item i
+
+\(\theta_j\): traço latente do avaliado j
+
+\textbf{Traço Latente}
+
+Para determinar se um item é âncora a seguinte definição foi usada:
+
+\begin{quote}
+Sejam dois itens âncora consecutivos Y e Z com Y \textless{} Z. Diz que
+um item é âncora para o nível Z se e somente se as 3 condições abaixo
+forem satisfeitas simultaneamente:
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  P(U = i \textbar{} \(\theta\) = Z) \(\geq\) 0.65
+\item
+  P(U = i \textbar{} \(\theta\) = Y) \textless{} 0.5
+\item
+  P(U = i \textbar{} \(\theta\) = Z) - P(U = i \textbar{} \(\theta\) =
+  Y) \(\geq\) 0.3
+\end{itemize}
+
+\textbf{Regressão Linear Múltipla}\\
+
+E por último, para verificar os efeitos dos traços latentes estimados
+fez-se uso do modelode regressão linear múltipla para a análise dos
+fatores associados, que é expresso da seguinte maneira:
+
+\[\theta_{i} = \beta_0 + \beta_{f1}x_{i1} + \beta_{f2}x_{i2} + \beta_{f3}
+x_{i3}\]
+
+sendo que f1, f2 e f3 representam um dos fatores associados medidos.
+
+\subsection{Recursos Computacionais}\label{recursos-computacionais}
+
+Para as análises o software utilizado foi \citet{software-r} e os
+pacotes utilizados foram: \texttt{knitr}, \texttt{kableExtra},
+\texttt{dplyr}, \texttt{ggplot2}, \texttt{ltm} e \texttt{irtoys}.
+
+\section{Resultados}\label{resultados}
+
+\subsection{Pré-Processamento}\label{pre-processamento}
+
+Antes de prosseguir para análise descritiva dos dados, houve um
+pré-processamento para a limpeza do conjunto de dados. Observou-se que
+alguns respondentes deixaram o questionário em branco, por isso para
+este estudo indivíduos que deixaram mais de 3 itens sem resposta foram
+desconsiderados. Assim o conjunto de dados passou a ter 549 respondetes
+que deixaram no máximo 3 questões sem resposta. E esses individuos que
+não responderam foi considerado a ausência de resposta como errado.
+
+\subsection{Análise Descritiva}\label{analise-descritiva}
+
+\subsubsection{Fatores Associados}\label{fatores-associados}
+
+Para dar inicio a análise descritiva iniciamos explorando a frequência
+dos fatores associados.
+
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    Você procura se informar sobre os principais acontecimentos
+    políticos no país?
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Você participou de alguma manifestação de apoio a Operação Lava
+    Jato? Por exemplo: participou de alguma passeata ou protesto, mandou
+    mensagens por redes sociais na internet etc.
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    Você mora em Curitiba?
+  \end{enumerate}
+\end{itemize}
+
+\begin{center}\includegraphics{work_files/figure-latex/plot_fatores_associados-1} \end{center}
+
+Nota-se pelos gráficos acima que não existe nenhuma concentração de
+frequências, pode-se dizer que os fatores associados tem boa
+variabilidade.
+
+\subsubsection{Frequência de Acertos}\label{frequencia-de-acertos}
+
+Pelo gráfico abaixo pode-se observar a frequência de indíviduos que
+acertaram um número determinado de itens. Tem-se que a concentração da
+quantidade de acertos está entre 10 e 17.
+
+\begin{figure}[H]
+
+{\centering \includegraphics{work_files/figure-latex/freq-acertos-1} 
+
+}
+
+\caption{Frequência da quantidade de acertos}\label{fig:freq-acertos}
+\end{figure}
+
+\subsection{Teoria Clássica dos
+Testes}\label{teoria-classica-dos-testes}
+
+\subsubsection{Alpha de Cronbach}\label{alpha-de-cronbach}
+
+Para verificar a consistência internar do instrumento foi calculado o
+\emph{Alpha de Cronbach}.
+
+\[\alpha = 0.7461222\]
+
+Utilizando como referência \citet{landis}, tem-se que o Alpha de
+Cronbach apresentou um valor substâncial de consistência interna do
+instrumento.
+
+\subsubsection{Dificuldade}\label{dificuldade}
+
+Abaixo temos a tabela com a Dificuldade do item e a proporção de
+respondentes por distrator.
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-1}Tabela de dificuldade com a proporção por distrator}
+\centering
+\begin{tabular}[t]{lrrrrrr}
+\toprule
+  & Dificuldade & A & B & C & D & E\\
+\midrule
+i1 & 0.8251366 & 0.0895795 & 0.0571956 & 0.0091075 & 0.0163934 & 0.8281536\\
+i2 & 0.4936248 & 0.1238616 & 0.4936248 & 0.0784672 & 0.0748175 & 0.2171533\\
+i3 & 0.7340619 & 0.0694698 & 0.0291439 & 0.0583942 & 0.7354015 & 0.1092896\\
+i4 & 0.7231330 & 0.0877514 & 0.7244526 & 0.1043956 & 0.0837887 & 0.0018282\\
+i5 & 0.2076503 & 0.0218978 & 0.0928962 & 0.2076503 & 0.0549451 & 0.6215722\\
+\addlinespace
+i6 & 0.8907104 & 0.0811808 & 0.8939671 & 0.0073801 & 0.0109290 & 0.0109290\\
+i7 & 0.4936248 & 0.0475320 & 0.3369763 & 0.4936248 & 0.0729927 & 0.0492701\\
+i8 & 0.2568306 & 0.1186131 & 0.0402194 & 0.1457195 & 0.4379562 & 0.2572993\\
+i9 & 0.5519126 & 0.1511840 & 0.1334552 & 0.0529197 & 0.1098901 & 0.5519126\\
+i10 & 0.2167577 & 0.5155393 & 0.0547445 & 0.1821494 & 0.0309654 & 0.2179487\\
+\addlinespace
+i11 & 0.5519126 & 0.0457038 & 0.5590406 & 0.1170018 & 0.1900369 & 0.0947177\\
+i12 & 0.3533698 & 0.0728597 & 0.1078611 & 0.0564663 & 0.3533698 & 0.4105839\\
+i13 & 0.5373406 & 0.2262774 & 0.0346715 & 0.0786106 & 0.5373406 & 0.1222628\\
+i14 & 0.8014572 & 0.0474453 & 0.0255009 & 0.0731261 & 0.8029197 & 0.0512821\\
+i15 & 0.6120219 & 0.1420765 & 0.0804388 & 0.0401460 & 0.1256831 & 0.6120219\\
+\addlinespace
+i16 & 0.4007286 & 0.0439560 & 0.2413163 & 0.1162362 & 0.1974406 & 0.4059041\\
+i17 & 0.4699454 & 0.3460838 & 0.0710383 & 0.4716636 & 0.0273224 & 0.0837887\\
+i18 & 0.1438980 & 0.2153285 & 0.4635036 & 0.0675182 & 0.1060329 & 0.1438980\\
+i19 & 0.8888889 & 0.0255474 & 0.8905109 & 0.0200364 & 0.0164534 & 0.0492701\\
+i20 & 0.4408015 & 0.1483516 & 0.4408015 & 0.2029250 & 0.1459854 & 0.0601093\\
+\addlinespace
+i21 & 0.5227687 & 0.0182149 & 0.0128205 & 0.5246801 & 0.2361624 & 0.2120658\\
+i22 & 0.5719490 & 0.0645756 & 0.0564663 & 0.5719490 & 0.2449726 & 0.0637523\\
+i23 & 0.2877960 & 0.1183971 & 0.5164234 & 0.0675182 & 0.0109489 & 0.2888483\\
+i24 & 0.3843352 & 0.0783242 & 0.1514599 & 0.3850365 & 0.1402550 & 0.2413163\\
+i25 & 0.8561020 & 0.0346715 & 0.0329670 & 0.8561020 & 0.0402194 & 0.0328467\\
+i26 & 0.4426230 & 0.1293260 & 0.0965392 & 0.4450549 & 0.2504570 & 0.0701107\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\subsubsection{Coeficiente Ponto
+Bisserial}\label{coeficiente-ponto-bisserial}
+
+Abaixo os valores calculados para cada item do coeficiente de correlação
+ponto-bisserial.
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-2}Coeficiente de Correlação Ponto-Bisserial}
+\centering
+\resizebox{\linewidth}{!}{\fontsize{14}{16}\selectfont
+\begin{tabular}[t]{rrrrrrrrrrrrr}
+\toprule
+i1 & i2 & i3 & i4 & i5 & i6 & i7 & i8 & i9 & i10 & i11 & i12 & i13\\
+\midrule
+0.44 & 0.27 & 0.37 & 0.5 & 0.44 & 0.23 & 0.27 & 0.45 & 0.53 & 0.24 & 0.46 & 0.43 & 0.26\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-2}Coeficiente de Correlação Ponto-Bisserial}
+\centering
+\resizebox{\linewidth}{!}{\fontsize{14}{16}\selectfont
+\begin{tabular}[t]{rrrrrrrrrrrrr}
+\toprule
+i14 & i15 & i16 & i17 & i18 & i19 & i20 & i21 & i22 & i23 & i24 & i25 & i26\\
+\midrule
+0.33 & 0.22 & 0.44 & 0.52 & 0.21 & 0.27 & 0.42 & 0.36 & 0.55 & 0.32 & 0.28 & 0.37 & 0.4\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Adotando como ponto de corte itens que apresentem um coeficiente de
+correlação ponto de bisserial acima de 0.3, os itens que ficam são:
+
+i1, i3, i4, i5, i8, i9, i11, i12, i14, i16, i17, i20, i21, i22, i23,
+i25, i26
+
+\subsection{Modelo de três Parâmetros}\label{modelo-de-tres-parametros}
+
+O modelo de três parâmetro foi ajustado considerando todos os itens, e
+foi feito ajustes sequenciais, removendo itens que apresentaram
+problemas de estimativas. Por fim foi comparado todos os itens removidos
+nesse processo com os itens removidos pelo coeficiente de correlação
+ponto bisserial.
+
+Para este trabalho foi considerado o modelo de três parâmetros e foi
+excluido itens que tiveram estimativas dos parâmetros de dificuldade e
+discriminação que não estivessem nos seguintes intervalos:
+
+\[-3 \leq \text{Dificuldade} \leq 3\]
+\[0.8 \leq \text{Discriminacao} \leq 3.5\]
+
+estes foram determinados com base no que é mais comumente usado na
+literatura, exeto pelo valor superior de Discriminação que , em geral, é
+usado um valor de 2.5 mas aqui estamos adotando um valor de 3.5
+
+Assim, foram removidos os seguintes itens pela tri:
+
+i2, i3, i4, i6, i7, i10, i14, i15, i18, i21, i22, i23, i24, i26
+
+Os itens em comum removidos pelo coeficiente de correlação ponto
+bisserial e pela tri:
+
+i2, i6, i7, i10, i15, i18, i24
+
+Observa-se que os itens que não foram removidos pela tri que teriam sido
+removidos pela ponto-bisserial seriam: \emph{i13, i19 e i24}. Os itens
+restantes foram concordantes.
+
+\subsubsection{Estimativas do Modelo}\label{estimativas-do-modelo}
+
+Abaixo, na Tabela \ref{tab:tabest}, tem-se estão as estimativas dos
+parâmetros de \textbf{Discriminação}, \textbf{Dificuldade} e
+\textbf{Acerto Casual}.
+
+\begin{table}[!h]
+
+\caption{\label{tab:tabest}Estimativas dos parâmetros do modelo}
+\centering
+\begin{tabular}[t]{lrrr}
+\toprule
+  & Discriminação & Dificuldade & Acerto Casual\\
+\midrule
+i1 & 1.2898969 & -1.5511121 & 0.0000643\\
+i5 & 1.6240183 & 1.3444486 & 0.0361793\\
+i8 & 0.9378541 & 1.3326247 & 0.0000044\\
+i9 & 2.0933731 & -0.1223924 & 0.0279468\\
+i11 & 1.3582996 & -0.2046479 & 0.0000000\\
+\addlinespace
+i12 & 1.3472654 & 0.9050504 & 0.0940087\\
+i13 & 3.1941104 & 1.5533776 & 0.4935042\\
+i16 & 2.4345482 & 0.9112418 & 0.2228592\\
+i17 & 1.3865126 & 0.1207480 & 0.0000014\\
+i19 & 0.8505339 & -2.7523370 & 0.0011822\\
+\addlinespace
+i20 & 1.7282946 & 0.9915989 & 0.2636599\\
+i25 & 1.8423209 & -0.7108750 & 0.5209906\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Observa-se que as estimativas dos parâmetros estão todas contidas nos
+intervalos especificados. Tem-se que os itens mais difíceis são os itens
+i5 e i13 e os itens mais fáceis foram i19 e i1. Já os itens que tiveram
+a maior discriminação foram os itens i13 e i16.
+
+\subsubsection{Informação dos itens}\label{informacao-dos-itens}
+
+Pelo gráfico abaixo pode-se observar o quão informativo é o item para
+uma determinada Habilidade (\(\theta\)).
+
+\begin{center}\includegraphics{work_files/figure-latex/unnamed-chunk-4-1} \end{center}
+
+Assim, observa-se que o item i1, por exemplo, é mais informativo para
+indivíduos com um traço latente menor e que o item i16 que é mais
+informativo para indivíduos com um traço latente maior. Segue a mesma
+interpretação para os demais itens.
+
+\subsubsection{Informação do teste}\label{informacao-do-teste}
+
+Para a informação do teste, observa-se pelo gráfico abaixo que nosso
+instrumento de medidade foi mais informativo para indivíduos com um
+traço latente um pouco maior que a média. Ou seja, para melhorar o
+instrumento seria necessário adicionar itens com uma dificuldade baixa e
+moderada.
+
+\begin{center}\includegraphics{work_files/figure-latex/unnamed-chunk-5-1} \end{center}
+
+\subsubsection{\texorpdfstring{Traço Latente
+(\(\theta\))}{Traço Latente (\textbackslash{}theta)}}\label{traco-latente-theta}
+
+Pela Tabela \ref{tab:latente1}, observa-se que existe diferença na
+colocação do indivíduo quando comparamos pela quantidade de Acertos com
+\(\theta\) (Traço Latente) estimado.
+
+\begin{table}[!h]
+
+\caption{\label{tab:latente1}6 Primeiras linhas}
+\centering
+\begin{tabular}[t]{rrrrllrrrr}
+\toprule
+\multicolumn{4}{c}{Ordenado por Acerto} & \multicolumn{1}{c}{ } & \multicolumn{1}{c}{ } & \multicolumn{4}{c}{Ordenado por Escore} \\
+\cmidrule(l{2pt}r{2pt}){1-4} \cmidrule(l{2pt}r{2pt}){7-10}
+ID & Escore & Posição & Acertos & "" & "" & ID & Escore & Posição & Acertos\\
+\midrule
+25 & -1.877268 & 549.0 & 0 &  &  & 25 & -1.877268 & 549.0 & 0\\
+38 & -1.877062 & 547.5 & 1 &  &  & 38 & -1.877062 & 547.5 & 1\\
+112 & -1.687389 & 543.0 & 1 &  &  & 144 & -1.877062 & 547.5 & 1\\
+121 & -1.687389 & 543.0 & 1 &  &  & 418 & -1.865352 & 546.0 & 2\\
+144 & -1.877062 & 547.5 & 1 &  &  & 432 & -1.749427 & 545.0 & 1\\
+165 & -1.555072 & 535.5 & 1 &  &  & 112 & -1.687389 & 543.0 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab-traço-latente2}6 Últimas linhas}
+\centering
+\begin{tabular}[t]{rrrrllrrrr}
+\toprule
+\multicolumn{4}{c}{Ordenado por Acerto} & \multicolumn{1}{c}{ } & \multicolumn{1}{c}{ } & \multicolumn{4}{c}{Ordenado por Escore} \\
+\cmidrule(l{2pt}r{2pt}){1-4} \cmidrule(l{2pt}r{2pt}){7-10}
+ID & Escore & Posição & Acertos & "" & "" & ID & Escore & Posição & Acertos\\
+\midrule
+243 & 2.00286 & 7.5 & 12 &  &  & 243 & 2.00286 & 7.5 & 12\\
+301 & 2.00286 & 7.5 & 12 &  &  & 301 & 2.00286 & 7.5 & 12\\
+315 & 2.00286 & 7.5 & 12 &  &  & 315 & 2.00286 & 7.5 & 12\\
+467 & 2.00286 & 7.5 & 12 &  &  & 467 & 2.00286 & 7.5 & 12\\
+474 & 2.00286 & 7.5 & 12 &  &  & 474 & 2.00286 & 7.5 & 12\\
+489 & 2.00286 & 7.5 & 12 &  &  & 489 & 2.00286 & 7.5 & 12\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Observando os indivíduos 112 e 418, vemos que, por mais que o indivíduo
+418 tenha acertado uma questão a mais que o indivíduo 112, este está
+mais bem posicionado. Isto se deve ao modelo usado que leva em
+consideração a coerência de resposta para o respectivo traço latente.
+
+\subsubsection{Interpretação da Escala}\label{interpretacao-da-escala}
+
+Devido a utilização de um modelo de probabilidade para a estimação do
+traço latente dos indivíduos, é possível posicionar os itens na escala
+do traço latente e fazer uma interpretação pedagógica da escala.
+Seguindo a definição de um item âncora e quase-âncora dado em
+\protect\hyperlink{metodos}{Métodos} os seguintes itens foram
+classificados como itens âncora e quase-âncora.
+
+\begin{center}\includegraphics{work_files/figure-latex/itemancoras-1} \end{center}
+
+\section{Dimensionalidade}\label{dimensionalidade}
+
+\begin{center}\includegraphics{work_files/figure-latex/unnamed-chunk-7-1} \end{center}
+
+Para a criação deste gráfico foi necessário construir a matrix
+tetracórica dos itens filtrados pelo critério da TRI. No gráfico é
+apresentado uma flecha respectiva da origem para as coordenadas do
+componente. A cor da flecha está atribuídas para os diferentes
+distratores. Os distratores em geral não estão totalmente agrupados
+pelos respectivos grupos. Outra consequência é que a baixa explicação
+dos componentes em duas dimensões. O item i3 é a que possui maior peso
+na dimensão x, ao mesmo, é a curva de informação do item mais estreita.
+
+\subsection{Análise dos Fatores
+Associados}\label{analise-dos-fatores-associados}
+
+Por último tem-se a análise de regressão linear múltipla para verificar
+quais fatores associados tem um maior ou menor efeito sobre o traço
+latente estimado pelo modelo de 3 parâmetros.
+
+Lembrando que:
+
+X1: Você procura se informar sobre os principais acontecimentos
+políticos no país ?
+
+X2: Você participou de alguma manifestação de apoio a Operação Lava Jato
+Por exemplo participou de alguma passeata ou protesto mandou mensagens
+por redes sociais na internet etc ?
+
+X3: Você mora em Curitiba ?
+
+Para o primeiro modelo ajustado com todas as covariáveis o seguinte
+resultado é obtido.
+
+\begin{table}[!h]
+
+\caption{\label{tab:first-model}Modelo com todos fatores associados}
+\centering
+\begin{tabular}[t]{lrrrr}
+\toprule
+term & estimate & std.error & statistic & p.value\\
+\midrule
+(Intercept) & -0.1932867 & 0.0556235 & -3.474913 & 0.0005520\\
+X1Sempre. & 0.6136383 & 0.0718022 & 8.546229 & 0.0000000\\
+X1Raramente. & -0.5376076 & 0.0917802 & -5.857552 & 0.0000000\\
+X1Nunca. & -0.4659094 & 0.1836494 & -2.536950 & 0.0114621\\
+X2Sim. & 0.1726493 & 0.0698378 & 2.472146 & 0.0137370\\
+X3Não. & 0.0706381 & 0.0633088 & 1.115771 & 0.2650156\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Logo, o único fator associado que não foi significativo foi X3 (Você
+mora em Curitiba ?). Assim, esse fator associado foi removido e o modelo
+foi reajustado. O novo modelo ficou como segue-se:
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-8}Modelo com os fatores associados X1 e X2}
+\centering
+\begin{tabular}[t]{lrrrr}
+\toprule
+term & estimate & std.error & statistic & p.value\\
+\midrule
+(Intercept) & -0.1694781 & 0.0495348 & -3.421393 & 0.0006699\\
+X1Sempre. & 0.6224795 & 0.0716297 & 8.690239 & 0.0000000\\
+X1Raramente. & -0.5285636 & 0.0916854 & -5.764970 & 0.0000000\\
+X1Nunca. & -0.4440136 & 0.1830605 & -2.425502 & 0.0156122\\
+X2Sim. & 0.1726713 & 0.0698328 & 2.472640 & 0.0137171\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Diagnóstico do Modelo}\label{diagnostico-do-modelo}
+
+Abaixo tem-se o diagnóstico do Modelo.
+
+\begin{center}\includegraphics{work_files/figure-latex/unnamed-chunk-9-1} \end{center}
+
+O diagnostico do modelo está satisfatório, não temos evidências de
+quebra de nenhum dos pressupostos. Quanto a esse agrupamento de dados,
+isto é natural dos dados pois as preditoras são duas variáveis
+categoricas.
+
+\subsubsection{Interpretações do Modelo}\label{interpretacoes-do-modelo}
+
+Para as estimativas dos fatores associados tem-se que os indivíduos que
+responderam \textbf{Sempre} para a pergunta \emph{Você procura se
+informar sobre os principais acontecimentos políticos no país ?} tem um
+aumento de 0.62 no valor de \(\theta\), indivíduos que respoderam
+\textbf{Raramente} tem um decréscimo de -0.53 no valor de \(\theta\) e
+indivíduos que responderam \textbf{Nunca} tem um decréscimo de -0.44 no
+valor de \(\theta\).
+
+Por último indíviduos que responderam \textbf{Sim} para \emph{Você
+participou de alguma manifestação de apoio a Operação Lava Jato Por
+exemplo participou de alguma passeata ou protesto mandou mensagens por
+redes sociais na internet etc ?} tem uma aumento de 0.17 no valor de
+\(\theta\).
+
+As categorias de referência para as estimativas acima foram \textbf{As
+vezes} da pergunta \emph{Você procura se informar sobre os principais
+acontecimentos políticos no país ?} e \textbf{Não} da pergunta
+\emph{Você participou de alguma manifestação de apoio a Operação Lava
+Jato Por exemplo participou de alguma passeata ou protesto mandou
+mensagens por redes sociais na internet etc ?}.
+
+\section{Considerações Finais}\label{consideracoes-finais}
+
+Dos 20 itens elaborados pela turma de 2018, 1º semestre, somente i1, i5,
+i8, i9, i11, i12, i13, i16, i17, i19, i20 foram utilizados, os outros 6
+itens retirados de outra turma, somete i25 foi utilizado, pois este
+apresentaram estimativas coerentes com as especificadas. Ao todo foram
+utilizados 12 dos 26.
+
+Dois resultados interessantes se deram com relação aos fatores
+associados que são que indivíduos que responderam \textbf{Sempre} para a
+pergunte Você procura se informar sobre os principais acontecimentos
+políticos no país ? tiveram um \(\theta\) tenta em média maior, Ou seja
+esses fatores contribuiram para uma maior compreensão da
+\textbf{Operação Lava Jato}. É um resultado um tanto obvio, mas
+importante, pois isso mostra que a busca e o interesse pela informação
+sobre os acontecimentos políticos do país contribui para uma maior
+compreensão do atual estado da política do Brasil.
+
+O outro resultado é que a além da busca pela informação sobre os
+acontecimentos políticos, a participação ativa nas manifestações,
+passeatas, protestos etc contribui significativamente para um traço
+lantente maior sobre a \textbf{Operação Lava Jato}.
+
+Sobre os itens âncoras, os resultados não foram satisfatorios. Pois
+refletem somente um nível da prova, ou seja, a única coisa que podemos
+dizer é que indivíduos que tiverem um \(\theta\) maior que 1 sabem algo
+relacionado com \emph{Principais Políticos envolvidos e suas acusações e
+crimes cometidos}; \emph{Empreiteiros, doleiros e outros envolvidos e
+suas acusações e crimes cometidos} e \emph{Partidos políticos envolvidos
+em acusações e crimes}.
+
+Por último, a curva de informação do teste nos mostra a amplitude de -3
+a 3, podendo ser visualemnte aproximada por uma normal, significando que
+os itens discerne indivíduos medianos.
+
+\hypertarget{Anexo}{\section{Anexo}\label{Anexo}}
+
+O questionário respondido se encontra neste
+\href{https://github.com/Andryas/CE095/raw/master/bookdown/questionario.pdf}{link}
+
+\bibliography{book.bib}
+
+
+\end{document}

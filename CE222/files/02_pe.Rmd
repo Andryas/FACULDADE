@@ -1,0 +1,193 @@
+# Processo Estocástico
+
+## O que é um Processo?
+
+Processo é um termo que indica a ação de avançar, de ir para frente. É
+um conjunto sequencial de ações com objetivo comum.
+
+Exemplos são: fabricas que produzem coca-cola por exemplo, onde existe
+esteiras que vão levando latas de aluminio, que são pintadas,
+preenchidas com liquido, lacradas, pressurizadas etc...
+
+## Processos Estocásticos
+
+```{definition}
+Um processo estocástico é uma familia de variáveis aleátorias
+indexadas por um conjunto T $\neq$ $\phi$.
+```
+
+$${X(t), t \in T} \text{ ou } {X_t, t \in T}$$
+
+$t_{fixo} \rightarrow$ va X(t)
+
+$w_{fixo} \rightarrow$ função real (chamada tragetoria do processo)
+
+O conjunto de todas as trágetorias é chamado "ensemble".
+
+A descrição completa de um processo estocástico pode ser extremamente
+complexo, mas em certos processos uma estrutura de
+probabilidade adequada pode facilitar tal descrição.
+
+O conjunto T será chamado de `espaço de parâmetros`. Geralmente o índice
+t será identificado como 'tempo'. O conjunto S no qual a va assume
+valores será chamado `espaço de estados`.
+
+```{example}
+No experimento do lançamento da moeda.\
+{$X_n$, n=1,...,24}, sendo $X_n$ uma va dicotômica em que S = {-1,1}, T
+= {1,2,...,24}
+
+Também definimos o processo {$G_n$,n=0,...,24}.
+
+Logo o resultado teriamos então.
+
+T = {0,1,2,...,24} e
+S = {-20,-19,...,0,1,...28}
+
+Notar que na verdade, por se tratar de uma va existe uma dependência com
+o espaço amostral $\Omega$, isto é, deveriamos escrever X(w,n), mas por
+simplicidade vamos escrever apenas X(n) ou  $X_n$.
+```
+
+## Espaços T e S
+
+Dependendo da natureza dos espaços T e S temos, quatro casos a saber:
+
+### T discreto  e S discreto
+
+Temos um PE discreto a tempo discreto
+
+```{example}
+Exemplo da moeda
+
+{Gn, n $\in$ T} sendo T = {0,1,2,...,24} e S = {-20,...,28}
+```
+
+### T é contínuo e S discreto
+
+Temos um PE discreto e o tempo contínuo.
+
+```{example}
+{$X_t$, t $\in$ T} onde $X_t$ nº de carros que passaram num pedagio
+até o instante t.
+
+T = [0, +$\infty$]
+
+S = {0,1,2,3,4,....}
+```
+
+### T discreto e S contínuo
+
+Temos um PE contínuo e o tempo discreto.
+
+```{example}
+{$X_t$, t $\in$ T} A pressão diastolica de n-eisimo individuo.
+
+T: {1,2,3,...,N}
+S: {0,+$\infty$}
+```
+
+### T contínuo e S contínuo
+
+Temos um PE contínuo a tempo contínuo
+
+```{example}
+{$X_t$, t $\in$ T} voltagem na rede no instante t
+
+T = (0,+$\infty$)
+
+S = (0,+$\infty$)
+```
+
+##  Descrição probabilística
+
+Considere um PE {$X_t$, t $\in$ T}. Para $t_1$ fixo, X($t_1$) é uma va
+com função distribuição.
+
+$$F_x(x_1,t_1) = P(X(t_1) \leq x_1) \rightarrow \text{  distribuicao de 1
+ordem de X(t)}$$
+
+Para $t_1$ e $t_2$ fixos, temos que:
+
+$$F_x(x_1,x_2;t_1,t_2) = P(X(t_1) \leq x_1, x(t_2) \leq x_2) \rightarrow
+\text{  distribuicao de 2 ordem de X(t)}$$
+
+Em geral,
+
+$$F_x(x_1,x_2,...,x_n;t_1,t_2,...,t_n) = P(X(t_1) \leq x_1, X(t_2) \leq
+x_2, ..., X(t_n) \leq x_n)$$
+
+$X(t_1) \in (-\infty,x_1], X(t_2) \in (\infty,x_2],...$
+
+Distribuição da n-esima ordem de X(t).
+
+Se as va's  X($t_i$) com i = 1,...,$\mu$ fossem discretas, podemos
+escrever:
+
+$P_x(x_1,x_2,...,x_n;t_1,...,t_n) = P(X(t_1)=x_1,...,X(t_n)=x_n)$
+
+- Se $X(t)$ é um PE a tempo continuo podemos escrever:
+
+$f_x(x_1,...,x_n;t_1,...,t_n) = \frac{\partial^n F_x}{\partial x_1,...,\partial x_n}$
+
+A descrição completa precisaria calcular todas as distribuições de X
+(distribuições-finita-dimensionalidades) o que seria muito
+dificil. Felizmente, em determinados casos, é necessário calcular a
+penas as duas primeiras distribuições ??? (momentos).
+
+##  Média, variância e covariância
+
+```{definition,funmed}
+A função média de um PE {X(t), t $\in$ T}:
+
+$$\mu_x(t)=E[X(t)]$$
+```
+\
+```{definition, funvar}
+A função variância do processo X:
+
+$$\sigma^2_x(t) = var[X(t)]$$
+```
+\
+```{definition, funcov}
+A função covariância do PE X = {X(t),t $\in$ T}:
+
+$$K_x(s,t) = cov[X(s),X(t)] = E[X(s),X(t)] - \mu_x(s) \mu_x(t)$$
+```
+\
+```{definition, funaut}
+A função de autocorrelação:
+
+$$R_x(s,t)=E[X(s),X(t)] - \mu_x(s) \mu_x(t)$$
+```
+\
+```{example}
+Seja o PE  X(t) = $Z_1$ + $Z_2$ sendo $Z_1$, $Z_2$ iid N(0,1)
+
+\begin{equation}
+\begin{split}
+\mu_x(t)  &= E[X(t)]\\
+&= E[Z_1 cos \lambda t + Z_2 sen \lambda t]\\
+&= \underbrace{E[Z_1]}_0 cos \lambda t + E[Z_2] sen \lambda t \\
+&=0
+\end{split}
+\end{equation}
+
+
+\begin{equation}
+\begin{split}
+K_x(s,t)=cov[X(s),X(t)] &= cov[{Z_1 cos \lambda s + Z_2 sen \lambda s},
+{Z_1 cos \lambda t + Z_2 sen \lambda t}] \\
+&= cov(Z_1 cos \lambda s, Z_1 cos \lambda t) + cov(Z_1 cos \lambda s, Z_2
+sen \lambda t) + cov(Z_2 sen \lambda s, Z_1 cos \lambda t) + cov(Z_2 sen
+\lambda s, Z_2 sen \lambda t) \\
+&= cos \lambda s . cos \lambda t . cov(Z_1,Z_2) + cov \lambda s. sen
+\lambda t . cov(Z_1,Z_2) + sen \lambda s . cos \lambda t
+. cov(Z_2,Z_1) + sen \lambda s . sen \lambda t . cov(Z_2,Z_2)\\
+&= cos \lambda s . cos \lambda t + sen \lambda s . sen \lambda t \\
+&= cos(\lambda s - \lambda t)\\
+&= cos[\lambda(s-t)]
+
+\end{split}
+\end{equation}
+```

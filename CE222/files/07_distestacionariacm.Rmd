@@ -1,0 +1,186 @@
+# Distribuição estacionária de uma CM
+
+```{example}
+Seja {$X_n$, n $\geq$ 0} uma CM com dois estados tais que:
+
+\begin{equation}
+P = \begin{bmatrix}
+1/3 & 2/3 \\
+1/2 & 1/2
+\end{bmatrix}
+\end{equation}
+
+Temos que $P^2$ é:
+
+\begin{equation}
+P^2 = \begin{bmatrix}
+4/9 & 5/9 \\
+5/12 & 7/12
+\end{bmatrix}
+\end{equation}
+
+$P^4$
+
+\begin{equation}
+P^4 = \begin{bmatrix}
+139/324 & 185/324 \\
+185/432 & 247/432
+\end{bmatrix}
+\end{equation}
+```
+
+Intuimos que a matriz $P^n$ $\approx$ $P^8$, n > 8.
+Isto mostra que para n suficientemente grande a distribuição da cadeia
+(prob de transição) tende a estabilizar em determinados valores para
+todos os estados, ou seja, as linhas da matriz $P^n$ tendem a se
+igualar.
+
+
+
+## Distribuição Estacionária de uma CM.
+
+Uma pergunta interessante é saber o que acontece com a matriz $P^n$,
+para n suficientemente grande. isso tem a ver com a chamada **distribuição
+estacionária**, ou de equilibrio.
+
+```{definition}
+Seja {$X_n n \geq 0$} uma CM sobre S com função de transição
+P. Diremos que uma distribuição de probabilidade {$\Pi(x)$, x $\in$
+S} é uma distribuição estacionária se:
+$$ \sum_x \Pi(x) P(x,y) = \Pi(y), y \in S$$
+```
+Matricialmente a condição para ser DE (distribuição estacionária)
+
+$$\Pi P = \Pi$$
+
+sendo que $\Pi$ é um vetor de probabilidades e P a matriz de
+transição.
+
+```{example}
+
+
+Para P, consideramos $\Pi = (\Pi(0),\Pi(1))$
+
+\begin{equation}
+P = \begin{bmatrix}
+1/3 & 1/3 \\
+1/2 & 1/2
+\end{bmatrix}
+\end{equation}
+
+
+Temos que:
+
+\begin{equation}
+(\Pi(0),\Pi(1)) \begin{bmatrix}
+1/3 & 2/3 \\
+1/2 & 1/2
+\end{bmatrix} = (\Pi(0),\Pi(1))
+\end{equation}
+
+I. $\frac{\Pi_0}{3} + \frac{\Pi_1}{2} = \Pi_0$
+
+II. $\frac{2\Pi_0}{3} + \frac{prod_1}{2} = \Pi_1$
+
+III. $\frac{\Pi_0 + \Pi_1} = 1$
+
+
+A III eq foi acrescentada por que sabemos que a soma das duas
+probabilidades $\Pi$ tem que resultar em 1. Assim o sistema de
+equações agora tem solução.
+
+I em III
+
+$\Pi_0 + \frac{4}{3} \Pi_0 = 1 => \Pi_0 = \frac{3}{7}$
+
+e
+
+$\Pi_1 = \frac{4}{7}$
+```
+\
+Quando temos uma cadeia com infinitos estados, não é possível resolver o
+sistema $\Pi P = \Pi$ para obter a distribuição estacionária.
+
+No caso particular de C-N-M é possível encontrar a DE.
+
+Considere uma cadeia de nascimento e morte sobre {0,1,2...} ou sobre
+{0,1,2,3,4,...,d}, tal que:
+
+
+\begin{equation}
+\begin{matrix}
+p_x > 0 &, p/ 0 \leq x \leq d \\
+q_x > 0 &, p/ 0 \leq x \leq d
+\end{matrix}
+\end{equation}
+
+
+A condição de estcionariedade é: $\sum_x \Pi(x) P(x,y)= \Pi(x,y)$
+
+Isto é:
+
+y = 0
+
+\begin{equation}
+\begin{split}
+\sum_x \Pi(x)P(x,0) &= \Pi(0)\\
+\Pi(0)P(0,0) + \Pi(1) P(1,0) + \Pi(2) P(2,0)... &= \Pi(0)\\
+\Pi(0)r_0 + q_1\Pi(1) + 0 + 0 + 0 ... &= \Pi(0)\\
+q_1 \Pi(1) + \Pi(0)[r_0 -1] &= 0\\
+q_1\Pi(1) - \Pi(0)p_0 &= 0\\
+\Pi(1) &= \frac{p_0}{q_1} \Pi(0)
+\end{split}
+\end{equation}
+
+
+Para qualquer y: $\sum_x \Pi(x) P(x,y) = \Pi(y)$
+
+$$\Pi(y-1)P(y-1,y) + \Pi(y)P(y,y) + \Pi(y+1) P(y+1,y) = \Pi(y)$$
+
+
+y = 1
+
+\begin{equation}
+\begin{split}
+P_0 \Pi(0) + r_1 \Pi(1) + q_2 \Pi(2) &= \Pi(1)\\
+q_2\Pi(2) &= (1 - r_1) \Pi(1) - p_0\Pi(0)\\
+q_2\Pi(2) &= (p_1 + q_1) \Pi(1) - p_0\Pi(0)\\
+q_2\Pi(2) &= (p_1 + q_1) \frac{p_0}{q_1} \Pi(0) - p_0\Pi(0)\\
+q_2\Pi(2) &= \Pi(0)[\frac{p_1p_0}{q_1} + p_0 - p_0]\\
+\Pi(2) &= \frac{p_1 p_0}{q_1 q_2} \Pi(0)
+\end{split}
+\end{equation}
+
+Em geral
+
+$$\Pi(x) = \frac{p_0 p_1 ... p_{x-1}}{q_1 q_2 ... q_x} \Pi(x)$$
+
+Define-se
+
+\begin{equation}
+\alpha\left\{\begin{matrix}
+1 &, x = 0 \\
+\frac{p_0 p_1 ... p_{x-1}}{q_1 q_2 ... q_x} \Pi(x) &  x \geq 0
+\end{matrix}\right.
+\end{equation}
+
+Assim, $\Pi(x)$  = $\alpha_x \Pi(0)$, $x \geq 0$
+
+Somando em ambos os lados
+
+
+$$\sum_x \Pi(x) = \sum_x \alpha_x \Pi(0)$$
+
+$$1 = \Pi(0) \sum_x \alpha_x$$
+
+Logo:
+
+$$\Pi(0) = \frac{1}{\sum_{x=0}^{\infty} \alpha_x}$$
+
+
+Se $\sum_{x=0}^{\infty} \alpha_x < \infty$, então existe uma DE que será
+dada por:
+
+$$\Pi(x) = \frac{\alpha_x}{\sum_{x=0}^{\infty}\alpha_x}$$
+
+OBS: Isto para uma C-N-M

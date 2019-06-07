@@ -1,0 +1,369 @@
+# Estados Transientes e Recorrentes
+
+Seja {$X_n$, n $\geq$ 0} uma CM sobre S com função de transição
+p(x,y). Definida como:
+
+$$\rho_{xy} = \rho(T_y \leq \infty)$$
+
+I.E, a probabilidade de saindo de x, atingir o estado y em um tempo
+finito.
+
+Em particular, $\rho_{yy}$ denota a probabilidade de sair de y e
+retornar para y (alguma vez) -> tempo finito.
+
+```{definition}
+Diremos que um estado y é **transiente** se $\rho \leq 1$.
+```
+
+Isto quer dizer que, se y for recorrente, então, com probabilidade 1, a
+cadeia retornará alguma vez em y.
+
+Se y for transiente, existe uma probabilidade positiva (de valor 1 -
+$\rho_{yy}$) de sair de y e não retornar.
+
+Seja N(y) o número de vezesque a cadeia **VISITA** o estado y ($n \geq
+1$).
+
+Então, $P_x$ (N(y) $\geq$ 1 ) = $P_x$ ($T_y \leq \infty$) = $\rho_{xy}$.
+
+Denotaremos por EX(.) a esperança de alguma VA, com a cadeia partindo em
+x.
+
+```{theorem}
+i) Se y é transiente, então $F_x$(N(y) < $\infty$) = 1 e E(N(y)) =
+$\frac{\rho_{xy}}{1-\rho_{yy}}$, x $\epsilon$ S
+ii) Se y é recorrente, então $P_x(N(y) = \infty)$ = 1 e $E_x(N(y))$
+=$\infty$.
+```
+
+Isto significa que estados transientes são apenas estados de "passagem"
+ou transitórios, enquanto que estados recorrentes são estados
+permanentes ou definitivos. Isso produz uma partição do espaço de
+estados.
+
+$$S = S_T \cup S_R, (S_T \cap S_R = \varnothing)$$
+
+```{definition}
+Sejam x e y dois estados de S. Diremos que x atinge y se
+$\rho_{xy}$ > 0.
+```
+\
+
+NOTAÇÃO
+: (independente do número de passos): x $\rightarrow$ y.
+"Saindo de x em n passos chego em y"
+
+\
+```{definition}
+Diremos que dois estados quaisquer estão comunicados se
+x $\rightarrow$ y e y $\rightarrow$ x.
+```
+\
+```{theorem}
+Seja X um estado recorrente. Suponha que x $\leftrightarrow$
+y. Então y será também recorrente. Aqui $\rho_{xy}$ = $\rho_{yx}$ = 1.
+(Isso significa que estados se comunicam somente com estados de mesma
+natureza)
+```
+\
+```{definition}
+1) Um conjunto C estados é chamado **fechado** se $\rho_{xy}$ = 0,
+    x $\leq$ c, y $\notin$ c.
+2) Um conjunto c é chamado irredutivel se x $\leftrightarrow$ y,
+$\forall$ x,y $in$ c.
+(Ou seja, todos os estados de c estão comunicados)
+```
+\
+```{theorem}
+Seja C um conjunto finito irredutivel e fechado de
+estados. Então, todos os estados em C serão recorrentes.
+```
+\
+C é o conjunto de estados. FINITO, FECHADO e IRREDUTÍVEL.
+\
+```{example}
+
+Considere uma cadeia de markov com matrix de transição MT
+
+```{r, echo = FALSE, message = FALSE}
+library(kableExtra)
+library(knitr)
+library(dplyr)
+options(digits =  2)
+mt <- data.frame(c0 =  c(1, 1/4, 0, 0, 0, 0),
+                 c1 =  c(0, 1/2, 1/5, 0, 0, 0),
+                 c2 =  c(0, 1/4, 2/5, 0, 0, 0),
+                 c3 =  c(0, 0, 1/5, 1/6, 1/2, 1/4),
+                 c4 =  c(0, 0, 0, 1/3, 0, 0),
+                 c5 =  c(0, 0, 1/5, 1/2, 1/2, 3/4))
+# colnames(mt) <- 0:5
+rownames(mt) <- 0:5
+
+kable(mt,"html", col.names = c(0:5), row.names =  TRUE) %>%
+    kable_styling("striped", full_width = F)
+```
+
+Solução
+
+```{r, echo = FALSE, message = FALSE}
+mt %>%
+    mutate(
+        "col" =  0:5,
+        c0 =  cell_spec(c0, "html",
+                        background = ifelse(c0 ==  1, "#D7261E", c0),
+                        color =  "black"),
+        c1 =  cell_spec(c1, color =  "black"),
+        c2 =  cell_spec(c2, color =  "black"),
+        c3 =  cell_spec(c3, "html",
+                        background = ifelse(as.integer(col) >=
+                                            3, "#D7261E", c3),
+                        color =  "black"),
+
+        c4 =  cell_spec(c4, "html",
+                        background = ifelse(as.integer(col) >=
+                                            3, "#D7261E", c4),
+                        color =  "black"),
+
+        c5 =  cell_spec(c5, "html",
+                        background = ifelse(as.integer(col) >=
+                                            3, "#D7261E", c5),
+                        color =  "black")
+
+    ) %>%
+    select(col, c0, c1, c2, c3, c4, c5) %>%
+    kable("html", escape = FALSE, row.names = FALSE,
+          col.names = c("", 0:5)) %>%
+    kable_styling("striped", full_width = F) %>%
+    footnote(general =
+    "A parte em vermelhor significa que é recorrente.")
+```
+
+S = {0,1,2,3,4,5}
+
+Como os conjuntos $C_1$ = {0} e $C_2$ = {3,4,5} são finitos, fechados e
+irredutiveis, então eles são conjuntos de estados recorrentes.
+
+Assim, $S_R$ = {0} $\cup$ {3,4,5} e $S_T$ {1,2}
+
+Notar que 0 é um estado absorvente, logo recorrente. 3,4 e 5 são estados
+recorrentes.
+```
+## Probabilidade de absorção
+
+Seja C um conjunto de estados recorrentes (fechado e irredutivel) e seja
+$\rho_c$(x) = $P_x$ ($T_c$ < $\infty$). Dado que a cadeia permanecerá
+definitivamente em C, se os estados de C forem atingidos, diremos que a
+cadeia foi absorvida em C e chamaremos a $\rho_c$(x) de probabilidade de
+absorção de C, saindo do estado x.
+
+Notar que, trivialmente
+
+$\rho_c(x) = 1, x \in C$
+
+$\rho_c(x) =0, x \notin C$
+
+Vamos calcular $\rho(x)$, x $\in$ $S_T$.
+
+```{theorem}
+Seja C um conjunto finito, fechado e irredutivel de
+estados. Então:
+
+$$\rho_c(x) = \sum_{y \in C}P(x,y) + \sum_{y \in S_T} P(x,y)P_C(y), x
+\in S_T$$
+```
+
+Consideramos $C_1$ = {0}, x = 1 ou 2 ($S_T = (1,2)$)
+
+x = 1
+
+\begin{equation}
+\begin{split}
+\rho_{{0}}(1) &= \sum_{y \in {0}}P(1,y) + \sum_{y \in
+{1,2}}P(1,y)\rho_{{0}}(y), x \in S_T\\
+\rho_{{0}}(1) &= P(1,0) + [P(1,1) \rho_{{0}}(1) + P(1,2) \rho_{{0}}(2)]\\
+\rho_{{0}}(1) &= \frac{1}{4} + [\frac{1}{2} \rho_{{0}}(1) + \frac{1}{4}
+\rho_{{0}}(2)]\\
+\frac{1}{2} \rho_{{0}}(1) - \frac{1}{4}\rho_{{0}}(2) = \frac{1}{4} \text{ (1)
+Primeira equação}
+\end{split}
+\end{equation}
+
+
+x = 2
+
+\begin{equation}
+\begin{split}
+\rho_{{0}}(2) &= \sum_{y \in {0}} P(2,y) + \sum_{y \in
+{1,2}}P(2,y)\rho_{{0}}(y)\\
+\rho_{{0}}(2) &= 0 + [P(2,1)\rho_{{0}}(1) + P(2,2)\rho_{{0}}(2)]\\
+\frac{1}{5}\rho_{{0}}(1) - \frac{3}{5} \rho_{{0}}(2) = 0 \text{ (2)
+Segunda equação}
+\end{split}
+\end{equation}
+
+
+De (2):
+
+$$\frac{1}{5}\rho_{{0}}(1) = \frac{3}{5}\rho_{{0}}(2) =>
+\frac{1}{3}\rho_{{0}}(1)$$
+
+De (1):
+
+$$\frac{1}{2}\rho_{{0}}(1) - \frac{1}{4} \frac{1}{3}\rho_{{0}}(1) =
+\frac{1}{4}$$
+
+Logo:
+
+\begin{equation}
+\frac{6 \rho_{{0}}(1) - \rho_{{0}}(1)}{12} = \frac{1}{4}\\
+5 \rho_{{0}}(1) = 3\\
+\rho_{{0}}(1) = \frac{3}{5}
+\end{equation}
+
+Em (2):
+
+\begin{equation}
+\frac{1}{2} \frac{3}{5} - \frac{1}{4} \rho_{{0}}(2)= \frac{1}{4}\\
+\rho_{{0}}(2) = \frac{1}{5}
+\end{equation}
+
+Como a cadeia só pode ser absorvente em $C_1$ ou $C_2$, essas
+probabilidade são complementares logo:
+
+$$\rho_{{3,4,5}}(1) = 1 - \rho_{{0}}(1) = \frac{2}{5}$$
+
+e
+
+$$\rho_{{3,4,5}}(2) = \frac{4}{5}$$
+
+## Martingales
+
+Considere uma CM sobre {0,1,2,...,d} com função de transição $\rho$
+satisfazendo:
+
+$$\sum_{y=0}^d yP(x,y) = x, x=0,...,d$$
+
+então, E[$X_{n+1}|X_0 = x_0,...,X_{n-1}=x_{n-1},X_n=x_n$]=x (i.e, o
+valor esperado de $X_{n+1}$ dado o passado e o presente do processo,
+depende somente do valor presente.)
+
+```{definition}
+Uma sequência de VA'S satisfazendo a propriedade acima será chamado
+de **MARTINGALES**.
+```
+
+OBS: Na verdade um martingale não é necessariamente uma CM, mas é um
+elemento importante na teoria de jogos.
+
+
+## Cadeias N-M
+
+Quando uma CM é irredutivel, ou seja, todos seus estado são da mesma
+natureza. "Todos são transientes ou todos são recorrentes".
+
+Quando S é finito e a CM é irredutivel.
+
+
+Todos os estados serão recorrentes. Nesse caso diremos que a cadeia é
+recorrente.
+
+Analisar os estados quando S não é finito é um problema extremamente
+complexo e a natureza dos estados denpederá da existencia de algumas
+estruturas probabilisticas sobre a cadeia. O caso particular das cadeias
+de nascimento e morte é um dos casos em que consegue-se um criterio de
+classificação de estados
+
+```{definition}
+Seja {$X_n, n \geq 0$} uma C-N-M com função de probabilidade.
+
+$$
+P(x,y) =\left\{\begin{matrix}
+  q_x &, y = x-1\\
+  r_x &, y = x \\
+  p_x &, y = x +1
+\end{matrix}\right.
+$$
+```
+
+sendo $q_x + p_x + r_x$ = 1, $\forall$ x $\in$ S.
+
+
+$$P_x(T_a < T_b) = \frac{\sum_{y=x}^{b-1} \gamma_y}{\sum_{y=a}^{b-1}}$$
+
+sendo que:
+
+$$\gamma_y = \frac{q_1q_2...q_y}{p_1p_2...p_y}$$
+
+a < x < b
+
+Ainda,
+
+\begin{equation}
+\begin{split}
+P_x(T_a < T_b) &= 1 - P(T_a < T_b)\\
+&= \frac{\sum_{y=a}^{x-1} \gamma_y}{\sum_{y=a}^{b-1}}
+\end{split}
+\end{equation}
+
+Notar que $P_x(T_a < T_b)$ indica a probabilidade de saindo de x atingir
+o estado A antes de que o estado B.
+
+```{example}
+
+Um jogador faz aposstas de um dolar por vez com probabilidade
+$\frac{9}{19}$ de ganhar e $\frac{10}{19}$ de perder. Supoha que o
+jogador deixa de jogar quando está arruinado ou quando o seu lucro for
+de 25 dolares. Suponha que ele inicia o jogo com capital de 10 dolares.
+
+### a.
+
+Encontrar a probabilidade do jogador se retirar ganhando
+
+Temos que $\gamma_y$:
+
+$$\gamma_y =
+\frac{(\frac{10}{19})(\frac{10}{19})...(\frac{10}{19})}{(\frac{9}{19})(\frac{9}{19})...(\frac{9}{19})}
+= \frac{(\frac{10}{19})^y}{(\frac{9}{19})^y} = (\frac{10}{9})^y$$
+
+Logo:
+
+\begin{equation}
+\begin{split}
+P_{10}(T_{35}<T_0) &= \frac{\sum_{y=0}^9
+(\frac{10}{9})^y}{\sum_{y=0}^{34} (\frac{10}{9})^y}\\
+&= \frac{\frac{1 - (\frac{10}{9})^{10}}{1 - \frac{10}{9}}}{\frac{1 -
+(\frac{10}{9})^{35}}{1 - \frac{10}{9}}}\\
+&= \frac{1 - (\frac{10}{9})^{10}}{1 - (\frac{10}{9})^{35}}= 0.047
+\end{split}
+\end{equation}
+
+
+### b.
+
+Encontrar a perda esperada
+
+\begin{equation}
+L = \left\{\begin{matrix}
+10 &, \text{ se atingir 0} \\
+-25 &, \text{ se atingir 35}
+\end{matrix}\right.
+\end{equation}
+
+\begin{equation}
+\begin{split}
+E(L) &= 10 P(atingir 0) - 25 P(atingir35)\\
+&= 10(1x 0.047) - 25(0.047)\\
+&= 10 - 35x0.047
+\end{split}
+\end{equation}
+
+```
+\
+```{theorem}
+Seja {$X_n, n \geq 0$} uma C-N-M irredutivel sobre S
+={0,1,2,...}. Então, a cadeia será recorrente se:
+
+$$\sum_{x=1}^{\infty} \gamma_x = \infty$$
+
+caso contrario a cadeia sera transiente
+```

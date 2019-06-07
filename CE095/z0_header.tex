@@ -1,0 +1,18 @@
+\usepackage{booktabs}
+% \usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[table]{xcolor}
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{ufpr.jpg}%
+\vfill
+}}}
+\AddToShipoutPicture*{\BackgroundPic}

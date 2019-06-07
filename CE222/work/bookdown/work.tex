@@ -1,0 +1,393 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{}
+  \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
+\usepackage{booktabs}
+% \usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[table]{xcolor}
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{ufpr.jpg}%
+\vfill
+}}}
+\AddToShipoutPicture*{\BackgroundPic}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage[normalem]{ulem}
+
+\begin{document}
+
+\begin{titlepage}
+\centering{\large{UNIVERSIDADE FEDERAL DO PARANÁ}}
+\\
+\centering{Departamento de Estatística}
+
+\vspace{3.5cm}
+
+\centering{\huge{TITULO}}
+
+\vspace{3cm}
+
+\centering{\Large{Prof. Benito Olivares Aguilera}}
+
+\vspace{3cm}
+
+CE222 - Processos Estocásticos Aplicados
+
+\vspace{2cm}
+
+Andryas Waurzenczak, GRR: 20149125 \\
+Caleb Josué Souza, GRR: 20149072
+
+
+
+\vfill
+
+13/06/2018
+\end{titlepage}
+
+
+\begin{abstract}
+  Este estudo tem como objetivo apresentar uma alternativa para a estimação
+  do valor da volatilidade utilizando os conhecimentos probabilísticos
+  envolvidos em um  processo estocástico. Entende-se por volatilidade, no
+  universo financeiro, como uma variável ou um elemento que está presente em
+  uma métrica de risco de mercado. A variável volatilidade indica a
+  intensidade e a frequência das oscilações de preços de ações em um
+  determinado período de tempo. Serão apresentadas duas maneiras para estimar
+  a volatilidade, sendo a primeira o método de estimação pelo desvio padrão
+  histórico e a segunda o método conhecido como Volatilidade
+  Estocástica. Juntamente com explanação teórica envolvida em cada um destes
+  dois métodos também serão apresentados os resultados comparativos
+  adquiridos através da análise feita em cima de um histórico das ações
+  BBDC4.SA.
+
+  Palavras Chave: VaR, Volatilidade Estocástica
+\end{abstract}
+
+
+\pagebreak
+\tableofcontents
+\pagebreak
+
+\section{Introdução}\label{introducao}
+
+O mercado de ações é um ambiente público e organizado para negociação de
+alguns títulodes mobiliários (ações, opções de fundos, etc\ldots{}).
+Neste trabalho o objeto de estudo são títulodes mobiliários chamados de
+ações.
+
+Ação é a menor parcela do capital social das companhias de capital
+aberto, que têm seus papéis negociados na \href{}{BM\& Bovespa} (Bolsa
+de Valores do Brasil). É um título patrimonial e concede aos seus
+dententores, chamados de acionistas, os direitos e deveres de um sócio.
+
+Estas ações são negociadas diariamente e com o avanço da tecnologia elas
+se tornam cada vez mais rápidas, isso faz com que o mercado se torne
+cada vez mais complexo. O principal objetivo de se entrar nesse mundo de
+acionistas é o ganho de dinheiro, que se torna cada vez mais difícil
+pelo motivo citado anteriormente e pela competitividade mais acirrada.
+Assim estratégias e medidas de risco podem auxiliar o acionista a um
+melhor desempenho em suas negociações.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+A volatilidade é um termo bem conhecido àquelas pessoas que estão
+envolvidas direta ou indiretamente no mercado financeiro, seja um
+operador experiente ou um então um investidor. Saber manejar os
+resultados das estimativas desta variável é extremamente importante,
+pois isto implica diretamente nos resultados e retornos de
+investimentos. Quando se fala em investimento o termo risco é o grande
+ditador do potencial de perda ou ganho de dinheiro, quanto maior for o
+risco de um investimento maior será também os ganhos e em contrapartida
+maior será também as perdas. A comparação inversa para o menor risco
+seguirá a mesma lógica. O conceito de volatilidade está diretamente
+ligado à métrica do risco, pois esta variável indica a intensidade e a
+frequência das oscilações de preços de ativos, mostra o quanto o valor
+de um ativo se desvia do seu preço médio ou do seu preço atual.
+
+Existem vários métodos para estimativa da volatilidade, entre eles está
+o método EWMA, que é chamada como média móvel exponencial ponderada, que
+considera as observações históricas diárias e pondera os resultados mais
+recentes com um peso maior. Existem também os modelos ARCH
+(Autoregressive Conditional) e sua extenção GARCH que é a generalização
+do ARCH que são modelos de séries temporais. Além destes existem ainda o
+método de desvio padrão e o modelo Volatilidade estocástica. Estes dois
+últimos são os objetos deste estudo.
+
+Este artigo está dividido em 5 seções sendo que a seção dois será
+apresentado o método de estimativa por desvio padrão, na seção três será
+apresentado o modelo de volatilidade estocátistca e em seguida na seção
+quatro será exposto os resultados provenientes da análise comparativa
+entre os modelos estudados, e por fim na quinta e ultima seção será
+apresentado a conclusão.
+
+\section{Materiais e Métodos}\label{materiais-e-metodos}
+
+\subsection{Materias}\label{materias}
+
+O material utilizado é um conjunto de dados, das negociações da empresa
+BBDC4.SA, retirado do \href{https://finance.yahoo.com/}{Yahoo Finance!}.
+A empresa foi selecionada pela preferência dos autores. O período que
+abragem esta seleção vai de 04/01/2016 à 30/05/2018. Os dados são
+diários.
+
+O conjunto de dados possuem ao todo 6 colunas, sendo estas, \emph{Data},
+\emph{Máxima}, \emph{Miníma}, \emph{Abertura}, \emph{Fechamento} e
+\emph{Volume}. Abaixo pela Tabela \ref{tab:head} pode-se observar as 6
+primeiras linhas dos dados.
+
+\rowcolors{2}{gray!6}{white}
+
+\begin{table}[!h]
+
+\caption{\label{tab:head}6 primeiras linhas dos conjuntos de dados}
+\centering
+\begin{tabular}[t]{lrrrrr}
+\hiderowcolors
+\toprule
+Data & Abertura & Fechamento & Máxima & Miníma & Volume\\
+\midrule
+\showrowcolors
+2015-11-23 & 17.8062 & 17.9113 & 17.2051 & 17.4080 & 20650864\\
+2015-11-24 & 17.2051 & 17.3854 & 16.8670 & 17.2878 & 14357497\\
+2015-11-25 & 16.9722 & 17.0398 & 16.4162 & 16.4463 & 22973992\\
+2015-11-26 & 16.4763 & 16.9121 & 16.4538 & 16.8069 & 14635676\\
+2015-11-27 & 16.6642 & 16.6867 & 16.1232 & 16.1908 & 18570778\\
+2015-11-30 & 16.0030 & 16.1683 & 15.6649 & 15.8678 & 43981963\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\rowcolors{2}{white}{white}
+
+\subsection{Métodos}\label{metodos}
+
+\subsubsection{Retorno Contínuo}\label{retorno-continuo}
+
+O retorno utilizado é o retorno contínuo diário dado da seguinte forma:
+
+\[y_t = ln(\frac{P_t}{P_{t-1}}), \text{ t = 1, 2, ..., T}\]
+
+onde \(y_t\) é o retorno diário no instante t e \(P_t\) significa,
+normalmente, o Preço de \textbf{fechamento} no instante t.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# r: Preço de Fechamento, Abertura, Máxima ou Miníma}
+\NormalTok{rc <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(r) \{}
+    \CommentTok{# Instante inicial}
+\NormalTok{    rc <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\KeywordTok{length}\NormalTok{(r)) \{}
+\NormalTok{        rc <-}\StringTok{ }\KeywordTok{c}\NormalTok{(rc, }\KeywordTok{log}\NormalTok{(r[i] }\OperatorTok{/}\StringTok{ }\NormalTok{r[i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{]))}
+\NormalTok{    \}}
+\NormalTok{    rc}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Volatilidade Simples}\label{volatilidade-simples}
+
+A estimativa por desvio padrão é considerado como um método simplório,
+pois este método ignora caracaterísticas inerentes de uma série além de
+atribuir pesos iguais a todas observações sem levar em consideração o
+fato da relevancia das observações mais recentes. É expressa da seguinte
+maneira:
+
+\[\sigma_s = \sqrt(var(y_t)), \text{ t = 1, 2, ..., T}\]
+
+para cada dia a volatilidade deste período é a mesma.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# r: Preço de Fechamento, Abertura, Máxima ou Miníma}
+\CommentTok{# n: Número de instantes considerados}
+\NormalTok{vs <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(r, n) \{}
+\NormalTok{    vol <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, n)}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ (n }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{)}\OperatorTok{:}\KeywordTok{length}\NormalTok{(r)) \{}
+        \CommentTok{# Volatilidade no Instante t}
+\NormalTok{        vol <-}\StringTok{ }\KeywordTok{c}\NormalTok{(vol, }\KeywordTok{sd}\NormalTok{(r[(i }\OperatorTok{-}\StringTok{ }\NormalTok{n)}\OperatorTok{:}\NormalTok{(i }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)]))}
+\NormalTok{    \}}
+\NormalTok{    vol}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Volatilidade Estocástica}\label{volatilidade-estocastica}
+
+\subsubsection{Valor em Risco (VaR)}\label{valor-em-risco-var}
+
+\section{Resultados}\label{resultados}
+
+\subsection{Análise Descritiva}\label{analise-descritiva}
+
+Para dar inicio aos resultados é usual explorar algumas medidas
+descritivas. Primeiramente examina-se a variação dos preços no período
+em estudo pelo gráfico de candles abaixo.
+
+\begin{center}\includegraphics{work_files/figure-latex/candles-1} \end{center}
+
+Pelo gráfico acima observa-se uma valorização da empresa no período
+selecionado.
+
+\subsection{Retorno Contínuo}\label{retorno-continuo-1}
+
+Para a aplicação de modelos de volatilidade para o cálculo do valor de
+risco (VaR) é usual o uso do retorno contínuo descrito na seção de
+métodos. Abaixo temos o gráfico dos log-retornos.
+
+\begin{center}\includegraphics{work_files/figure-latex/log-retorno-1} \end{center}
+
+\subsection{Volatilidade Simples}\label{volatilidade-simples-1}
+
+\begin{center}\includegraphics{work_files/figure-latex/volatildiade-est-simples-1} \end{center}
+
+\subsection{Modelo de Volatilidade
+Estocástica}\label{modelo-de-volatilidade-estocastica}
+
+\section{Considerações Finais}\label{consideracoes-finais}
+
+\section{Anexo}\label{Anexo}
+
+\bibliography{book.bib}
+
+
+\end{document}

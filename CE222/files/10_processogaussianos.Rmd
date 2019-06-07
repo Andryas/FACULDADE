@@ -1,0 +1,34 @@
+# Processos Gaussianos
+
+```{definition}
+Um PE, {X(t, t $\in$ T)} é chamado Gaussiano se qualquer combinação
+linear finita das va's X(t), possui uma distribuição normal. Isto é,
+$$\sum_i \alpha_i X(t_i)~Normal$$
+```
+\
+```{example}
+Seja X(t) = $Z_1 cos \lambda t$ + $Z_2 sen \lambda t$, t $\geq$ 0, sendo
+$Z_1,Z_2$ VA's iid N($\mu$,$\sigma^2$). Então:
+
+\begin{equation}
+\begin{split}
+\sum \alpha_i X(t_i) &= \alpha_1 X(t_1) + \alpha_2 X(t_2) + ... +
+     \alpha_n X(t_n)\\
+&= \alpha_1[Z_1 cos \lambda t_1 + Z_2 sen \lambda t_1] + ... +
+   \alpha_n[Z_1 cos \lambda t_n + Z_2 sen \lambda t_n]\\
+&= [\alpha_1 cos \lambda t_1 + \alpha_2 cos \lambda t_2 + ... + \alpha_n
+   cos \lambda t_n]Z_1 + [\alpha_1 cos \lambda t_1 + \alpha_2 cos \lambda t_2 + ... + \alpha_n
+   cos \lambda t_n]Z_2\\
+&= b_nZ_1 + c_nZ_2 ~ Normal
+\end{split}
+\end{equation}
+```
+\
+```{theorem}
+Seja {X(t), t $\geq$ 0} um processo gaussiano fracamente
+     estacionario. Então esse processo é (tambem estritamente) estacionario.
+```
+\
+IDEIA DA PROVA: Se X(t) é Gaussiano, o processo Y(t) = X(t + $\tau$),
+$\tau \in$ R é também gaussiano com mesma média e covariância de
+X(t). Ou seja a distribuição de X(t) e de X(t + $\tau$) é a mesma.

@@ -1,0 +1,130 @@
+# Revisão
+
+## Fenômenos
+
+Fenômenos são acontecimentos observáveis. Tem-se dois tipos de
+fenômenos:
+
+* Determinístico
+
+Sob certas condições de regularidade, o resultado, é previsível.
+
+Ex: Ferver água, por exemplo, sabe-se que quando aquecida a 100ºC,
+sobre pressão normal, entre em ebulição.
+
+* Aleátorio
+
+Os resultados são imprevisíveis.
+
+Ex: Lançamento de um dado, não sabemos que número vai sair.
+
+Aqui, neste curso de processos estocásticos estaremos interessandos no
+segundo tipo de evento (aleátorio), onde por meio de probabilidade
+podemos ter uma ideia do comportamento/resultado futuro.
+
+
+> A seguir algumas definições de probabilidade que serão utilizadas ao
+> decorrer do curso.
+
+## Definições de Probabilidade
+
+```{definition, probabilidade}
+Dado um experimento aleátorio $\varepsilon$, chamamos de espaço amostral
+o conjunto (não vazio) de **todos** os  resultados possíveis ($\Omega$).
+O conjunto de todos os objetos aos quais poderemos atribuir uma
+probabilidade é chamado de $\sigma$-álgebra. No caso do $\Omega$ finito
+(ou enumerável) a sigma-álgebra será o conjunto das partes de $\Omega$
+(Conjunto potência).
+```
+\
+```{example}
+Lançamento de uma moeda uma vez.\
+A = P($\Omega$) = ({c},{k}, $\Omega$, $\phi$)
+```
+\
+```{example}
+Lançamento de um dado.\
+F = P($\Omega$) = {{1},{2},...,{1,2},{1,3},
+...,{1,2,3},...,$\Omega$,$\phi$}
+```
+\
+
+Para intervalos contínuos $\sigma$-álgebra de Bórel.
+
+F = $\beta_{[0,1)}$ => $\sigma$-álgebra de Bórel
+
+```{definition, name = "Definição Clássica"}
+        P(A) = $\frac{\#A}{\#\Omega}$\
+        Utiliza-se quando os pontos são equiprovaveis.
+```
+\
+```{definition, name = "Definição Geométrica"}
+P(A) = $\frac{compr(A)}{compr(\Omega)}$
+```
+\
+```{definition, name = "Definição Frequentista"}
+P(A) = $\frac{A}{N}$
+```
+\
+```{definition, name = "Definição de Probabilidade"}
+Uma medidade de probabilidade P como uma função de $\Omega$ em
+$\mathbb{R}$ tal que:
+
+- P(A) $\leq$ 0, $\forall$ A $\in$ F (existe um evento pelo menos)
+- P($\Omega$) = 1
+- P($\cup_i A_i$) = $\sum_i P(A_i)$, se os Ai's são dijuntos
+
+```
+\
+```{definition, name = "Espaço de Probabilidade"}
+($\Omega$,F,P)
+
+Um espaço de probabilidade como o trio ($\Omega$,F,P) - (Espaço
+amostral, $\sigma$-álgebra, medidade de probabilidade)
+```
+\
+```{definition, name = "Probabilidade Condicional"}
+Dados A e B $\in$ F: P(A|B) = \frac{P(A \cap B)}{P(B)}, P(B) > 0
+
+Para duas variáveis aleátorias X, Y $\in$ ($\Omega,F,P$)
+
+$$P(X \in B_1 | Y \in B_2) = \frac{P(X \in B_1,Y \in B_2)}{P(Y \in
+B_2)}$$
+
+para $B_1$, $B_2$ bolineanos e P(Y $\in$ $B_2$) > 0.
+```
+\
+```{example, name = "Exemplo de Probabilidade Condicional"}
+Sejam X e Y va's no mesmo espaço parâmetrico. Tais que
+X~Poi($\lambda_1$) e Y~Poi($\lambda_2$). Defini-se Z = X + Y. Encontrar
+a distribuição de X|Z, sabendo que X é independente de Y.
+
+$$P(X $\in$ B_1| Z \in B_2$)$$
+
+Como X e Y são discretas, podemos considerar somente os
+bolineanos $B_1$= {x} e $B_2$ = {z} temos assim:
+
+P(X = x|Z=z) = P(X=x|X+Y=z) = $\frac{P(X=x,X+Y==z)}{P(X+Y=z)}$ =
+$\frac{P(X=x,Y=z-x)}{P(X+Y=z)}$ =
+$\frac{P(X=x)P(Y=z-x)}{P(X+Y=z)}$
+
+Sabemos que se X ~ Poi($\lambda_1$) e Y ~ Poi($\lambda_2$), X
+independente de Y, então X + Y ~ Poi ($\lambda_1 + \lambda_2$).
+
+
+
+P(X=x|X + Y =z) = $\large \frac{\frac{e^{-\lambda x} \lambda_1^x}{x!}
+\frac{e^{-\lambda_2 } \lambda_2^{z-x}}{(z-x)!}}{\frac{e^{-(\lambda_1 +
+\lambda_2)z} (\lambda_1 + \lambda_2)^z}{z!}} = \frac{z! \lambda_1^x
+\lambda_2^{z-x}}{x!(z-x)! \frac{(\lambda_1 + \lambda_2)^z}{(\lambda_1 +
+\lambda_2)^x (\lambda_1 + \lambda_2)^{z-x}}} = \binom{z}{x}
+\binom{\lambda_1}{\lambda_1 + \lambda_2}^x \binom{\lambda_2}{\lambda_1 +
+\lambda_2}^{z-x}$
+
+
+
+Temos então:
+
+
+$$X|X+Y = z \sim Bin(z,\frac{\lambda_1}{\lambda_1 + \lambda_2})$$
+```

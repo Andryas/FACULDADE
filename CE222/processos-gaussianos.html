@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="processo-de-poisson.html">
+<link rel="next" href="procesos-de-wiener.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://andryas.github.io/"><center><i class="fa fa-arrow-left" aria-hidden="true"></i></center></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introdução</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#processos-estocasticos-aplicados"><i class="fa fa-check"></i>Processos Estocásticos Aplicados</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ementa"><i class="fa fa-check"></i>EMENTA</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-i---teorica"><i class="fa fa-check"></i>Parte I - Teórica</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-ii---pratica"><i class="fa fa-check"></i>Parte II - Prática</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="revisao.html"><a href="revisao.html"><i class="fa fa-check"></i><b>1</b> Revisão</a><ul>
+<li class="chapter" data-level="1.1" data-path="revisao.html"><a href="revisao.html#fenomenos"><i class="fa fa-check"></i><b>1.1</b> Fenômenos</a></li>
+<li class="chapter" data-level="1.2" data-path="revisao.html"><a href="revisao.html#definicoes-de-probabilidade"><i class="fa fa-check"></i><b>1.2</b> Definições de Probabilidade</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="processo-estocastico.html"><a href="processo-estocastico.html"><i class="fa fa-check"></i><b>2</b> Processo Estocástico</a><ul>
+<li class="chapter" data-level="2.1" data-path="processo-estocastico.html"><a href="processo-estocastico.html#o-que-e-um-processo"><i class="fa fa-check"></i><b>2.1</b> O que é um Processo?</a></li>
+<li class="chapter" data-level="2.2" data-path="processo-estocastico.html"><a href="processo-estocastico.html#processos-estocasticos"><i class="fa fa-check"></i><b>2.2</b> Processos Estocásticos</a></li>
+<li class="chapter" data-level="2.3" data-path="processo-estocastico.html"><a href="processo-estocastico.html#espacos-t-e-s"><i class="fa fa-check"></i><b>2.3</b> Espaços T e S</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-discreto-e-s-discreto"><i class="fa fa-check"></i><b>2.3.1</b> T discreto e S discreto</a></li>
+<li class="chapter" data-level="2.3.2" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-e-continuo-e-s-discreto"><i class="fa fa-check"></i><b>2.3.2</b> T é contínuo e S discreto</a></li>
+<li class="chapter" data-level="2.3.3" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-discreto-e-s-continuo"><i class="fa fa-check"></i><b>2.3.3</b> T discreto e S contínuo</a></li>
+<li class="chapter" data-level="2.3.4" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-continuo-e-s-continuo"><i class="fa fa-check"></i><b>2.3.4</b> T contínuo e S contínuo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="processo-estocastico.html"><a href="processo-estocastico.html#descricao-probabilistica"><i class="fa fa-check"></i><b>2.4</b> Descrição probabilística</a></li>
+<li class="chapter" data-level="2.5" data-path="processo-estocastico.html"><a href="processo-estocastico.html#media-variancia-e-covariancia"><i class="fa fa-check"></i><b>2.5</b> Média, variância e covariância</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html"><i class="fa fa-check"></i><b>3</b> Classificação de Processos</a><ul>
+<li class="chapter" data-level="3.1" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-estacionarios"><i class="fa fa-check"></i><b>3.1</b> Processos estacionários</a></li>
+<li class="chapter" data-level="3.2" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-fracamente-estacinario"><i class="fa fa-check"></i><b>3.2</b> Processos fracamente estacinário</a></li>
+<li class="chapter" data-level="3.3" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-independentes"><i class="fa fa-check"></i><b>3.3</b> Processos independentes</a></li>
+<li class="chapter" data-level="3.4" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-com-incrementos-independentes-e-estacionarios"><i class="fa fa-check"></i><b>3.4</b> Processos, com incrementos independentes e estacionários</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html"><i class="fa fa-check"></i><b>4</b> Cadeias de Markov</a><ul>
+<li class="chapter" data-level="4.1" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#caso-particular"><i class="fa fa-check"></i><b>4.1</b> Caso particular</a></li>
+<li class="chapter" data-level="4.2" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#distribuicao-do-processo"><i class="fa fa-check"></i><b>4.2</b> Distribuição do Processo</a></li>
+<li class="chapter" data-level="4.3" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#forma-matricial"><i class="fa fa-check"></i><b>4.3</b> Forma matricial</a></li>
+<li class="chapter" data-level="4.4" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#espacos-de-estados"><i class="fa fa-check"></i><b>4.4</b> Espaços de estados</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html"><i class="fa fa-check"></i><b>5</b> Extensões da Cadeia de Markov</a><ul>
+<li class="chapter" data-level="5.1" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#construcao-do-modelo"><i class="fa fa-check"></i><b>5.1</b> Construção do Modelo</a></li>
+<li class="chapter" data-level="5.2" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#passeio-aleatorio"><i class="fa fa-check"></i><b>5.2</b> Passeio aleátorio</a></li>
+<li class="chapter" data-level="5.3" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-ehrenfest"><i class="fa fa-check"></i><b>5.3</b> Cadeia de Ehrenfest</a></li>
+<li class="chapter" data-level="5.4" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#ruina-do-jogador"><i class="fa fa-check"></i><b>5.4</b> Ruína do jogador</a></li>
+<li class="chapter" data-level="5.5" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-nascimento-e-morte-c-n-m"><i class="fa fa-check"></i><b>5.5</b> Cadeia de Nascimento e Morte <strong>(C N-M)</strong></a></li>
+<li class="chapter" data-level="5.6" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-fila"><i class="fa fa-check"></i><b>5.6</b> Cadeia de Fila</a></li>
+<li class="chapter" data-level="5.7" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-ramificacao"><i class="fa fa-check"></i><b>5.7</b> Cadeia de ramificação</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estados-transientes-e-recorrentes.html"><a href="estados-transientes-e-recorrentes.html"><i class="fa fa-check"></i><b>6</b> Estados Transientes e Recorrentes</a><ul>
+<li class="chapter" data-level="6.1" data-path="estados-transientes-e-recorrentes.html"><a href="estados-transientes-e-recorrentes.html#martingales"><i class="fa fa-check"></i><b>6.1</b> Martingales</a></li>
+<li class="chapter" data-level="6.2" data-path="estados-transientes-e-recorrentes.html"><a href="estados-transientes-e-recorrentes.html#cadeias-n-m"><i class="fa fa-check"></i><b>6.2</b> Cadeias N-M</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="distribuicao-estacionaria-de-uma-cm.html"><a href="distribuicao-estacionaria-de-uma-cm.html"><i class="fa fa-check"></i><b>7</b> Distribuição estacionária de uma CM</a><ul>
+<li class="chapter" data-level="7.1" data-path="distribuicao-estacionaria-de-uma-cm.html"><a href="distribuicao-estacionaria-de-uma-cm.html#distribuicao-estacionaria-de-uma-cm."><i class="fa fa-check"></i><b>7.1</b> Distribuição Estacionária de uma CM.</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html"><i class="fa fa-check"></i><b>8</b> Distribuição estacionária de uma CM</a><ul>
+<li class="chapter" data-level="8.1" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html#metodo-de-decomposicao-especial"><i class="fa fa-check"></i><b>8.1</b> Método de Decomposição Especial</a></li>
+<li class="chapter" data-level="8.2" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html#de-p-c-n-m"><i class="fa fa-check"></i><b>8.2</b> DE p/ C-N-M</a></li>
+<li class="chapter" data-level="8.3" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html#cadeia-de-ehrenfest-modificada"><i class="fa fa-check"></i><b>8.3</b> Cadeia de Ehrenfest Modificada</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="processo-de-poisson.html"><a href="processo-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Processo de Poisson</a></li>
+<li class="chapter" data-level="10" data-path="processos-gaussianos.html"><a href="processos-gaussianos.html"><i class="fa fa-check"></i><b>10</b> Processos Gaussianos</a></li>
+<li class="chapter" data-level="11" data-path="procesos-de-wiener.html"><a href="procesos-de-wiener.html"><i class="fa fa-check"></i><b>11</b> Procesos de Wiener</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="processos-gaussianos" class="section level1">
+<h1><span class="header-section-number">10</span> Processos Gaussianos</h1>
+
+<div class="definition">
+<span id="def:unnamed-chunk-66" class="definition"><strong>DEF 10.1  </strong></span>Um PE, {X(t, t <span class="math inline">\(\in\)</span> T)} é chamado Gaussiano se qualquer combinação linear finita das va’s X(t), possui uma distribuição normal. Isto é, <span class="math display">\[\sum_i \alpha_i X(t_i)~Normal\]</span>
+</div>
+<br />
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-67" class="example"><strong>Exemplo 10.1  </strong></span>Seja X(t) = <span class="math inline">\(Z_1 cos \lambda t\)</span> + <span class="math inline">\(Z_2 sen \lambda t\)</span>, t <span class="math inline">\(\geq\)</span> 0, sendo <span class="math inline">\(Z_1,Z_2\)</span> VA’s iid N(<span class="math inline">\(\mu\)</span>,<span class="math inline">\(\sigma^2\)</span>). Então:</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+\sum \alpha_i X(t_i) &amp;= \alpha_1 X(t_1) + \alpha_2 X(t_2) + ... +
+     \alpha_n X(t_n)\\
+&amp;= \alpha_1[Z_1 cos \lambda t_1 + Z_2 sen \lambda t_1] + ... +
+   \alpha_n[Z_1 cos \lambda t_n + Z_2 sen \lambda t_n]\\
+&amp;= [\alpha_1 cos \lambda t_1 + \alpha_2 cos \lambda t_2 + ... + \alpha_n
+   cos \lambda t_n]Z_1 + [\alpha_1 cos \lambda t_1 + \alpha_2 cos \lambda t_2 + ... + \alpha_n
+   cos \lambda t_n]Z_2\\
+&amp;= b_nZ_1 + c_nZ_2 ~ Normal
+\end{split}
+\end{equation}\]</span>
+</div>
+<br />
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-68" class="theorem"><strong>Teorema 10.1  </strong></span>Seja {X(t), t <span class="math inline">\(\geq\)</span> 0} um processo gaussiano fracamente estacionario. Então esse processo é (tambem estritamente) estacionario.
+</div>
+<p><br />
+IDEIA DA PROVA: Se X(t) é Gaussiano, o processo Y(t) = X(t + <span class="math inline">\(\tau\)</span>), <span class="math inline">\(\tau \in\)</span> R é também gaussiano com mesma média e covariância de X(t). Ou seja a distribuição de X(t) e de X(t + <span class="math inline">\(\tau\)</span>) é a mesma.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="processo-de-poisson.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="procesos-de-wiener.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["CE222.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

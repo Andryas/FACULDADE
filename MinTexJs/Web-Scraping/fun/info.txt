@@ -1,0 +1,5 @@
+"Item":"Campo"
+"Email-to":"Seu email"
+"Email-from":"Email alternativo"
+"passwd-from":"senha"
+"Execute":"não"

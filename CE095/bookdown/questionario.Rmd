@@ -1,0 +1,45 @@
+---
+title: "Operação Lava Jato"
+subtitle: "Teorias de Avaliação"
+author: Turma 2018, 1º Semestre
+output:  pdf_document
+---
+
+Para os itens a resposta correta está em negrito.
+
+```{r, echo = FALSE}
+# Questionario
+resp <- read.csv2("../data.csv", na.strings =  "")
+
+# Gabarito
+gab <- read.csv2("../gab.csv",  head = FALSE)
+
+
+# ---------------------------------------------------------------------------
+enunciados <- names(resp)
+
+enunciados <- gsub("[.]"," ", enunciados)
+enunciados <- gsub("[ ]+", " ", enunciados)
+
+enunciados <- paste0("### [", 1:29,"] ", enunciados, "\n")
+
+alternativas <- lapply(1:ncol(resp),  FUN =  function(x) {
+    alternativas <- levels(resp[[x]])
+    if (x < 27) {
+        alternativas[which(grepl(gab[[x]], alternativas))] <-
+            paste0("**",alternativas[which(grepl(gab[[x]],
+                                                 alternativas))], "**")
+    }
+    paste0(LETTERS[1:length(alternativas)], ") ", alternativas, " \n")
+})
+# alternativas
+```
+
+
+```{r, echo = FALSE, results = 'asis'}
+for (i in 1:29) {
+    cat(enunciados[i])
+    cat(alternativas[[i]])
+    cat("\n")
+    }
+```

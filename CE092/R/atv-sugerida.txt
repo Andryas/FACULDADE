@@ -1,0 +1,7 @@
+Tópico para discussão: e estimação da média (esperança) a partir de um conjunto de dados depende da escolha da distribuição de probabilidades assumida para os dados?
+Atividade computacional sugerida
+
+    Gere um conjunto de dados pontuais e estime a média por verossimilhança assumindo diferentes distribuições. Verifique se as estimativas mudam.
+    Idem anterior com dados (todos ou parte deles) intervalares
+
+

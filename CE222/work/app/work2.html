@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Volatilidade Estocástica</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Andryas Waurzenczak   Caleb Souza" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Volatilidade Estocástica
+## <br/> Processos Estocásticos
+### Andryas Waurzenczak <br/> Caleb Souza
+### 13/06/2018
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+class: inverse, center, middle
+# Introdução
+---
+
+- Risco
+
+É a variabilidade de resultados inesperados.
+
+- O que é volatilidade?
+
+A volatilidade em sua forma mais básica é definia como o desvio-padrão dos retornos ou preços dos ativos.
+
+- Tipos de volatilidade
+  + Histórica
+  + Implícita
+  + Futura
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="fig/fig1.jpeg" alt="Histórica" width="1169" height="250" /&gt;
+&lt;p class="caption"&gt;Histórica&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+
+class: inverse, center, middle
+# Material
+
+---
+- Conjunto de dados retirado do Yahoo Finance! 
+
+- Período: 2012-01-02 até 2018-06-11
+
+- Empresa: BBDC4.SA (Bradesco)
+
+&lt;table&gt;
+&lt;caption&gt;10 primeiras linhas do conjunto de dados&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; open &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; high &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; low &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; close &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; volume &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2012-01-02 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.6445 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.6445 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.2745 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.4795 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3980127 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2012-01-03 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.5307 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.9006 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.5307 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.8494 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7374496 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2012-01-04 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.7527 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.8779 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.5648 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.8779 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6804375 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2012-01-05 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.6445 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.8551 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.2916 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.7640 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10146037 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2012-01-06 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.8665 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.0486 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.7299 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.9860 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10238627 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2012-01-09 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.0828 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.1340 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.8437 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.0316 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8664427 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2012-01-10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.1283 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.3275 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.0373 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.0714 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10656071 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2012-01-11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.9803 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.2137 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.8210 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.0828 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8224845 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2012-01-12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.2080 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.2991 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.9519 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.0885 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9515479 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2012-01-13 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.1112 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.1511 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.6844 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.7640 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12976260 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+class: inverse, center, middle
+# Métodos
+
+---
+
+* Retorno Contínuo
+
+`$$y_t = ln(\frac{P_t}{P_{t-1}}), \text{ t = 1,2,...,T}$$`
+
+`\(y_t\)`: retorno contínuo
+
+`\(P_t\)`: preço de fechamento
+
+&lt;br /&gt;
+
+--
+
+* Por que Retorno Contínuo e não o próprio preço?
+    + Retorno atende ao INTERESSE do investidor (ganho e perda)
+    + Propriedades estatísticas mais interessantes
+    
+&lt;br /&gt;
+&lt;br /&gt;
+
+--
+
+Algumas propriedades estatísticas são:
+    1. estacionariedade
+    2. fraca dependência linear e não linear
+    3. caudas pesadas na distribuição e excesso de curtose
+    4. comportamento heterocedástico condicional
+
+---
+
+# Volatilidade Histórica
+
+$$\text{Volatilidade Anual} = h_t \sqrt{252} $$
+
+
+`$$Y = y_1 + y_2 + ... + y_{251} + y_{252}$$`
+
+`$$Var(Y)= Var(y_1 + y_2 +... + y_{251} + y_{252})$$`
+
+`$$Var(Y)= Var(y_1)+Var(y_2)+...+Var(y_{251})+Var(y_{252})$$`
+
+Considerando a premissa *independente e identicamente distribuida* (i.i.d)
+
+`$$Var(Y)=252Var(y_1)$$`
+
+`$$\sqrt{Var(Y)} = \sqrt{252Var(y_1)}$$`
+
+`$$\text{Volatilidade Anual} = \sigma(Y) = \sigma{(y)\sqrt{252}}$$`
+
+
+`$$h = \sqrt{var(y_{1},...,y_{t})}, \text{ t = 1,2,...,T}$$`
+
+
+`\(y_t\)`: retorno contínuo
+
+
+---
+
+# Modelo de Volatilidade Estocástica
+
+- Considera-se a volatilidade como um componente não observável da série temporal.
+
+
+- Decomposta em `\(\sigma\)` (desvio-padrão) e `\(\varepsilon\)` um ruído branco
+
+
+O modelo de volatilidade estocástica é dado por:
+
+`$$y_t = \sigma \varepsilon_t e^{\frac{h_t}{2}}$$`
+
+`\(\varepsilon_t\)`: ruído branco ( `\(\varepsilon\)` ~ N(0,1))
+
+`\(h_t\)`: volatilidade estocástica 
+
+- h = ( `\(h_0\)` , `\(h_1\)` ,..., `\(h_T\)` ) não são observadas e são interpretadas normalmente como tempo-variação (volatilidade do processo)
+
+
+- Caracteristica chave: pode ser lineralizado
+
+`$$log (y^2_t) = h_t + log(\varepsilon_t^2) - E[log(\varepsilon_t^2)] + log( \sigma^2) + E[log(\varepsilon_t^2)]$$`
+- Fornece base para estimação (filtro de Kalman)
+
+---
+
+sendo `\(\theta\)` o vetor de parâmetros:
+
+`$$\theta = (\mu, \phi, \sigma^2_{\eta}) \in (-1,1)$$`
+- A restrição (-1,1) vem do parâmetro `\(\phi\)` no processo AR(1)
+    + AR significa *AutoRegressivo*
+    + p é o parâmetro de ordem (AR(p))
+    
+`$$h_t = \phi_0 + \phi_1Y_{t-1} + ... + \phi_p Y_{t-p} + \varepsilon_t$$`
+
+`\(\varepsilon\)`: iid N(0, `\(\sigma^2\)` )
+
+Para o nosso caso
+
+`$$h_t = \phi Y_{t-1} + \epsilon_t$$`
+
+Assim, estamos considerando somente o dia anterior.
+
+---
+
+- `package: stochvol`
+
+`$$y_t|h_t \sim N(0,exp(h_t))$$`
+`$$h_t|h_{t-1},\mu, \phi, \sigma_{\eta} \sim N(\mu + \phi(h_{t-1} - \mu), \sigma_{\eta}^2)$$`
+`$$h_0|\mu,\phi,\sigma_{\eta} \sim N(\mu, \frac{\sigma_{\eta}^2}{(1-\phi^2)})$$`
+
+- Para estimação dos parâmetros foi utilizado Métodos de Monte Carlo via Cadeias de Markov, abordagem Bayesiana.
+
+- As distribuições apriori consideradas, em sua maioria, foram as recomendadas pelo autor do pacote
+
+- Exceções: Foi considerado o processo AR(1) e para `\(\mu\)` ~ N(0,1).
+
+---
+
+#  Backtesting
+
+- `IDEIA`: Comparar os dois métodos apresentados
+
+--
+
+- Teste de Violação dos Limite de VaR (Valor em Risco)
+
+--
+
+  - `IDEIA`: Contar o número de vezes que os retornos da carteira excederam o intervalo de confiança estipulado pelo VaR.
+  
+  - O modelo que apresentar o menor valor ou mais próximo do intervalo de confiança estabelecido, é então o melhor modelo.
+  
+---
+
+# Valor em Risco
+
+`$$VaR = h_t z_{(1 - \alpha)}, \text{ t = 1, 2, ..., T}$$`
+
+`\(\alpha\)`: nível de confiança
+
+`\(h_t\)`: volatilidade
+
+# Teste de Violação
+
+`$$\eta = \sum_{t=1}^T  \left\{\begin{matrix}
+h_t &gt; VaR &amp;; 1\\ 
+0  &amp; 
+\end{matrix}\right.$$`
+
+---
+
+class: inverse, center, middle
+
+# Resultados
+
+---
+- Observar os anos de 2016 e 2017
+
+&lt;img src="work2_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Log-Retorno
+
+&lt;img src="work2_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Volatilidade Histórica
+
+- Cada janela representa um ano
+
+&lt;img src="work2_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Modelo de Volatilidade Estocástica
+
+&lt;img src="work2_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Estimativas do Modelo de Volatilidade Estocástica
+
+
+```
+## 
+## Summary of 10000 MCMC draws after a burn-in of 1000.
+## 
+## Prior distributions:
+## mu        ~ Normal(mean = 0, sd = 1)
+## (phi+1)/2 ~ Beta(a0 = 5, b0 = 1.5)
+## sigma^2   ~ 1 * Chisq(df = 1)
+## 
+## Posterior draws of parameters (thinning = 1):
+##             mean     sd      5%    50%   95% ESS
+## mu        -0.497 1.0072 -2.1180 -0.521 1.220 260
+## phi        1.000 0.0002  0.9993  1.000 1.000 267
+## sigma      0.106 0.0186  0.0781  0.105 0.139 186
+## exp(mu/2)  0.888 0.4892  0.3468  0.771 1.841 260
+## sigma^2    0.012 0.0041  0.0061  0.011 0.019 186
+```
+
+- Quando `\(\phi\)`, que é o coeficiente autoregressivo, se aproxima de 1, isso indica que o MVE se aproxima de um modelo GARCH(1,1).
+
+---
+
+# VS vs MVE
+
+&lt;img src="work2_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse, center, middle
+
+# Backtesting
+
+---
+
+class: middle
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Método &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; VaR &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Volatilidade Histórico &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.42 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Modelo de Volatilidade Estocástica &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.23 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+# Considerações Finais
+
+- O MVE e a VS tiveram praticamente os mesmos resultados
+
+- A VS é pouco realista quando se quer negociar ações em um período curto de tempo.
+
+- Tudo dependedo que você quer!
+
+
+---
+class: inverse, center, middle
+
+
+# OBRIGADO!
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

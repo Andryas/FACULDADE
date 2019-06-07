@@ -1,0 +1,38 @@
+---
+bibliography: [book.bib]
+biblio-style: apalike
+link-citations: yes
+tables: yes
+---
+
+```{r config, warning=FALSE, echo=FALSE, message=FALSE}
+# Options default dos chuncks
+knitr::opts_chunk$set(
+  message = FALSE,
+  echo = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  fig.pos = "H",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 9,
+  fig.caption =  TRUE
+)
+
+# Options xtable
+options(xtable.comment = FALSE,
+        xtable.table.placement = "H",
+        knitr.kable.NA = "",
+        scipen = 3)
+```
+
+
+```{r biblioteca}
+# Bibliotecas
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(tidyquant,  quietly =  TRUE)
+library(ggplot2)
+library(stochvol)
+```

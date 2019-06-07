@@ -1,0 +1,15 @@
+# Procesos de Wiener
+
+O processo de Wiener é um PE, continuo a tempo continuo que tem diversas
+aplicaçoes em fisica e economia.
+
+```{definition}
+Um PE{W(t), t $\in$ T} será um processo wiener se satisfazer:
+i. W(0) = 0
+ii. W(t) - W(s) ~ N(0, $\sigma^2$(t-s)), s $\in$ t
+iii. W(t) possui incrementos independentes
+```
+\
+Da mesma forma que foi feita com PP pode ser mostrado que:
+
+$$K_w(s,t) = cov[W(s),W(t)]= \sigma^2 min(s,t)$$

@@ -1,0 +1,83 @@
+# Processo de Poisson
+
+Veremos a seguir um dos principais processos a tempo continuo que
+aparece nas mais diversas áreas.
+Seja t o tempo para o processo aleatorio, começando em t =0. Suponha que
+eventos de um tipo particular ocorrem em instantes aleatorios de tempo,
+digamos $t_1$, $t_2$ ...
+
+Defina $T_i$ = $t_i - t_{i-1}$, t $\geq$ 1 os instantes são chamados de
+tempos de ocorrência dos eventos e as va's $T_i$ são chamadas de tempos
+entre ocorrencias (interocorrencias).
+
+```{definition}
+Um processo {X(t), t $\geq$ 0} é chamado processo de contagem se X(t)
+   representa o número total de eventos que ocorrem no instante
+   (0,t]. Um processo de contagem deve satisfazer:
+          i. x(t) $\geq$ 0 e X(0) = 0
+          ii. X(t) é valor inteiro
+          iii. X(s) $\leq$ X(t) se s < t (não decrescente)
+          iv. X(t) - X(s) é o número de eventos em (s,t)
+```
+\
+```{definition}
+Um processo de Poisson é um processo de contagem tal que:
+1. X(0) = 0
+2. X(t) tem incrementos independentes
+3. O número de eventos em qualquer intervalo de comprimento t, possui
+   distribuição Poisson de média $\lambda$(t), com $\lambda$ > 0, ou
+   seja, P[X(t+s) - X(s) = n] = $\frac{e^{-\lambda t}(\lambda
+   t)^n`}{n!}$ com n = 0,1,2,...
+```
+\
+NOTAÇÃO: X(t+s) - X(s) ~ Poisson ($\lambda$ t)
+
+O número $\lambda$ é chamado de **taxa do processo**. Como $\lambda$ é
+constante no tempo, esse processo de Poisson também é chamado de
+processo de Poisson homogenico de taxa $\lambda$.
+
+Seja X(t) um PP de taxa $\lambda$t, ou seja, um processo de Poisson não
+é um processo estocastico.
+
+Calculando a variância.
+
+NOTAR QUE: $K_x(t,t) = cov[X(t)X(t)]=Var[X(t)]=\lambda t$
+
+Seja 0 < s < t:
+
+\begin{equation}
+\begin{split}
+K_x &= cov[X(s),X(t)]\\
+&= cov[X(s),(X(t) - X(s) + X(s))]\\
+&= cov[X(s), X(t) - X(s)] + cov[X(s),X(s)]\\
+&= 0 + \lambda s\\
+&= \lambda s
+\end{split}
+\end{equation}
+
+Como $K_x(s,t)$ não depende da diferença (s-t), então confirmamos que o
+processo de Poisson não pode ser fracamente estacionario ou estacionario
+de 2ª ordem. Existe uma transformação do PP que é estacionaria.
+
+```{example}
+Seja X(t) em PP(\lambda) é definada por:
+$Y(t) = X(t+1) - X(t), t \geq 0$
+
+E[Y(t)] = E[X(t+1) - X(t)] = E[X(t+1)] - E[X(t)] = $\lambda(t+1-t)=
+        \lambda$
+
+Suponha que s $\leq$ t $\leq$ s + 1
+\begin{equation}
+\begin{split}
+K_y(s,t) &= cov[Y(s),Y(t)]\\
+&= cov[X(s+1)- X(s), X(t+1) - X(t)]\\
+&= cov[X(s+1), X(t+1)] - cov[X(s+1), X(t)] - cov[X(s), X(t+1)] + cov[X(s),X(t)]\\
+\end{split}
+\end{equation}
+```
+\
+```{definition}
+Um processo de Poisson {N(t), t $\geq$ 0} será chamado Processo de
+   Poisson não homenico, se a taxa dor uma função do tempo $\lambda$(t),
+   t $\geq$ 0. Também $\lambda$(t) é chamado intensidade do processo.
+```

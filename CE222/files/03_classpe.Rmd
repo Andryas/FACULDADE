@@ -1,0 +1,77 @@
+# Classificação de Processos
+
+## Processos estacionários
+
+Um PE {X(t), t $\in$ T} é chamado estacionário (ou estritamente
+estacionário) se, **para todo n** e para qualquer conjunto de tempos
+$t_i$, $t_i$ $\in$ T(i = 1,2,...,n) tem-se que:
+
+$$F_X(x_1,...,x_n;t_1,...,t_n) = F_X(x_1,...,x_n; t_1 + \pi,..., t_n +
+\pi)$$
+
+(distribuição da n-esima ordem)
+
+Isso significa que a distribuição não é afetada por deslocamento no
+tempo e X(t) e X($t+\pi$) terão a mesma distribuição.
+
+- Para a distribuição de 1º ordem temos que:
+
+$$F_X(x;t) = F_X(x;t \pi) = F_X(x)$$
+
+$\mu_x(t) = \mu \text{ constante}$
+
+$\sigma^2_x(t) = \sigma^2$
+
+Para ser estacionário é necessário ter média e variância constante, mas
+não suficiente.
+
+## Processos fracamente estacinário
+
+Se a condição de estacionaridade é satisfeita somente para n $\leq$ k
+(até certa ordem) então diremos que o processo é fracamente
+estacionário.
+
+Se X(t) é estacionário de 2º ordem, ele é chamado de fracamente
+estacionário (de 2º ordem). Ou, como outros autores colocam, processos
+estacináriode ordem k.
+
+```{theorem}
+Um PE {X(t), t $\in$ T} será fracamente estacionário se:
+
+i. $\mu_x(t) = \mu \text{ constante}$
+ii. $K_x(s,t) = K_x(|s-t|)$
+```
+
+ou seja, a covariância depende somente da diferença entre **s** e **t**.
+
+```{example}
+X(t) = $Z_1 cos \lambda t + Z_2 sen \lambda t$
+$\mu_x(t) = 0$
+$K_x(s,t) = cos[\lambda(s-t)]$
+```
+
+OBS: Todo processo estritamente estacinário é também fracamente
+estacinário, a recíproca, em geral, não é verdadeira.
+
+## Processos independentes
+
+Um PE {X(t, t $in$ T)} será chamado independente se para $t_i$ $\in$ T,
+n = 2,3,...
+
+$$F_X(x_1,x_2,...,x_n; t_1,...,t_n) = \prod^n_{i=1} F_x(x_i;t_i)$$
+
+Nesse caso uma distribuição de primeira, será suficiente para
+caracterizar o processo.
+
+## Processos, com incrementos independentes e estacionários
+
+Um processo {X(t), t $\in$ T} terá incrementos independentes se, para t
+0 < $t_1 < t_2 < ... < t_n$ as va's $X(0),X(t_1) - X(0),
+X(t_2)-X(t_1),..., X(t_n) - X(t_{n-1})$ são independentes.
+
+Isto é, o número de ocorrências de X(t) em intervalos disjuntos de tempo
+são variáveis independentes.
+
+Se X(t) possui incrementos independentes e ainda X(t) - X(s) tem a mesma
+distribuição que X(t+ $\pi$) - X(s + $\pi$) , $\forall s,t,\pi >0$, s <
+t diremos que o processo possui incrementos independentes estacionários.

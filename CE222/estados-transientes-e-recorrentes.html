@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="extensoes-da-cadeia-de-markov.html">
+<link rel="next" href="distribuicao-estacionaria-de-uma-cm.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://andryas.github.io/"><center><i class="fa fa-arrow-left" aria-hidden="true"></i></center></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introdução</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#processos-estocasticos-aplicados"><i class="fa fa-check"></i>Processos Estocásticos Aplicados</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ementa"><i class="fa fa-check"></i>EMENTA</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-i---teorica"><i class="fa fa-check"></i>Parte I - Teórica</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-ii---pratica"><i class="fa fa-check"></i>Parte II - Prática</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="revisao.html"><a href="revisao.html"><i class="fa fa-check"></i><b>1</b> Revisão</a><ul>
+<li class="chapter" data-level="1.1" data-path="revisao.html"><a href="revisao.html#fenomenos"><i class="fa fa-check"></i><b>1.1</b> Fenômenos</a></li>
+<li class="chapter" data-level="1.2" data-path="revisao.html"><a href="revisao.html#definicoes-de-probabilidade"><i class="fa fa-check"></i><b>1.2</b> Definições de Probabilidade</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="processo-estocastico.html"><a href="processo-estocastico.html"><i class="fa fa-check"></i><b>2</b> Processo Estocástico</a><ul>
+<li class="chapter" data-level="2.1" data-path="processo-estocastico.html"><a href="processo-estocastico.html#o-que-e-um-processo"><i class="fa fa-check"></i><b>2.1</b> O que é um Processo?</a></li>
+<li class="chapter" data-level="2.2" data-path="processo-estocastico.html"><a href="processo-estocastico.html#processos-estocasticos"><i class="fa fa-check"></i><b>2.2</b> Processos Estocásticos</a></li>
+<li class="chapter" data-level="2.3" data-path="processo-estocastico.html"><a href="processo-estocastico.html#espacos-t-e-s"><i class="fa fa-check"></i><b>2.3</b> Espaços T e S</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-discreto-e-s-discreto"><i class="fa fa-check"></i><b>2.3.1</b> T discreto e S discreto</a></li>
+<li class="chapter" data-level="2.3.2" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-e-continuo-e-s-discreto"><i class="fa fa-check"></i><b>2.3.2</b> T é contínuo e S discreto</a></li>
+<li class="chapter" data-level="2.3.3" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-discreto-e-s-continuo"><i class="fa fa-check"></i><b>2.3.3</b> T discreto e S contínuo</a></li>
+<li class="chapter" data-level="2.3.4" data-path="processo-estocastico.html"><a href="processo-estocastico.html#t-continuo-e-s-continuo"><i class="fa fa-check"></i><b>2.3.4</b> T contínuo e S contínuo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="processo-estocastico.html"><a href="processo-estocastico.html#descricao-probabilistica"><i class="fa fa-check"></i><b>2.4</b> Descrição probabilística</a></li>
+<li class="chapter" data-level="2.5" data-path="processo-estocastico.html"><a href="processo-estocastico.html#media-variancia-e-covariancia"><i class="fa fa-check"></i><b>2.5</b> Média, variância e covariância</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html"><i class="fa fa-check"></i><b>3</b> Classificação de Processos</a><ul>
+<li class="chapter" data-level="3.1" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-estacionarios"><i class="fa fa-check"></i><b>3.1</b> Processos estacionários</a></li>
+<li class="chapter" data-level="3.2" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-fracamente-estacinario"><i class="fa fa-check"></i><b>3.2</b> Processos fracamente estacinário</a></li>
+<li class="chapter" data-level="3.3" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-independentes"><i class="fa fa-check"></i><b>3.3</b> Processos independentes</a></li>
+<li class="chapter" data-level="3.4" data-path="classificacao-de-processos.html"><a href="classificacao-de-processos.html#processos-com-incrementos-independentes-e-estacionarios"><i class="fa fa-check"></i><b>3.4</b> Processos, com incrementos independentes e estacionários</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html"><i class="fa fa-check"></i><b>4</b> Cadeias de Markov</a><ul>
+<li class="chapter" data-level="4.1" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#caso-particular"><i class="fa fa-check"></i><b>4.1</b> Caso particular</a></li>
+<li class="chapter" data-level="4.2" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#distribuicao-do-processo"><i class="fa fa-check"></i><b>4.2</b> Distribuição do Processo</a></li>
+<li class="chapter" data-level="4.3" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#forma-matricial"><i class="fa fa-check"></i><b>4.3</b> Forma matricial</a></li>
+<li class="chapter" data-level="4.4" data-path="cadeias-de-markov.html"><a href="cadeias-de-markov.html#espacos-de-estados"><i class="fa fa-check"></i><b>4.4</b> Espaços de estados</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html"><i class="fa fa-check"></i><b>5</b> Extensões da Cadeia de Markov</a><ul>
+<li class="chapter" data-level="5.1" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#construcao-do-modelo"><i class="fa fa-check"></i><b>5.1</b> Construção do Modelo</a></li>
+<li class="chapter" data-level="5.2" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#passeio-aleatorio"><i class="fa fa-check"></i><b>5.2</b> Passeio aleátorio</a></li>
+<li class="chapter" data-level="5.3" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-ehrenfest"><i class="fa fa-check"></i><b>5.3</b> Cadeia de Ehrenfest</a></li>
+<li class="chapter" data-level="5.4" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#ruina-do-jogador"><i class="fa fa-check"></i><b>5.4</b> Ruína do jogador</a></li>
+<li class="chapter" data-level="5.5" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-nascimento-e-morte-c-n-m"><i class="fa fa-check"></i><b>5.5</b> Cadeia de Nascimento e Morte <strong>(C N-M)</strong></a></li>
+<li class="chapter" data-level="5.6" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-fila"><i class="fa fa-check"></i><b>5.6</b> Cadeia de Fila</a></li>
+<li class="chapter" data-level="5.7" data-path="extensoes-da-cadeia-de-markov.html"><a href="extensoes-da-cadeia-de-markov.html#cadeia-de-ramificacao"><i class="fa fa-check"></i><b>5.7</b> Cadeia de ramificação</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estados-transientes-e-recorrentes.html"><a href="estados-transientes-e-recorrentes.html"><i class="fa fa-check"></i><b>6</b> Estados Transientes e Recorrentes</a><ul>
+<li class="chapter" data-level="6.1" data-path="estados-transientes-e-recorrentes.html"><a href="estados-transientes-e-recorrentes.html#martingales"><i class="fa fa-check"></i><b>6.1</b> Martingales</a></li>
+<li class="chapter" data-level="6.2" data-path="estados-transientes-e-recorrentes.html"><a href="estados-transientes-e-recorrentes.html#cadeias-n-m"><i class="fa fa-check"></i><b>6.2</b> Cadeias N-M</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="distribuicao-estacionaria-de-uma-cm.html"><a href="distribuicao-estacionaria-de-uma-cm.html"><i class="fa fa-check"></i><b>7</b> Distribuição estacionária de uma CM</a><ul>
+<li class="chapter" data-level="7.1" data-path="distribuicao-estacionaria-de-uma-cm.html"><a href="distribuicao-estacionaria-de-uma-cm.html#distribuicao-estacionaria-de-uma-cm."><i class="fa fa-check"></i><b>7.1</b> Distribuição Estacionária de uma CM.</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html"><i class="fa fa-check"></i><b>8</b> Distribuição estacionária de uma CM</a><ul>
+<li class="chapter" data-level="8.1" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html#metodo-de-decomposicao-especial"><i class="fa fa-check"></i><b>8.1</b> Método de Decomposição Especial</a></li>
+<li class="chapter" data-level="8.2" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html#de-p-c-n-m"><i class="fa fa-check"></i><b>8.2</b> DE p/ C-N-M</a></li>
+<li class="chapter" data-level="8.3" data-path="distribuicao-estacionaria-de-uma-cm-1.html"><a href="distribuicao-estacionaria-de-uma-cm-1.html#cadeia-de-ehrenfest-modificada"><i class="fa fa-check"></i><b>8.3</b> Cadeia de Ehrenfest Modificada</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="processo-de-poisson.html"><a href="processo-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Processo de Poisson</a></li>
+<li class="chapter" data-level="10" data-path="processos-gaussianos.html"><a href="processos-gaussianos.html"><i class="fa fa-check"></i><b>10</b> Processos Gaussianos</a></li>
+<li class="chapter" data-level="11" data-path="procesos-de-wiener.html"><a href="procesos-de-wiener.html"><i class="fa fa-check"></i><b>11</b> Procesos de Wiener</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estados-transientes-e-recorrentes" class="section level1">
+<h1><span class="header-section-number">6</span> Estados Transientes e Recorrentes</h1>
+<p>Seja {<span class="math inline">\(X_n\)</span>, n <span class="math inline">\(\geq\)</span> 0} uma CM sobre S com função de transição p(x,y). Definida como:</p>
+<p><span class="math display">\[\rho_{xy} = \rho(T_y \leq \infty)\]</span></p>
+<p>I.E, a probabilidade de saindo de x, atingir o estado y em um tempo finito.</p>
+<p>Em particular, <span class="math inline">\(\rho_{yy}\)</span> denota a probabilidade de sair de y e retornar para y (alguma vez) -&gt; tempo finito.</p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-35" class="definition"><strong>DEF 6.1  </strong></span>Diremos que um estado y é <strong>transiente</strong> se <span class="math inline">\(\rho \leq 1\)</span>.
+</div>
+
+<p>Isto quer dizer que, se y for recorrente, então, com probabilidade 1, a cadeia retornará alguma vez em y.</p>
+<p>Se y for transiente, existe uma probabilidade positiva (de valor 1 - <span class="math inline">\(\rho_{yy}\)</span>) de sair de y e não retornar.</p>
+<p>Seja N(y) o número de vezesque a cadeia <strong>VISITA</strong> o estado y (<span class="math inline">\(n \geq 1\)</span>).</p>
+<p>Então, <span class="math inline">\(P_x\)</span> (N(y) <span class="math inline">\(\geq\)</span> 1 ) = <span class="math inline">\(P_x\)</span> (<span class="math inline">\(T_y \leq \infty\)</span>) = <span class="math inline">\(\rho_{xy}\)</span>.</p>
+<p>Denotaremos por EX(.) a esperança de alguma VA, com a cadeia partindo em x.</p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-36" class="theorem"><strong>Teorema 6.1  </strong></span>i) Se y é transiente, então <span class="math inline">\(F_x\)</span>(N(y) &lt; <span class="math inline">\(\infty\)</span>) = 1 e E(N(y)) = <span class="math inline">\(\frac{\rho_{xy}}{1-\rho_{yy}}\)</span>, x <span class="math inline">\(\epsilon\)</span> S ii) Se y é recorrente, então <span class="math inline">\(P_x(N(y) = \infty)\)</span> = 1 e <span class="math inline">\(E_x(N(y))\)</span> =<span class="math inline">\(\infty\)</span>.
+</div>
+
+<p>Isto significa que estados transientes são apenas estados de “passagem” ou transitórios, enquanto que estados recorrentes são estados permanentes ou definitivos. Isso produz uma partição do espaço de estados.</p>
+<p><span class="math display">\[S = S_T \cup S_R, (S_T \cap S_R = \varnothing)\]</span></p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-37" class="definition"><strong>DEF 6.2  </strong></span>Sejam x e y dois estados de S. Diremos que x atinge y se <span class="math inline">\(\rho_{xy}\)</span> &gt; 0.
+</div>
+<p><br />
+NOTAÇÃO : (independente do número de passos): x <span class="math inline">\(\rightarrow\)</span> y. “Saindo de x em n passos chego em y”</p>
+<br />
+
+<div class="definition">
+<span id="def:unnamed-chunk-38" class="definition"><strong>DEF 6.3  </strong></span>Diremos que dois estados quaisquer estão comunicados se x <span class="math inline">\(\rightarrow\)</span> y e y <span class="math inline">\(\rightarrow\)</span> x.
+</div>
+<br />
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-39" class="theorem"><strong>Teorema 6.2  </strong></span>Seja X um estado recorrente. Suponha que x <span class="math inline">\(\leftrightarrow\)</span> y. Então y será também recorrente. Aqui <span class="math inline">\(\rho_{xy}\)</span> = <span class="math inline">\(\rho_{yx}\)</span> = 1. (Isso significa que estados se comunicam somente com estados de mesma natureza)
+</div>
+<br />
+
+<div class="definition">
+<span id="def:unnamed-chunk-40" class="definition"><strong>DEF 6.4  </strong></span>1) Um conjunto C estados é chamado <strong>fechado</strong> se <span class="math inline">\(\rho_{xy}\)</span> = 0, x <span class="math inline">\(\leq\)</span> c, y <span class="math inline">\(\notin\)</span> c. 2) Um conjunto c é chamado irredutivel se x <span class="math inline">\(\leftrightarrow\)</span> y, <span class="math inline">\(\forall\)</span> x,y <span class="math inline">\(in\)</span> c. (Ou seja, todos os estados de c estão comunicados)
+</div>
+<br />
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-41" class="theorem"><strong>Teorema 6.3  </strong></span>Seja C um conjunto finito irredutivel e fechado de estados. Então, todos os estados em C serão recorrentes.
+</div>
+<br />
+C é o conjunto de estados. FINITO, FECHADO e IRREDUTÍVEL.<br />
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-42" class="example"><strong>Exemplo 6.1  </strong></span> Considere uma cadeia de markov com matrix de transição MT</p>
+</div>
+
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+0
+</th>
+<th style="text-align:right;">
+1
+</th>
+<th style="text-align:right;">
+2
+</th>
+<th style="text-align:right;">
+3
+</th>
+<th style="text-align:right;">
+4
+</th>
+<th style="text-align:right;">
+5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+</tr>
+</tbody>
+</table>
+<p>Solução</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+</th>
+<th style="text-align:left;">
+0
+</th>
+<th style="text-align:left;">
+1
+</th>
+<th style="text-align:left;">
+2
+</th>
+<th style="text-align:left;">
+3
+</th>
+<th style="text-align:left;">
+4
+</th>
+<th style="text-align:left;">
+5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #D7261E;">1</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0.25;">0.25</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0.5</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0.25</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0.2</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0.4</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0.2;">0.2</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0.2;">0.2</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #D7261E;">0.166666666666667</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #D7261E;">0.333333333333333</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #D7261E;">0.5</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #D7261E;">0.5</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #D7261E;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #D7261E;">0.5</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: 0;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #D7261E;">0.25</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #D7261E;">0</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: black;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #D7261E;">0.75</span>
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<strong>Note: </strong>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup></sup> A parte em vermelhor significa que é recorrente.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>S = {0,1,2,3,4,5}</p>
+<p>Como os conjuntos <span class="math inline">\(C_1\)</span> = {0} e <span class="math inline">\(C_2\)</span> = {3,4,5} são finitos, fechados e irredutiveis, então eles são conjuntos de estados recorrentes.</p>
+<p>Assim, <span class="math inline">\(S_R\)</span> = {0} <span class="math inline">\(\cup\)</span> {3,4,5} e <span class="math inline">\(S_T\)</span> {1,2}</p>
+<p>Notar que 0 é um estado absorvente, logo recorrente. 3,4 e 5 são estados recorrentes. ``` ## Probabilidade de absorção</p>
+<p>Seja C um conjunto de estados recorrentes (fechado e irredutivel) e seja <span class="math inline">\(\rho_c\)</span>(x) = <span class="math inline">\(P_x\)</span> (<span class="math inline">\(T_c\)</span> &lt; <span class="math inline">\(\infty\)</span>). Dado que a cadeia permanecerá definitivamente em C, se os estados de C forem atingidos, diremos que a cadeia foi absorvida em C e chamaremos a <span class="math inline">\(\rho_c\)</span>(x) de probabilidade de absorção de C, saindo do estado x.</p>
+<p>Notar que, trivialmente</p>
+<p><span class="math inline">\(\rho_c(x) = 1, x \in C\)</span></p>
+<p><span class="math inline">\(\rho_c(x) =0, x \notin C\)</span></p>
+<p>Vamos calcular <span class="math inline">\(\rho(x)\)</span>, x <span class="math inline">\(\in\)</span> <span class="math inline">\(S_T\)</span>.</p>
+
+<div class="theorem">
+<p><span id="thm:unnamed-chunk-45" class="theorem"><strong>Teorema 6.4  </strong></span>Seja C um conjunto finito, fechado e irredutivel de estados. Então:</p>
+<span class="math display">\[\rho_c(x) = \sum_{y \in C}P(x,y) + \sum_{y \in S_T} P(x,y)P_C(y), x
+\in S_T\]</span>
+</div>
+
+<p>Consideramos <span class="math inline">\(C_1\)</span> = {0}, x = 1 ou 2 (<span class="math inline">\(S_T = (1,2)\)</span>)</p>
+<p>x = 1</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+\rho_{{0}}(1) &amp;= \sum_{y \in {0}}P(1,y) + \sum_{y \in
+{1,2}}P(1,y)\rho_{{0}}(y), x \in S_T\\
+\rho_{{0}}(1) &amp;= P(1,0) + [P(1,1) \rho_{{0}}(1) + P(1,2) \rho_{{0}}(2)]\\
+\rho_{{0}}(1) &amp;= \frac{1}{4} + [\frac{1}{2} \rho_{{0}}(1) + \frac{1}{4}
+\rho_{{0}}(2)]\\
+\frac{1}{2} \rho_{{0}}(1) - \frac{1}{4}\rho_{{0}}(2) = \frac{1}{4} \text{ (1)
+Primeira equação}
+\end{split}
+\end{equation}\]</span>
+<p>x = 2</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+\rho_{{0}}(2) &amp;= \sum_{y \in {0}} P(2,y) + \sum_{y \in
+{1,2}}P(2,y)\rho_{{0}}(y)\\
+\rho_{{0}}(2) &amp;= 0 + [P(2,1)\rho_{{0}}(1) + P(2,2)\rho_{{0}}(2)]\\
+\frac{1}{5}\rho_{{0}}(1) - \frac{3}{5} \rho_{{0}}(2) = 0 \text{ (2)
+Segunda equação}
+\end{split}
+\end{equation}\]</span>
+<p>De (2):</p>
+<p><span class="math display">\[\frac{1}{5}\rho_{{0}}(1) = \frac{3}{5}\rho_{{0}}(2) =&gt;
+\frac{1}{3}\rho_{{0}}(1)\]</span></p>
+<p>De (1):</p>
+<p><span class="math display">\[\frac{1}{2}\rho_{{0}}(1) - \frac{1}{4} \frac{1}{3}\rho_{{0}}(1) =
+\frac{1}{4}\]</span></p>
+<p>Logo:</p>
+<span class="math display">\[\begin{equation}
+\frac{6 \rho_{{0}}(1) - \rho_{{0}}(1)}{12} = \frac{1}{4}\\
+5 \rho_{{0}}(1) = 3\\
+\rho_{{0}}(1) = \frac{3}{5}
+\end{equation}\]</span>
+<p>Em (2):</p>
+<span class="math display">\[\begin{equation}
+\frac{1}{2} \frac{3}{5} - \frac{1}{4} \rho_{{0}}(2)= \frac{1}{4}\\
+\rho_{{0}}(2) = \frac{1}{5}
+\end{equation}\]</span>
+<p>Como a cadeia só pode ser absorvente em <span class="math inline">\(C_1\)</span> ou <span class="math inline">\(C_2\)</span>, essas probabilidade são complementares logo:</p>
+<p><span class="math display">\[\rho_{{3,4,5}}(1) = 1 - \rho_{{0}}(1) = \frac{2}{5}\]</span></p>
+<p>e</p>
+<p><span class="math display">\[\rho_{{3,4,5}}(2) = \frac{4}{5}\]</span></p>
+<div id="martingales" class="section level2">
+<h2><span class="header-section-number">6.1</span> Martingales</h2>
+<p>Considere uma CM sobre {0,1,2,…,d} com função de transição <span class="math inline">\(\rho\)</span> satisfazendo:</p>
+<p><span class="math display">\[\sum_{y=0}^d yP(x,y) = x, x=0,...,d\]</span></p>
+<p>então, E[<span class="math inline">\(X_{n+1}|X_0 = x_0,...,X_{n-1}=x_{n-1},X_n=x_n\)</span>]=x (i.e, o valor esperado de <span class="math inline">\(X_{n+1}\)</span> dado o passado e o presente do processo, depende somente do valor presente.)</p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-46" class="definition"><strong>DEF 6.5  </strong></span>Uma sequência de VA’S satisfazendo a propriedade acima será chamado de <strong>MARTINGALES</strong>.
+</div>
+
+<p>OBS: Na verdade um martingale não é necessariamente uma CM, mas é um elemento importante na teoria de jogos.</p>
+</div>
+<div id="cadeias-n-m" class="section level2">
+<h2><span class="header-section-number">6.2</span> Cadeias N-M</h2>
+<p>Quando uma CM é irredutivel, ou seja, todos seus estado são da mesma natureza. “Todos são transientes ou todos são recorrentes”.</p>
+<p>Quando S é finito e a CM é irredutivel.</p>
+<p>Todos os estados serão recorrentes. Nesse caso diremos que a cadeia é recorrente.</p>
+<p>Analisar os estados quando S não é finito é um problema extremamente complexo e a natureza dos estados denpederá da existencia de algumas estruturas probabilisticas sobre a cadeia. O caso particular das cadeias de nascimento e morte é um dos casos em que consegue-se um criterio de classificação de estados</p>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-47" class="definition"><strong>DEF 6.6  </strong></span>Seja {<span class="math inline">\(X_n, n \geq 0\)</span>} uma C-N-M com função de probabilidade.</p>
+<span class="math display">\[
+P(x,y) =\left\{\begin{matrix}
+  q_x &amp;, y = x-1\\
+  r_x &amp;, y = x \\
+  p_x &amp;, y = x +1
+\end{matrix}\right.
+\]</span>
+</div>
+
+<p>sendo <span class="math inline">\(q_x + p_x + r_x\)</span> = 1, <span class="math inline">\(\forall\)</span> x <span class="math inline">\(\in\)</span> S.</p>
+<p><span class="math display">\[P_x(T_a &lt; T_b) = \frac{\sum_{y=x}^{b-1} \gamma_y}{\sum_{y=a}^{b-1}}\]</span></p>
+<p>sendo que:</p>
+<p><span class="math display">\[\gamma_y = \frac{q_1q_2...q_y}{p_1p_2...p_y}\]</span></p>
+<p>a &lt; x &lt; b</p>
+<p>Ainda,</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+P_x(T_a &lt; T_b) &amp;= 1 - P(T_a &lt; T_b)\\
+&amp;= \frac{\sum_{y=a}^{x-1} \gamma_y}{\sum_{y=a}^{b-1}}
+\end{split}
+\end{equation}\]</span>
+<p>Notar que <span class="math inline">\(P_x(T_a &lt; T_b)\)</span> indica a probabilidade de saindo de x atingir o estado A antes de que o estado B.</p>
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-48" class="example"><strong>Exemplo 6.2  </strong></span> Um jogador faz aposstas de um dolar por vez com probabilidade <span class="math inline">\(\frac{9}{19}\)</span> de ganhar e <span class="math inline">\(\frac{10}{19}\)</span> de perder. Supoha que o jogador deixa de jogar quando está arruinado ou quando o seu lucro for de 25 dolares. Suponha que ele inicia o jogo com capital de 10 dolares.</p>
+<h3 id="a."><span class="header-section-number">6.2</span> a.</h3>
+<p>Encontrar a probabilidade do jogador se retirar ganhando</p>
+<p>Temos que <span class="math inline">\(\gamma_y\)</span>:</p>
+<p><span class="math display">\[\gamma_y =
+\frac{(\frac{10}{19})(\frac{10}{19})...(\frac{10}{19})}{(\frac{9}{19})(\frac{9}{19})...(\frac{9}{19})}
+= \frac{(\frac{10}{19})^y}{(\frac{9}{19})^y} = (\frac{10}{9})^y\]</span></p>
+<p>Logo:</p>
+<span class="math display">\[\begin{equation}
+\begin{split}
+P_{10}(T_{35}&lt;T_0) &amp;= \frac{\sum_{y=0}^9
+(\frac{10}{9})^y}{\sum_{y=0}^{34} (\frac{10}{9})^y}\\
+&amp;= \frac{\frac{1 - (\frac{10}{9})^{10}}{1 - \frac{10}{9}}}{\frac{1 -
+(\frac{10}{9})^{35}}{1 - \frac{10}{9}}}\\
+&amp;= \frac{1 - (\frac{10}{9})^{10}}{1 - (\frac{10}{9})^{35}}= 0.047
+\end{split}
+\end{equation}\]</span>
+<h3 id="b."><span class="header-section-number">6.2</span> b.</h3>
+<p>Encontrar a perda esperada</p>
+<span class="math display">\[\begin{equation}
+L = \left\{\begin{matrix}
+10 &amp;, \text{ se atingir 0} \\
+-25 &amp;, \text{ se atingir 35}
+\end{matrix}\right.
+\end{equation}\]</span>
+<span class="math display">\[\begin{equation}
+\begin{split}
+E(L) &amp;= 10 P(atingir 0) - 25 P(atingir35)\\
+&amp;= 10(1x 0.047) - 25(0.047)\\
+&amp;= 10 - 35x0.047
+\end{split}
+\end{equation}\]</span>
+</div>
+<br />
+
+<div class="theorem">
+<p><span id="thm:unnamed-chunk-49" class="theorem"><strong>Teorema 6.5  </strong></span>Seja {<span class="math inline">\(X_n, n \geq 0\)</span>} uma C-N-M irredutivel sobre S ={0,1,2,…}. Então, a cadeia será recorrente se:</p>
+<p><span class="math display">\[\sum_{x=1}^{\infty} \gamma_x = \infty\]</span></p>
+caso contrario a cadeia sera transiente
+</div>
+
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="extensoes-da-cadeia-de-markov.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="distribuicao-estacionaria-de-uma-cm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["CE222.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

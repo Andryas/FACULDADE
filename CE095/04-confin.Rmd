@@ -1,0 +1,31 @@
+# Considerações Finais
+
+```{r}
+itens1 <- paste(itens[as.integer(stringr::str_extract(itens,"[0-9]+")) <=
+                      20],  collapse = ", ")
+
+itens2 <- paste(itens[as.integer(stringr::str_extract(itens,"[0-9]+")) >
+                      20], collapse = ", ")
+```
+
+Dos 20 itens elaborados pela turma de 2018, 1º semestre, somente `r itens1`
+foram utilizados, os outros 6 itens retirados de outra turma, somete `r itens2` 
+foi utilizado, pois este apresentaram estimativas coerentes com as
+especificadas. Ao todo foram utilizados 12 dos 26.
+
+Dois resultados interessantes se deram com relação aos fatores associados que
+são que indivíduos que responderam **Sempre** para a pergunte
+`r fatores.cols[1]` tiveram um $\theta$ tenta em média maior, Ou seja esses
+fatores contribuiram para uma maior compreensão da **Operação Lava Jato**. É
+um resultado um tanto obvio, mas importante, pois isso mostra que a busca e o
+interesse pela informação sobre os acontecimentos políticos do país contribui
+para uma maior compreensão do atual estado da política do Brasil.
+
+O outro resultado é que a além da busca pela informação sobre os
+acontecimentos políticos, a participação ativa nas manifestações, passeatas,
+protestos etc contribui significativamente para um traço lantente maior sobre
+a **Operação Lava Jato**.
+
+Sobre os itens âncoras, os resultados não foram satisfatorios. Pois refletem somente um nível da prova, ou seja, a única coisa que podemos dizer é que indivíduos que tiverem um $\theta$ maior que 1 sabem algo relacionado com *Principais Políticos envolvidos e suas acusações e crimes cometidos*; *Empreiteiros, doleiros e outros envolvidos e suas acusações e crimes cometidos* e *Partidos políticos envolvidos em acusações e crimes*. 
+
+Por último, a curva de informação do teste nos mostra a amplitude de  -3 a 3, podendo ser visualemnte aproximada por uma normal, significando que os itens  discerne indivíduos medianos. 

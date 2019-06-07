@@ -1,0 +1,157 @@
+# Materiais e Métodos
+
+```{r}
+# Carrega Dados
+# bra <- tq_get("BBDC4.SA")
+# saveRDS(bra, "bra.RData")
+bra <- readRDS("bra.RData")
+# Somente dias com negociações
+# bra <- bra %>% filter(volume > 0)
+# bra <- bra %>%  filter(date > as.Date("2012-01-02"))
+# head(bra)
+```
+
+## Material
+
+O material utilizado é um conjunto de dados, das negociações da empresa
+BBDC4.SA, retirado do [Yahoo Finance!](https://finance.yahoo.com/). A empresa
+foi selecionada pela preferência dos autores. O período que abragem esta
+seleção vai de `r min(bra$date)` à `r max(bra$date)`. Os dados são diários.
+
+O conjunto de dados possuem ao todo 6 colunas, sendo estas, *Data*,
+*Máxima*, *Miníma*, *Abertura*, *Fechamento* e *Volume*.  Abaixo pela Tabela
+\@ref(tab:head) pode-se observar as 6 primeiras linhas dos dados.
+
+```{r head}
+kable(x = head(bra[, c(1:6)]),
+      format = "latex",
+      col.names = c("Data", "Abertura", "Fechamento", "Máxima", "Miníma",
+                    "Volume"),
+      booktabs =  TRUE,
+      caption = "6 primeiras linhas dos conjuntos de dados"
+      ) %>%
+    kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+## Métodos
+
+### Retorno Contínuo
+
+Existe duas formas de retorno principais para se fazer estudo da volatilidade,
+o retorno discreto e o retorno contínuo. Uma pergunta que naturalmente surge
+é, por que usar o retorno e não o próprio preço do ativo negociado? A resposta
+tem dois por ques. O primeiro é que o retorno *atende* o interesse do
+investidor (ganhos e perdas) e, além disso, possui propriedades estatísticas
+mais interessantes, são elas:
+
+1. estacionariedade (média e variância constantes)
+2. fraca dependência linear e não linear
+3. caudas pesadas na distribuição e execesso de curtose
+4. comportamento heterocedástico condicional
+
+O retorno utilizado neste trabalho (retorno contínuo ou **log-retorno**) é
+definido a seguir:
+
+$$y_t = ln(\frac{P_t}{P_{t-1}}), \text{ t = 1, 2, ..., T}$$
+
+onde $y_t$ é o retorno diário no instante t e $P_t$ significa, normalmente, o
+Preço de **fechamento** no instante t.
+
+```{r retorno-continuo, echo = TRUE}
+# r: Preço de Fechamento
+rc <- function(r) {
+    # Instante inicial
+    rc <- c(0)
+    for (i in 2:length(r)) {
+        rc <- c(rc, log(r[i] / r[i - 1]))
+    }
+    # Retorno o vetor do log-retorno
+    rc
+}
+```
+
+
+### Volatilidade Histórica
+
+A estimativa por desvio padrão é considerado como um método simplório, pois
+este método ignora caracaterísticas inerentes de uma série além de atribuir
+pesos iguais a todas observações sem levar em consideração o fato da
+relevancia das observações mais recentes. É  expressa da seguinte maneira:
+
+$$\sigma_s = \sqrt{(var(y_t))}, \text{ t = 1, 2, ..., T}$$
+
+para cada dia a volatilidade deste período é a mesma.
+
+```{r volatilidade-simples, echo = TRUE,eval = FALSE}
+sd(r) # Desvio-Padrão do log-retorno
+```
+
+### Modelo de Volatilidade Estocástica
+
+O modelo de volatilidade estocástica considera a volatilidade como
+um componente não observado da série temporal, \cite{caio}.
+Em outras palavras, não se pode medir a volatilidade, apenas estima-la.
+Assim o modelo de volatilidade estocástica (MVE) é proposto para estimar a
+volatilidade da empresa em estudo e é definido da forma como segue:
+
+
+$$Y_t = \sigma_t \varepsilon_t$$
+
+$$\sigma_t = e^{\frac{h_t}{2}}$$
+
+onde $Y_t$ é o log-retorno do fechamento e $h_t$, na sua especificação mais simples,
+é descrito como um processo auto regressivo de primeira ordem, AR(1), dado por:
+
+$$h_t = \alpha_0 + \alpha_1 * h_{t-1} + \eta_t$$
+
+em que $\eta_t$ é um termo de erro com média zero e variância $\sigma^2_{\eta}$,
+$\eta \sim N(0,\sigma^2_{\eta})$. Para que a volatilidade seja um processo **estacionário**
+o coeficiente AR deve ser menor que a unidade, |$\alpha_1$| < 1.
+
+O coeficiente AR da volatilidade expressa o comportamento de *persistência da volatilidade*.
+Quando este se aproxima da unidade, o MVE fica parecido com o modelo GARCH(1,1).
+
+Para este trabalho utilizou-se o pacote `stochvol` , \cite{sv}. Este pacote foi implementado
+por Gregor Kastner em setembro de 2017. A forma como foi especificado o modelo é expressa
+em uma forma hierarquica, dado abaixo:
+
+$$y_t | h_t \sim  N(0,exp(h_t))$$
+
+$$h_t|h_{t-1},\mu, \phi, \sigma_{\eta} \sim N(\mu + \phi(h_{t-1} - \mu),\sigma_{\eta}^2)$$
+
+$$h_0|\mu,\phi,\sigma_{\eta} \sim N(\mu,\sigma_{\eta}^2 / (1-\phi^2))$$
+
+onde N(0,$\sigma_{\eta}^2$) denota uma distribuição normal com média ($\mu$) e variância ($\sigma_{\eta}^2$).
+O autor refere-se $\theta = (\mu,\phi,\sigma_{\eta})^T$ como o vetor de parâmetros a serem
+estimados. Para cada parâmetro é especificado uma distribuição apriori e a posteriori é feita
+via Markov chain Monte Carlo (MCMC).
+
+
+```{r volatilidade-estocastica, eval = FALSE, echo = TRUE}
+library(stochvol)
+mve <- svsample(r,              # log-retorno
+                priormu = c(0, 1),   # N(0,1)
+                designmatrix = "ar1") # AR(1))
+```
+
+
+### Valor em Risco (VaR)
+
+
+O Valor em Risco (VaR) é um método para avaliar o risco em operações
+financeiras. No nosso caso, para avaliar os dois métodos de volatilidade
+apresentados. O objetivo desse indicador é quantificar o risco do ativo,
+ou seja, o risco de perdas monetárias decorrenteas da variação de preços.
+Para esse fim, será feito o *backtesting*, recomendado pelo riskmetrics,
+utilizando o critério de **teste de violação dos limites de VaR**. O
+método que apresentar a menor porcentagem de violação será então considerado
+o melhor método para o calculo de volatilidade. Neste estudo em questão
+utilizaremos somente a relação de perda, ou seja, o interesse está em medir
+as violações negativas.
+
+
+## Recursos Computacionais
+
+Os recursos computacionais utilizados foram o software R,
+\cite{software-r}. Os principais pacotes foram `dplyr`, `knitr`,
+`kableExtra`, `tidyquant`, `ggplot2` e `stochvol.`

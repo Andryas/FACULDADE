@@ -1,0 +1,409 @@
+---
+title: "Volatilidade Estocástica"
+subtitle: "<br/> Processos Estocásticos"
+author: "Andryas Waurzenczak <br/> Caleb Souza"
+date: "13/06/2018"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r config, echo = FALSE, include = FALSE}
+# Configurações
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  message = FALSE,
+  echo = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  fig.pos = "H",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 11,
+  fig.caption =  TRUE
+)
+```
+
+```{r biblioteca}
+# Bibliotecas
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(tidyquant,  quietly =  TRUE, verbose = FALSE)
+library(ggplot2)
+# library(tseries)
+library(stochvol)
+```
+
+```{r funs}
+# Retorno Contínuo
+rc <- function(r) {
+    rc <- c(0)
+    for (i in 2:length(r)) {
+        rc <- c(rc, log(r[i] / r[i - 1]))
+    }
+    rc
+}
+```
+
+
+```{r data}
+# bra <- tq_get("BBDC4.SA", from = "2012-01-01")
+# saveRDS(bra, "bra.RData")
+bra <- readRDS("bra.RData")
+# Remove dias não negociados
+bra <- bra[bra$volume!=0,]
+bra <- bra[complete.cases(bra),]
+bra$rc <- rc(bra$close)
+bra$tempo <- lubridate::year(bra$date)
+
+vs <- aggregate(rc ~ tempo, data = bra, FUN = sd)
+colnames(vs) <- c("tempo","vs")
+
+bra <- merge(x = bra,
+             y = vs,
+             by = "tempo")
+
+bra$vs <- bra$vs*-1
+
+# # Modelo GARCH
+# mg0 <- garch(bra$rc,
+#              order = c(1,1),
+#              trace = FALSE)
+# 
+# coefs <- coefficients(mg0)
+# bra$vg <- predict(mg0,newdata = bra$rc)[,2]
+
+# res <- svsample(bra$rc,
+#                 priormu = c(0, 1),
+#                 designmatrix = "ar1")
+# summary(res, showlatent = FALSE)
+# x <- latent(res)
+# x <- apply(x, 2, mean)
+# saveRDS(x,"x.RData")
+# saveRDS(res,"res.RData")
+# res <- readRDS("res.RData")
+x <- readRDS("x.RData")
+bra$ve <- c(0,exp(x/2)) * -1
+```
+
+
+class: inverse, center, middle
+# Introdução
+---
+
+- Risco
+
+É a variabilidade de resultados inesperados.
+
+- O que é volatilidade?
+
+A volatilidade em sua forma mais básica é definia como o desvio-padrão dos retornos ou preços dos ativos.
+
+- Tipos de volatilidade
+  + Histórica
+  + Implícita
+  + Futura
+
+```{r ,fig.cap= "Histórica",out.height= 250}
+include_graphics("fig/fig1.jpeg")
+```
+
+
+---
+
+class: inverse, center, middle
+# Material
+
+---
+- Conjunto de dados retirado do Yahoo Finance! 
+
+- Período: `r min(bra$date)` até `r max(bra$date)`
+
+- Empresa: BBDC4.SA (Bradesco)
+
+```{r}
+kable(head(bra[,c(2:7)],n = 10),
+      format = "html",
+      align = "c",
+      booktabs = TRUE,
+      caption = "10 primeiras linhas do conjunto de dados"
+      )
+```
+
+---
+
+class: inverse, center, middle
+# Métodos
+
+---
+
+* Retorno Contínuo
+
+$$y_t = ln(\frac{P_t}{P_{t-1}}), \text{ t = 1,2,...,T}$$
+
+$y_t$: retorno contínuo
+
+$P_t$: preço de fechamento
+
+<br />
+
+--
+
+* Por que Retorno Contínuo e não o próprio preço?
+    + Retorno atende ao INTERESSE do investidor (ganho e perda)
+    + Propriedades estatísticas mais interessantes
+    
+<br />
+<br />
+
+--
+
+Algumas propriedades estatísticas são:
+    1. estacionariedade
+    2. fraca dependência linear e não linear
+    3. caudas pesadas na distribuição e excesso de curtose
+    4. comportamento heterocedástico condicional
+
+---
+
+# Volatilidade Histórica
+
+$$\text{Volatilidade Anual} = h_t \sqrt{252} $$
+
+
+$$Y = y_1 + y_2 + ... + y_{251} + y_{252}$$
+
+$$Var(Y)= Var(y_1 + y_2 +... + y_{251} + y_{252})$$
+
+$$Var(Y)= Var(y_1)+Var(y_2)+...+Var(y_{251})+Var(y_{252})$$
+
+Considerando a premissa *independente e identicamente distribuida* (i.i.d)
+
+$$Var(Y)=252Var(y_1)$$
+
+$$\sqrt{Var(Y)} = \sqrt{252Var(y_1)}$$
+
+$$\text{Volatilidade Anual} = \sigma(Y) = \sigma{(y)\sqrt{252}}$$
+
+
+$$h = \sqrt{var(y_{1},...,y_{t})}, \text{ t = 1,2,...,T}$$
+
+
+$y_t$: retorno contínuo
+
+
+---
+
+# Modelo de Volatilidade Estocástica
+
+- Considera-se a volatilidade como um componente não observável da série temporal.
+
+
+- Decomposta em $\sigma$ (desvio-padrão) e $\varepsilon$ um ruído branco
+
+
+O modelo de volatilidade estocástica é dado por:
+
+$$y_t = \sigma \varepsilon_t e^{\frac{h_t}{2}}$$
+
+$\varepsilon_t$: ruído branco ( $\varepsilon$ ~ N(0,1))
+
+$h_t$: volatilidade estocástica 
+
+- h = ( $h_0$ , $h_1$ ,..., $h_T$ ) não são observadas e são interpretadas normalmente como tempo-variação (volatilidade do processo)
+
+
+- Caracteristica chave: pode ser lineralizado
+
+$$log (y^2_t) = h_t + log(\varepsilon_t^2) - E[log(\varepsilon_t^2)] + log( \sigma^2) + E[log(\varepsilon_t^2)]$$
+- Fornece base para estimação (filtro de Kalman)
+
+---
+
+sendo $\theta$ o vetor de parâmetros:
+
+$$\theta = (\mu, \phi, \sigma^2_{\eta}) \in (-1,1)$$
+- A restrição (-1,1) vem do parâmetro $\phi$ no processo AR(1)
+    + AR significa *AutoRegressivo*
+    + p é o parâmetro de ordem (AR(p))
+    
+$$h_t = \phi_0 + \phi_1Y_{t-1} + ... + \phi_p Y_{t-p} + \varepsilon_t$$
+
+$\varepsilon$: iid N(0, $\sigma^2$ )
+
+Para o nosso caso
+
+$$h_t = \phi Y_{t-1} + \epsilon_t$$
+
+Assim, estamos considerando somente o dia anterior.
+
+---
+
+- `package: stochvol`
+
+$$y_t|h_t \sim N(0,exp(h_t))$$
+$$h_t|h_{t-1},\mu, \phi, \sigma_{\eta} \sim N(\mu + \phi(h_{t-1} - \mu), \sigma_{\eta}^2)$$
+$$h_0|\mu,\phi,\sigma_{\eta} \sim N(\mu, \frac{\sigma_{\eta}^2}{(1-\phi^2)})$$
+
+- Para estimação dos parâmetros foi utilizado Métodos de Monte Carlo via Cadeias de Markov, abordagem Bayesiana.
+
+- As distribuições apriori consideradas, em sua maioria, foram as recomendadas pelo autor do pacote
+
+- Exceções: Foi considerado o processo AR(1) e para $\mu$ ~ N(0,1).
+
+---
+
+#  Backtesting
+
+- `IDEIA`: Comparar os dois métodos apresentados
+
+--
+
+- Teste de Violação dos Limite de VaR (Valor em Risco)
+
+--
+
+  - `IDEIA`: Contar o número de vezes que os retornos da carteira excederam o intervalo de confiança estipulado pelo VaR.
+  
+  - O modelo que apresentar o menor valor ou mais próximo do intervalo de confiança estabelecido, é então o melhor modelo.
+  
+---
+
+# Valor em Risco
+
+$$VaR = h_t z_{(1 - \alpha)}, \text{ t = 1, 2, ..., T}$$
+
+$\alpha$: nível de confiança
+
+$h_t$: volatilidade
+
+# Teste de Violação
+
+$$\eta = \sum_{t=1}^T  \left\{\begin{matrix}
+h_t > VaR &; 1\\ 
+0  & 
+\end{matrix}\right.$$
+
+---
+
+class: inverse, center, middle
+
+# Resultados
+
+---
+- Observar os anos de 2016 e 2017
+
+```{r}
+ggplot(bra,aes(x=date, y = close))+
+  geom_line()+
+  labs(x = "Data",y="Preço de Fechamento") +
+  theme_bw()
+```  
+
+---
+
+## Log-Retorno
+
+```{r}
+ggplot(bra,aes(x=date,y=rc)) + geom_line() +
+  labs(x="Data",y="Log-Retorno")+
+  theme_bw()
+```
+
+---
+
+# Volatilidade Histórica
+
+- Cada janela representa um ano
+
+```{r}
+ggplot(bra,aes(x=date)) + 
+  geom_line(aes(y=rc)) +
+  geom_line(aes(y=vs*qnorm(0.95)), colour = "red") + 
+  labs(x="Data",y="Log-Retorno") +
+  theme_bw()
+```
+
+---
+
+# Modelo de Volatilidade Estocástica
+
+```{r}
+ggplot(bra,aes(x=date)) + 
+  geom_line(aes(y=rc)) +
+  geom_line(aes(y=ve*qnorm(0.95)), colour = "red") + 
+  labs(x="Data",y="Log-Retorno") +
+  theme_bw()
+```
+
+---
+
+# Estimativas do Modelo de Volatilidade Estocástica
+
+```{r}
+summary(res,showlatent = FALSE)
+```
+
+- Quando $\phi$, que é o coeficiente autoregressivo, se aproxima de 1, isso indica que o MVE se aproxima de um modelo GARCH(1,1).
+
+---
+
+# VS vs MVE
+
+```{r}
+ggplot(bra,aes(x=date)) + 
+  geom_line(aes(y=rc)) +
+  geom_line(aes(y=vs*qnorm(0.95)), colour = "red") + 
+  geom_line(aes(y=ve*qnorm(0.95)), colour = "blue") + 
+  labs(x="Data",y="Log-Retorno") +
+  theme_bw()
+```
+
+---
+
+class: inverse, center, middle
+
+# Backtesting
+
+---
+
+class: middle
+
+```{r,results='asis'}
+resultados <- data.frame(
+  Método = c("Volatilidade Histórico",
+             "Modelo de Volatilidade Estocástica"),
+  VaR = c(
+    paste0(round(100*(sum(bra$rc < bra$vs * qnorm(0.95),na.rm = TRUE) / nrow(bra)),2),"%"),
+    paste0(round(100*(sum(bra$rc < (bra$ve * qnorm(0.95)),na.rm = TRUE) / nrow(bra)),2),"%")
+    )
+)
+
+kable(resultados,format = "html",
+      booktabs = TRUE,align = "c") %>% 
+  kable_styling()
+```
+
+
+
+# Considerações Finais
+
+- O MVE e a VS tiveram praticamente os mesmos resultados
+
+- A VS é pouco realista quando se quer negociar ações em um período curto de tempo.
+
+- Tudo dependedo que você quer!
+
+
+---
+class: inverse, center, middle
+
+
+# OBRIGADO!

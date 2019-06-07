@@ -1,0 +1,121 @@
+---
+output: 
+  revealjs::revealjs_presentation:
+    css: style.css  
+    theme: solarized
+    center: true
+    transition: none
+    slide_level: 2
+    reveal_options:
+      slideNumber: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r config, echo = FALSE}
+# Configurações
+knitr::opts_chunk$set(
+  message = FALSE,
+  echo = FALSE,
+  warning = FALSE,
+  cache = TRUE,
+  fig.pos = "H",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 9,
+  fig.caption =  TRUE
+)
+```
+
+```{r biblioteca}
+# Bibliotecas
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(tidyquant,  quietly =  TRUE, verbose = FALSE)
+library(ggplot2)
+```
+
+```{r data}
+bra <- tq_get("BBDC4.SA")
+```
+
+# Modelo de Volatilidad e Estocástica
+
+## Introdução
+
+- Bullet 2
+- Bullet 2
+- Bullet 3
+
+## Materias
+
+- Conjunto de dados retirado do Yahoo Finance! 
+
+- Período: `r min(bra$date)` até `r max(bra$date)`
+
+- Empresa: BBDC4.SA (Bradesco)
+
+## Métodos
+
+* Retorno Contínuo
+
+* Volatilidade Simples
+
+* Volatilidade pelo Modelo GARCH
+
+* Backtesting (Valor em Risco)
+
+## Retorno Contínuo
+
+Suposições:
+  
+<center>  
+  - X1
+  
+  - X2
+</center>
+
+$$y_t = ln(\frac{P_t}{P_{t-1}}), \text{ t = 1,2,...,T}$$
+y: retorno contínuo
+
+t: instante
+
+## Volatilidade Simples 
+
+$$h_t = \sqrt{var(y_{(t-1-n)},...,y_{(t-1)})}, \text{ t = 1,2,...,T}$$
+n: número de tempos considerados
+
+y: retorno contínuo
+
+t: instante
+
+
+## Volatilidade pelo Modelo GARCH
+
+$$y_t = \sqrt{h_t \varepsilon_t}$$
+
+$$h_t = \alpha_0 + \sum^p_{i=1}\alpha_iy_{t-1}^2 + \sum^q_{j=1}\beta_jh_{t-j}$$
+$\alpha$,$\beta$: constantes
+
+y: retorno contínuo
+
+h: volatilidade
+
+
+## Backtesting (Violação dos limites de VaR)
+
+
+
+
+## Resultados
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Considerações Finais
+
+- Bullet 1
+- Bullet 2
+- Bullet 3

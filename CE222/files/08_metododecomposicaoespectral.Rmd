@@ -1,0 +1,143 @@
+# Distribuição estacionária de uma CM
+
+## Método de Decomposição Especial
+
+Para encontrar a matriz $P^n$ no caso de dois estados.
+
+Seja
+
+\begin{equation}
+P = \begin{bmatrix}
+1 - a & a \\
+b &  1-b
+\end{bmatrix}
+\end{equation}
+
+0 < a < 1, 0 < b < 1.
+
+$P^n$ = $\lambda_1^n E_1 + \lambda_2^n E_2$, sendo $\lambda_1$ e
+$\lambda_2$ os autovalores da equação caracteristica.
+
+$$det(\lambda I-P) = 0$$
+
+I identidade
+
+As matrizes $E_1$ e $E_2$ são dadas por:
+
+$$E_1 = \frac{1}{\lambda_1 - \lambda_2} [P - \lambda_2I]$$
+
+$$E_2 = \frac{1}{\lambda_2 - \lambda_1} [P - \lambda_1I]$$
+
+
+## DE p/ C-N-M
+
+$$\pi(x)= \frac{\alpha x}{\sum_{y=0} \alpha_y}, x \geq 0$$
+
+
+\begin{equation}
+\alpha_x = \left\{\begin{matrix}
+1 &, x =0 \\
+\frac{p_0...p_{x-1}}{q_1...q_x} &, x \geq 1
+\end{matrix}\right.
+\end{equation}
+
+## Cadeia de Ehrenfest Modificada
+
+Tem-se **d** bolas numeradas e duas caixas (I e II). Inicialmente **m**
+bolas são distribuidas de forma aleatoria nas duas caixas. Seleciona-se
+um número inteiro entre 1 e **d**, retira-se a correspondente a esse
+número e logo recoloca-se numa das caixas selecionadas aleatoriamente. O
+interesse é o número de bolas na caixa I.
+
+Seja $X_n$: o nº de bolas na caixa I, após o n-esimo sorteio. Então,
+{$X_n$, n $\geq$ 0} será uma CM sobre S = {0,1,...,d}.
+
+No caso de d = 3, temos que:
+
+$p_0$ = 1/2  $p_1$ = 1/3 $p_2$ = 1/6\
+$q_1$ = 1/6  $q_2$ = 1/3 $q_3$ = 1/2\
+
+\begin{equation}
+P = \begin{bmatrix}
+1/2 & 1/2 & 0 & 0 \\
+1/6 & 3/6 & 1/6 & 0\\
+0 & 2/6 & 3/6 & 1/6\\
+0 & 0 & 1/2 & 1/2
+\end{bmatrix}
+\end{equation}
+
+
+$\alpha_0=1$  $\alpha_1= \frac{p_0}{p_1} = \frac{1/2}{1/6}=3$\
+$\alpha_2=\frac{p_0p_1}{q_1q_2}=\frac{1/2 x 1/3}{1/6 x 1/3} = 3$\
+$\alpha_3=\frac{p_0p_1p_2}{q_1q_2q_3}=\frac{1/2 x 1/3 x 1/6}{1/2 x 1/3 x
+1/2}= \frac{3 x 1/6}{1/2}$\
+$\alpha_3=1$
+
+$\sum_{y=0}^3 \alpha_y = \alpha_0 + \alpha_1 + \alpha_2 + \alpha_3 = 1 +
+3 + 3 + 1 = 8$
+
+$\pi(0) = \frac{\alpha_0}{\sum \alpha_y} = 1/8$  $\pi(1) = \frac{3}{\sum
+\alpha_y}=\frac{3}{8}$\
+$\pi(2)=3/8$ $\pi(3)=1/8$
+
+$\pi$ = (1/8,3/8,3/8,1/8)$
+
+Seja $N_n(y)$ o número de visitas da cadeia no estado y durante os
+tempos m = 1,...,n. Denotado por Gn(x,y) o valo esperado da VA.
+Nn(y), quando a cadeia come em x, isto é:
+
+$$Gn (x,y) = E_x(Nn(y))$$
+
+Quando y é transiente, o limite Nn(y) < $\infty$. Seja y recorrente e
+consideremos my = $E_y$($T_y$) (tempo medio de retorno em y)
+
+```{definition}
+Um estado recorrente será chamado recorrente nulo se my = $\infty$\
+Caso contrario (ie, se my < $\infty$) o estado será chamado recorrente
+positivo.
+```
+\
+
+```{theorem}
+Seja x recorrente positivo.\
+Se, x $\leftrightarrow$ y (se comunica com) y tambem será recorrente
+positivo.
+```
+\
+```{theorem}
+Seja C um conjunto de estados fechados, finitos e irredutivel, então
+todo estado em C, será recorrente positivo.
+```
+\
+```{corollary}
+Uma CM, irredutivel com S finito, é recorrente
+```
+\
+```{corollary}
+Uma CM, com S finito não possui estados recorrentes nulos.
+```
+\
+```{theorem}
+Uma CM irredutivel de estados recorrentes positivos possui uma unica
+  distribuição estacionaria dada por:\
+  $$\pi(x) = \frac{1}{m\alpha}, \alpha \in S$$
+```
+\
+```{theorem}
+Uma CM irredutivel é recorrente positiva, se e somente se, ela possui
+uma distribuição estacionária.
+```
+\
+```{corollary}
+Se uma CM com S finito é irredutivel, então ela possui uma unica
+distribuição estacionária.
+```
+\
+```{corollary}
+i. Se $S_{RP}$ é vazio ($S_{RP} = \phi$), então não existe distribuição
+  estacionária.
+  ii. Se $S_{RP}$ $\neq$ 0 e irredutivel, então, existe uma unica
+  distribuição estacionaria.
+  iii. Se $S_{RP}$ $\neq$ 0 e ele não é irredutivel, então existem
+  infinitas distribuições estacionarias.
+```
