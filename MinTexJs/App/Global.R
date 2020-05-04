@@ -1,10 +1,7 @@
 ## ===============================================================================
 ## Pacotes utilizados
-pacotes <- list("tm","SnowballC","topicmodels",
-                "ggplot2","plyr","wordcloud","reshape2")
-# # Verifica pacotes instalados e instala caso necessário
-# sapply(pacotes,FUN = function(x) 
-#   if (!x %in% installed.packages()) install.packages(x))
+pacman::p_load(tm, SnowballC, plyr, wordcloud, reshape2, ggplot2, topicmodels)
+
 ## Funções auxiliares para o shiny
 ## ===============================================================================
 # Carrega dados advindos do web-scraping
@@ -12,16 +9,13 @@ load("../Web-Scraping/Pdata.RData")
 info <- read.table("../Web-Scraping/fun/info.txt",header = T,sep = ":",stringsAsFactors = F)
 df <- noticias ; rm(noticias)
 
-## Chama pacotes
-# --------------------------------------------------------------------------------
-sapply(pacotes, require, character.only = TRUE)
 # --------------------------------------------------------------------------------
 
 # Preprocessamento: Cria o Corpus
 Preprocessamento <- function(df,start,end,
                              jornal=c("ESTADAO","FolhaSP","OGLOBO"),
                              rST = 0.9){
-  df <- subset(df,df$Publicado <= end & df$Publicado >= start & 
+  df <- subset(df,df$Publicado <= end & df$Publicado >= start &
                  df$Jornal %in% jornal)
   # Cria o Corpus
   cps <- VCorpus(VectorSource(x = df$Materia),
@@ -37,7 +31,7 @@ Preprocessamento <- function(df,start,end,
   meta(cps,type = "local",tag = "Publicado") <- df$Publicado
   # Texto
   meta(cps,type = "local", tag = "Materia") <- df$Materia
-  
+
   # Preprocessamento
   #-------------------------------------------------------------------------------
   # Documentos para caixa-baixa
@@ -52,37 +46,37 @@ Preprocessamento <- function(df,start,end,
   cps <- tm_map(cps,
                 FUN = removeWords,
                 words = c(stopwords("portuguese"),"ser"))
-  
+
   # Cria matrix de documentos e termos
   dtm <- DocumentTermMatrix(cps)
-  
+
   # Remove esparsidade da matrix
   dtm <- removeSparseTerms(dtm,sparse = rST)
-  
+
   return(list(dtm,cps))
 }
 
 
 # Modelagem de tópicos: LDA
 ModelTopic <- function(dtm,cps, k = 2){
-  
+
   # Modelagem de tópicos
   #-------------------------------------------------------------------------------
   # Cria k tópicos
   lda <- LDA(dtm,k = k,control = list(seed = 7))
-  
+
   # Termos ponderados
   words <- as.data.frame(t(lda@beta))
-  
-  
-  # Processamento da informação 
+
+
+  # Processamento da informação
   #-------------------------------------------------------------------------------
   # Traz o nome do termo
   names(words) <- terms(lda)
-  
+
   # Junta os termos com seus respectivos tópicos
   words <- cbind(term = lda@terms,words)
-  
+
   # 15 termos mais frequentes por tópico
   tops <- lapply(words[, terms(lda)],
                  FUN = function(x) {
@@ -91,10 +85,10 @@ ModelTopic <- function(dtm,cps, k = 2){
                               lprob = x[o])
                  })
   tops <- ldply(tops, .id = "topic")
-  
+
   # Topicos
   topicos <- as.character(terms(lda))
-  
+
   # i <- 1
   # j <- 1
   # for(i in i:length(topicos)){
@@ -105,13 +99,13 @@ ModelTopic <- function(dtm,cps, k = 2){
   #               " class= needed>", topicos[i], "</h1></div>")
   #   j <- j + 1
   # }
-  # 
-  
+  #
+
   # Titulos
   #-------------------------------------------------------------------------------
   # Recupera titulo dos textos do corpus
   tit <- sapply(cps,meta,tag = "Titulo")
-  
+
   # Separa cada titulo pelos seu topico correspondente
   tit <- split(tit,topics(lda))
   names(tit) <- topicos
@@ -125,39 +119,39 @@ ModelTopic <- function(dtm,cps, k = 2){
     i <- i +1
     j <- 1
   }
-  
+
   # Materias
   #-------------------------------------------------------------------------------
   # Recupera cada matéria do corpus
   mat <- sapply(cps,meta,tag = "Materia")
-  
+
   # Separa cada matéria pelo seu tópico correspondente
   mat <- split(mat,topics(lda))
   names(mat) <- terms(lda)
-  
+
   # Data de publicação
   #-------------------------------------------------------------------------------
   # Recupera cada data de publicação do corpus
   Dt_public <- sapply(cps,meta,tag = "Publicado")
-  
+
   # Transforma em Data
   Dt_public <- as.POSIXct(Dt_public)
-  
-  # Proporção de cada termo 
+
+  # Proporção de cada termo
   prop <- as.data.frame(lda@gamma)
   names(prop) <- terms(lda)
-  
+
   # Data frame de tempo e proporção
   prop <- cbind(Dt= Dt_public,prop)
-  
+
   # Transforma as colunas topicos em coluna factor de topicos
   prop <- melt(prop,id.var="Dt")
-  
-  
-  # Lista:  titulos; materias; palavras frequentes nos topicos e proporção 
+
+
+  # Lista:  titulos; materias; palavras frequentes nos topicos e proporção
   # de matérias por dia por tópicos
   r <- list(tops,tit,mat,prop)
-  
+
   return(r)
 }
 
